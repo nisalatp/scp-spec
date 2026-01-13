@@ -1,0 +1,47 @@
+@startuml
+TITLE UC-05: School Supplies Donation (Activity)
+
+|Donor|
+start
+:Log in to Donor Portal;
+:Define Grant Criteria\n(Low Income, School Age, Region X);
+:Allocate Budget ($10,000);
+
+|SCP Governance|
+:Validate Grant Criteria against Policies;
+if (Criteria Approved?) then (no)
+  :Reject & Request Amendment;
+  stop
+else (yes)
+  :Approve Program;
+endif
+
+|SCP Core (Education & Econ)|
+:Query Person Registry;
+:Filter by:
+- Age: 5-16
+- School Enrollment: Active
+- Household Income: < Poverty Line;
+:Rank by Need Score;
+:Select Top 500 Beneficiaries;
+
+|Field Operations|
+:Generate Distribution Task List;
+
+|Field Agent|
+:Receive Task on Mobile App;
+:Visit Household;
+:Verify Student Identity (QR/Biometric);
+:Hand over Supplies;
+:Mark Task as Complete;
+
+|SCP Core (Education & Econ)|
+:Update Beneficiary History;
+:Upload Proof of Delivery;
+
+|Donor|
+:View Real-time Impact Report;
+:Receive Audit Trail;
+stop
+
+@enduml

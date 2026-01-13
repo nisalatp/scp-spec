@@ -1,0 +1,72 @@
+@startuml
+TITLE SCP - Level 4 Flow: Authorization Evaluation (Pseudo-Code)
+autoactivate on
+
+participant "API Middleware" as API
+participant "AuthZ Engine\n(PDP)" as PDP
+participant "Policy Cache" as Cache
+participant "Tenant Context" as Tenant
+participant "Consent Manager" as Consent
+
+note right of API: Incoming Request: \nUser, Action, Resource, Scope
+
+API -> PDP: EvaluateAccess(User, Action, Resource)
+
+    note right of PDP
+    # 1. ROOT Check
+    IF User.IsRoot() THEN
+       RETURN Allow(FullAccess)
+    END IF
+    end note
+
+    PDP -> Tenant: ValidateTenantAccess(User, TargetTenant)
+    return IsValid
+
+    note right of PDP
+    # 2. Tenant Check
+    IF !IsValid THEN
+       RETURN Deny(TenantMismatch)
+    END IF
+    end note
+    
+    PDP -> Consent: CheckConsent(User, DataSubject)
+    return HasConsent
+
+    note right of PDP
+    # 3. Consent Check
+    IF !HasConsent AND RequiresConsent(Action) THEN
+       RETURN Deny(NoConsent)
+    END IF
+    end note
+
+    PDP -> Cache: GetPolicies(User.Roles, Tenant)
+    return PolicySet
+
+    note right of PDP
+    # 4-6. Rule Evaluation (Pseudo Logic)
+    
+    // Deny overrides Allow
+    FOREACH Rule in PolicySet.DenyRules
+      IF Rule.Matches(Context) RETURN Deny()
+    
+    // Check Allow
+    FOREACH Rule in PolicySet.AllowRules
+      IF Rule.Matches(Context) MATCH_FOUND = True
+      
+    IF !MATCH_FOUND RETURN Deny(Implicit)
+    
+    # 7. ABAC / Field Level
+    maskedFields = []
+    FOREACH Field in Resource
+       IF !User.HasClearance(Field.Classification)
+          maskedFields.Add(Field)
+    end note
+
+PDP -> API: Return Decision(Allow, MaskedFields)
+
+note right of API
+  Filter response data
+  based on MaskedFields
+end note
+
+@enduml

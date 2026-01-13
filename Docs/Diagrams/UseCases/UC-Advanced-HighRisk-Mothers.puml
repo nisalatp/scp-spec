@@ -1,0 +1,41 @@
+@startuml
+TITLE UC-Advanced: High-Risk Mothers in Unsafe Conditions (Cross-Vertical Query)
+autoactivate on
+
+actor "Health Official" as User
+participant "Reporting Engine" as Report
+participant "Data Warehouse" as DW
+participant "Vertical: Health" as Health
+participant "Vertical: Housing" as Housing
+participant "Vertical: Finance" as Fin
+participant "Geo Engine" as Geo
+
+note over User: Goal: Find Pregnant women, High Risk,\nPoor Sanitation, Poverty Line, >10km from Clinic
+
+User -> Report: Run Complex Query (Parameters...)
+
+    Report -> DW: Start Aggregation Job
+    
+    ' Step 1: Broad Health Filter
+    DW -> Health: Get(Status="Pregnant", Risk="High")
+    return List_A (GUIDs)
+
+    ' Step 2: Income Filter
+    DW -> Fin: Filter(List_A, Income < PovertyThreshold)
+    return List_B (Subset of A)
+
+    ' Step 3: Housing Filter
+    DW -> Housing: Filter(List_B, Sanitation="Unsafe")
+    return List_C (Subset of B)
+
+    ' Step 4: Geo Calculation
+    DW -> Geo: CalculateDistance(List_C.Address, NearestFacility)
+    return List_D (Where Dist > 10km)
+
+    return ResultData (List_D Details)
+
+Report -> User: Display Dashboard & Map View
+
+note over User: User can now assign CHWs\nto visit these specific households.
+
+@enduml

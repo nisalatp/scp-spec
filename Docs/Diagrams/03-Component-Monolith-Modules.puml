@@ -1,0 +1,66 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+TITLE SCP - Component Diagram (Level 3) - Modules & Pillars (Comprehensive)
+
+Container(api, "API Layer", "Controllers/Middleware", "REST endpoints, Request Validation.")
+ContainerDb(db, "Database", "PostgreSQL", "Persistence")
+Container(msg, "Message Bus", "Event System", "Domain Events (MediatR/Bus)")
+
+Container_Boundary(monolith, "SCP Modular Monolith Core") {
+
+    ' PILLAR 1: SECURITY (SPEC-04)
+    Boundary(p1, "1. SECURITY Pillar") {
+        Component(authz, "AuthZ Engine", "Service", "Evaluates Policy Decision Point (PDP).")
+        Component(audit, "Audit Logger", "Service", "Tamper-evident logging.")
+        Component(masking, "Data Masking", "Service", "PII Redaction based on classification.")
+        Component(consent, "Consent Manager", "Service", "Tracks data sharing agreements.")
+    }
+
+    ' PILLAR 2: GOVERNANCE (SPEC-05)
+    Boundary(p2, "2. GOVERNANCE Pillar") {
+        Component(policy, "Policy Engine", "Service", "Manages Deny/Allow rules.")
+        Component(authority, "Authority Registry", "Service", "Umbrella Authority hierarchy.")
+        Component(conflict, "Conflict Resolver", "Service", "Moderates data collisions.")
+    }
+
+    ' PILLAR 3: PLATFORM CORE (SPEC-06)
+    Boundary(p3, "3. PLATFORM CORE Pillar") {
+        Component(tenant, "Tenant Manager", "Module", "Isolation & Config.")
+        Component(geo, "Geo Engine", "Module", "GIS, Boundaries, Locations.")
+        Component(person, "Person Registry", "Module", "Identity, Deduplication.")
+        Component(household, "Household Registry", "Module", "Family groupings.")
+        Component(form, "Form Builder", "Module", "Dynamic Schema Engine.")
+    }
+
+    ' PILLAR 4: VERTICALS (SPEC-07)
+    Boundary(p4, "4. VERTICALS Pillar (Mandatory)") {
+        Component(v_health, "Health & Env", "Vertical", "Records, WASH.")
+        Component(v_edu, "Education", "Vertical", "Schools, Skills.")
+        Component(v_econ, "Economy", "Vertical", "Jobs, Assets.")
+        Component(v_fin, "Finance", "Vertical", "Aid, Loans.")
+        Component(v_data, "Data (Base)", "Vertical", "Demographics.")
+    }
+
+    ' PILLAR 5: OPERATIONS (SPEC-08)
+    Boundary(p5, "5. OPERATIONS Pillar") {
+        Component(field, "Field Ops", "Module", "Tasks, Agent Routes.")
+        Component(report, "Reporting", "Module", "Aggregation & Export.")
+        Component(notify, "Notifications", "Module", "SMS/Email Dispatch.")
+    }
+}
+
+' wiring
+Rel(api, authz, "1. Enforce AuthZ")
+Rel(authz, masking, "2. Apply Masking")
+Rel(api, msg, "Publish Events")
+
+Rel(authz, p2, "Load Policies")
+Rel(p3, p2, "Check Governance")
+
+Rel(p4, p3, "Links to Person/HH")
+Rel(p5, p3, "Assigns tasks to")
+
+Rel(monolith, db, "EF Core / SQL")
+
+@enduml

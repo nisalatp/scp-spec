@@ -1,0 +1,180 @@
+# SCP Specification Index
+
+This index links to all specification documents in this repository.
+
+## 01 Vision
+- [SCP-SPEC-VISION-01: Problem Statement](01-vision/01-problem-statement.md)
+- [SCP-SPEC-VISION-02: Goals and Non-Goals](01-vision/02-goals-non-goals.md)
+- [SCP-SPEC-VISION-03: Stakeholders and Personas](01-vision/03-stakeholders-personas.md)
+- [SCP-SPEC-VISION-04: Verticals Concept](01-vision/04-verticals-concept.md)
+- [SCP-SPEC-VISION-05: Success Metrics](01-vision/05-success-metrics.md)
+
+## 02 Architecture
+- [**C4 Architecture Diagrams**](../Docs/Diagrams/README.md)
+- [SCP-SPEC-ARCH-01: System Context](02-architecture/01-system-context.md)
+- [SCP-SPEC-ARCH-02: Logical Architecture](02-architecture/02-logical-architecture.md)
+- [SCP-SPEC-ARCH-03: Modular Monolith Architecture](02-architecture/03-modular-monolith-architecture.md)
+- [SCP-SPEC-ARCH-04: Tenant Architecture](02-architecture/04-tenant-architecture.md)
+- [SCP-SPEC-ARCH-05: Data Flow Overview](02-architecture/05-data-flow-overview.md)
+- [SCP-SPEC-ARCH-06: Eventing and Audit Architecture](02-architecture/06-eventing-and-audit-architecture.md)
+- [SCP-SPEC-ARCH-07: Performance and Scale](02-architecture/07-performance-and-scale.md)
+- [SCP-SPEC-ARCH-08: Availability and Resilience](02-architecture/08-availability-and-resilience.md)
+- [SCP-SPEC-ARCH-09: Architecture Decisions and ADRs](02-architecture/09-architecture-decisions-adr.md)
+
+## 03 Domain
+- [SCP-SPEC-DOM-01: Domain Overview](03-domain/01-domain-overview.md)
+- [SCP-SPEC-DOM-02: Entity Catalog](03-domain/02-entity-catalog.md)
+- [SCP-SPEC-DOM-03: Relationship Model](03-domain/03-relationship-model.md)
+- [SCP-SPEC-DOM-04: Program Model](03-domain/04-program-model.md)
+- [SCP-SPEC-DOM-05: Case and Intervention Model](03-domain/05-case-intervention-model.md)
+- [SCP-SPEC-DOM-06: Workflow and Approval Model](03-domain/06-workflow-approval-model.md)
+- [SCP-SPEC-DOM-07: Donor Model](03-domain/07-donor-model.md)
+- [SCP-SPEC-DOM-08: Agent and Field Operations Model](03-domain/08-agent-field-ops-model.md)
+- [SCP-SPEC-DOM-09: Forms and Metadata Model](03-domain/09-forms-metadata-model.md)
+- [SCP-SPEC-DOM-10: Analytics and Reporting Model](03-domain/10-analytics-reporting-model.md)
+- [SCP-SPEC-DOM-11: Finance Model](03-domain/11-finance-model.md)
+- [SCP-SPEC-DOM-12: Marketplace Access Model](03-domain/12-marketplace-access-model.md)
+- [SCP-SPEC-DOM-13: Service Encounters and Attendance](03-domain/13-service-encounters-attendance.md)
+
+## 04 Security
+- [SCP-SPEC-SEC-01: Security Principles](04-security/01-security-principles.md)
+- [SCP-SPEC-SEC-02: Authentication](04-security/02-authentication.md)
+- [SCP-SPEC-SEC-03: ROOT Accounts](04-security/03-root-accounts.md)
+- [SCP-SPEC-SEC-04: Authorization Overview](04-security/04-authorization-overview.md)
+- [SCP-SPEC-SEC-05: Authorization Engine Evaluation](04-security/05-authz-engine-evaluation.md)
+- [SCP-SPEC-SEC-06: Permission Catalog](04-security/06-permission-catalog.md)
+- [SCP-SPEC-SEC-07: Scopes, Groups, and Roles](04-security/07-scopes-groups-roles.md)
+- [SCP-SPEC-SEC-08: Deny and Inheritance Rules](04-security/08-deny-and-inheritance.md)
+- [SCP-SPEC-SEC-09: Consent and Data Sharing](04-security/09-consent-and-data-sharing.md)
+- [SCP-SPEC-SEC-10: Data Classification and Masking](04-security/10-data-classification-and-masking.md)
+- [SCP-SPEC-SEC-11: API Security](04-security/11-api-security.md)
+- [SCP-SPEC-SEC-12: Audit Logging](04-security/12-audit-logging.md)
+- [SCP-SPEC-SEC-13: Threat Model](04-security/13-threat-model.md)
+- [SCP-SPEC-SEC-14: Privacy and Compliance](04-security/14-privacy-compliance.md)
+
+## 05 Governance
+- [SCP-SPEC-GOV-01: Governance Overview](05-governance/01-governance-overview.md)
+- [SCP-SPEC-GOV-02: Umbrella Authority Model](05-governance/02-umbrella-authority-model.md)
+- [SCP-SPEC-GOV-03: Vertical Governance](05-governance/03-vertical-governance.md)
+- [SCP-SPEC-GOV-04: Policy Change Control](05-governance/04-policy-change-control.md)
+- [SCP-SPEC-GOV-05: Data Moderation and Verification](05-governance/05-data-moderation-verification.md)
+- [SCP-SPEC-GOV-06: Conflict Management](05-governance/06-conflict-management.md)
+- [SCP-SPEC-GOV-07: KPI Reconciliation](05-governance/07-kpi-reconciliation.md)
+
+## 06 Platform Core
+- [SCP-SPEC-CORE-01: Tenant Management](06-platform-core/01-tenant-management.md)
+- [SCP-SPEC-CORE-02: Geo Engine](06-platform-core/02-geo-engine.md)
+- [SCP-SPEC-CORE-03: Person Registry](06-platform-core/03-person-registry.md)
+- [SCP-SPEC-CORE-04: Household and Family](06-platform-core/04-household-family.md)
+- [SCP-SPEC-CORE-05: Community Center Registry](06-platform-core/05-community-center-registry.md)
+- [SCP-SPEC-CORE-06: Form Builder](06-platform-core/06-form-builder.md)
+- [SCP-SPEC-CORE-07: Metadata Versioning](06-platform-core/07-metadata-versioning.md)
+- [SCP-SPEC-CORE-08: Attachments and Documents](06-platform-core/08-attachments-documents.md)
+- [SCP-SPEC-CORE-09: Notifications and Email](06-platform-core/09-notifications-email.md)
+- [SCP-SPEC-CORE-10: Configuration Management](06-platform-core/10-configuration-management.md)
+- [SCP-SPEC-CORE-11: Facility Registry](06-platform-core/11-facility-registry.md)
+- [SCP-SPEC-CORE-12: Infrastructure Project Registry](06-platform-core/12-infrastructure-project-registry.md)
+
+## 07 Verticals
+- [SCP-SPEC-VERT-01: System Verticals](07-verticals/01-system-verticals.md)
+- [SCP-SPEC-VERT-02: Custom Verticals](07-verticals/02-custom-verticals.md)
+- [SCP-SPEC-VERT-03: Vertical Policy Pack](07-verticals/03-vertical-policy-pack.md)
+- [SCP-SPEC-VERT-04: Vertical Scoring Models](07-verticals/04-vertical-scoring-models.md)
+- [SCP-SPEC-VERT-05: Vertical Budgets](07-verticals/05-vertical-budgets.md)
+- [SCP-SPEC-VERT-06: Vertical Analytics](07-verticals/06-vertical-analytics.md)
+- [SCP-SPEC-VERT-07: Cross-Vertical Interventions](07-verticals/07-cross-vertical-interventions.md)
+
+## 08 Operations
+- [SCP-SPEC-OPS-01: Agent and Field Operations](08-operations/01-agent-field-operations.md)
+- [SCP-SPEC-OPS-02: Community Workers and Volunteers](08-operations/02-community-workers-volunteers.md)
+- [SCP-SPEC-OPS-03: Donor Operations](08-operations/03-donor-operations.md)
+- [SCP-SPEC-OPS-04: Program Execution](08-operations/04-program-execution.md)
+- [SCP-SPEC-OPS-05: Case Management Operations](08-operations/05-case-management-operations.md)
+- [SCP-SPEC-OPS-06: Communications and Engagement](08-operations/06-communications-engagement.md)
+- [SCP-SPEC-OPS-07: Reporting and Exports](08-operations/07-reporting-exports.md)
+- [SCP-SPEC-OPS-08: Offline Mobile Sync](08-operations/08-offline-mobile-sync.md)
+
+## 09 Integrations
+- [SCP-SPEC-INTEGR-01: Integration Overview](09-integrations/01-integration-overview.md)
+- [SCP-SPEC-INTEGR-02: SMTP Adapter](09-integrations/02-smtp-adapter.md)
+- [SCP-SPEC-INT-03: SMS Adapter](09-integrations/03-sms-adapter.md)
+- [SCP-SPEC-INT-04: Payment Gateway Adapter](09-integrations/04-payment-gateway-adapter.md)
+- [SCP-SPEC-INTEGR-05: Government and NGO Integrations](09-integrations/05-government-ngo-integrations.md)
+- [SCP-SPEC-INT-06: Data Import and Export Pipelines](09-integrations/06-data-import-export-pipelines.md)
+- [SCP-SPEC-INT-07: Webhooks and Events](09-integrations/07-webhooks-events.md)
+
+## 10 Data
+- [SCP-SPEC-DATA-01: Data Architecture](10-data/01-data-architecture.md)
+- [SCP-SPEC-DATA-02: Logical Data Schema](10-data/02-logical-data-schema.md)
+- [SCP-SPEC-DATA-03: Physical Data Schema (PostgreSQL)](10-data/03-physical-data-schema-postgres.md)
+- [SCP-SPEC-DATA-04: Indexing and Performance](10-data/04-indexing-performance.md)
+- [SCP-SPEC-DATA-05: Caching Strategy](10-data/05-caching-strategy.md)
+- [SCP-SPEC-DATA-06: Data Retention and Archival](10-data/06-retention-archival.md)
+- [SCP-SPEC-DATA-07: Backup, Restore, and Disaster Recovery](10-data/07-backup-restore-dr.md)
+- [SCP-SPEC-DATA-08: Seeding and Bootstrap](10-data/08-seeding-and-bootstrap.md)
+
+## 11 APIs
+- [SCP-SPEC-API-01: API Standards](11-apis/01-api-standards.md)
+- [SCP-SPEC-API-02: Authentication API](11-apis/02-auth-api.md)
+- [SCP-SPEC-API-03: Tenant API](11-apis/03-tenant-api.md)
+- [SCP-SPEC-API-04: Geo API](11-apis/04-geo-api.md)
+- [SCP-SPEC-API-05: Person and Household API](11-apis/05-person-household-api.md)
+- [SCP-SPEC-API-06: Verticals API](11-apis/06-verticals-api.md)
+- [SCP-SPEC-API-07: Program API](11-apis/07-program-api.md)
+- [SCP-SPEC-API-08: Case API](11-apis/08-case-api.md)
+- [SCP-SPEC-API-09: Workflow and Approval API](11-apis/09-workflow-approval-api.md)
+- [SCP-SPEC-API-10: Attachments API](11-apis/10-attachments-api.md)
+- [SCP-SPEC-API-11: Reporting API](11-apis/11-reporting-api.md)
+- [SCP-SPEC-API-12: Admin and Security API](11-apis/12-admin-security-api.md)
+- [SCP-SPEC-API-13: Integration API](11-apis/13-integration-api.md)
+- [SCP-SPEC-API-14: OpenAPI Plan](11-apis/14-openapi-plan.md)
+- [SCP-SPEC-API-15: Community Center API](11-apis/15-community-center-api.md)
+- [SCP-SPEC-API-16: Forms and Metadata API](11-apis/16-forms-api.md)
+- [SCP-SPEC-API-17: Import and Export API](11-apis/17-import-export-api.md)
+- [SCP-SPEC-API-18: Configuration Management API](11-apis/18-configuration-api.md)
+- [SCP-SPEC-API-19: Agent and Field Ops API](11-apis/19-agent-field-ops-api.md)
+- [SCP-SPEC-API-20: Marketplace Access API](11-apis/20-marketplace-access-api.md)
+- [SCP-SPEC-API-21: Donor API](11-apis/21-donor-api.md)
+- [SCP-SPEC-API-22: Communications API](11-apis/22-communications-api.md)
+- [SCP-SPEC-API-23: Facility API](11-apis/23-facility-api.md)
+- [SCP-SPEC-API-24: Infrastructure Project API](11-apis/24-infrastructure-api.md)
+- [SCP-SPEC-API-25: Geo Metrics API](11-apis/25-geo-metrics-api.md)
+- [SCP-SPEC-API-26: Encounters and Attendance API](11-apis/26-encounters-attendance-api.md)
+
+## 12 Deployment
+- [SCP-SPEC-DEP-01: Kubernetes Topology](12-deployment/01-kubernetes-topology.md)
+- [SCP-SPEC-DEP-02: Environments](12-deployment/02-environments.md)
+- [SCP-SPEC-DEP-03: CI and CD](12-deployment/03-ci-cd.md)
+- [SCP-SPEC-DEP-04: Secrets Management](12-deployment/04-secrets-management.md)
+- [SCP-SPEC-DEP-05: Observability](12-deployment/05-observability.md)
+- [SCP-SPEC-DEP-06: Scaling Strategy](12-deployment/06-scaling-strategy.md)
+- [SCP-SPEC-DEP-07: Cost Model](12-deployment/07-cost-model.md)
+
+## 13 Migration
+- [SCP-SPEC-MIG-01: Migration Strategy](13-migration/01-migration-strategy.md)
+- [SCP-SPEC-MIG-02: Laravel Credential Extraction](13-migration/02-laravel-credential-extraction.md)
+- [SCP-SPEC-MIG-03: Data Import Plan](13-migration/03-data-import-plan.md)
+- [SCP-SPEC-MIG-04: Cutover and Rollback](13-migration/04-cutover-and-rollback.md)
+
+## 14 Testing
+- [SCP-SPEC-TEST-01: Test Strategy](14-testing/01-test-strategy.md)
+- [SCP-SPEC-TEST-02: Security Testing](14-testing/02-security-testing.md)
+- [SCP-SPEC-TEST-03: Performance Testing](14-testing/03-performance-testing.md)
+- [SCP-SPEC-TEST-04: Contract Testing](14-testing/04-contract-testing.md)
+- [SCP-SPEC-TEST-05: User Acceptance Testing Plan](14-testing/05-uat-plan.md)
+
+## 15 Runbooks
+- [SCP-SPEC-RUN-01: Incident Response](15-runbooks/01-incident-response.md)
+- [SCP-SPEC-RUN-02: Break Glass Procedure](15-runbooks/02-break-glass-procedure.md)
+- [SCP-SPEC-RUN-03: Tenant Provisioning Runbook](15-runbooks/03-tenant-provisioning-runbook.md)
+- [SCP-SPEC-RUN-04: Keycloak Operations Runbook](15-runbooks/04-keycloak-ops-runbook.md)
+- [SCP-SPEC-RUN-05: Backup and Restore Runbook](15-runbooks/05-backup-restore-runbook.md)
+- [SCP-SPEC-RUN-06: Audit Export Runbook](15-runbooks/06-audit-export-runbook.md)
+
+## 16 Appendix
+- [SCP-SPEC-APP-01: Glossary](16-appendix/01-glossary.md)
+- [SCP-SPEC-APP-02: Permission Examples](16-appendix/02-permission-examples.md)
+- [SCP-SPEC-APP-03: Sample Scope Examples](16-appendix/03-sample-scope-examples.md)
+- [SCP-SPEC-APP-04: Sample Policies](16-appendix/04-sample-policies.md)
+- [SCP-SPEC-APP-05: Architecture Decision Record Template](16-appendix/05-adr-template.md)
+- [SCP-SPEC-APP-06: Open Questions Log](16-appendix/06-open-questions-log.md)

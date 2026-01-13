@@ -1,0 +1,41 @@
+@startuml
+TITLE UC-Advanced: Infrastructure Investment (Aggregation & Decision)
+
+start
+:Planner defines problem: "High Disease + Poor Sanitation";
+
+partition "Data Aggregation Layer" {
+    fork
+        :Aggregator: Count Households without Toilets\n(Group by Village);
+        note right: Vertical: Infrastructure
+    fork again
+        :Aggregator: Calculate Waterborne Disease Rate\n(Group by Village);
+         note right: Vertical: Health
+    fork again
+        :Aggregator: Count Child Population Density;
+         note right: Vertical: Demographics
+    end fork
+    
+    :Merge DataSets by GeoID (Village);
+}
+
+:Calculate "Urgency Score" per Village;
+:Rank Villages 1 to N;
+
+partition "Decision Support" {
+    :Filter Villages with No Ongoing Projects;
+    :Overlay Budget Constraints;
+    :Generate Recommend Project List;
+}
+
+if (Auto-Approval Policy?) then (Yes)
+    :Create Project Proposals automatically;
+else (No)
+    :Submit to Funding Committee;
+    :Committee Review;
+endif
+
+:Publish Tender / Allocate Funds;
+
+stop
+@enduml

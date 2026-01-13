@@ -1,0 +1,39 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+TITLE SCP - System Context Diagram (Level 1) - Comprehensive
+
+' Actors
+Person(beneficiary, "Beneficiary", "A member of the community receiving support.")
+Person(agent, "Field Agent", "Operates on the ground (Mobile) to collect data and deliver services.")
+Person(donor, "Donor", "Provides funding, views impact reports.")
+Person(gov_official, "Government Official", "Oversees compliance, audits data.")
+Person(ngo_manager, "NGO Manager", "Configures programs, approves cases.")
+Person(sys_admin, "System/Tenant Admin", "Manages users, configuration, and tenants.")
+
+' System
+System(scp, "Smart Community Platform (SCP)", "The central platform for community data, governance, and intervention management.\nEnforces Neutrality & Governance.")
+
+' External Systems
+System_Ext(identity_sys, "National Identity System", "Gov ID Validation (NIC, Passport).\n[API]")
+System_Ext(payment_gateway, "Payment Gateway", "Disbursements & Financial Aid.\n[API]")
+System_Ext(sms_gateway, "SMS/Email Provider", "Notifications & OTPs.\n[API]")
+System_Ext(legacy_mis, "Legacy NGO MIS", "Existing partner systems.\n[Import/Export]")
+System_Ext(biometric_sys, "Biometric System", "Optional external biometric deduplication.\n[API]")
+
+' Relationships - Primary
+Rel(beneficiary, agent, "Interacts with", "In-person")
+Rel(agent, scp, "Collects data, Manages cases", "Mobile App (Offline-first)")
+Rel(ngo_manager, scp, "Manages Programs, Approves Cases", "Web Portal (HTTPS)")
+Rel(gov_official, scp, "Audits, Reviews Compliance", "Web Portal (HTTPS)")
+Rel(donor, scp, "Views Impact Reports", "Donor Portal (HTTPS)")
+Rel(sys_admin, scp, "Configures Tenants & Policies", "Admin Console (HTTPS)")
+
+' Relationships - Integrations
+Rel(scp, identity_sys, "Verifies Identities", "HTTPS/SOAP")
+Rel(scp, payment_gateway, "Instructs Payouts", "REST API")
+Rel(scp, sms_gateway, "Sends Alerts/OTP", "SMPP/REST")
+Rel(scp, legacy_mis, "Syncs Beneficiary Data", "CSV/JSON Batch")
+Rel(scp, biometric_sys, "Checks Duplicates", "BioXML/REST")
+
+@enduml

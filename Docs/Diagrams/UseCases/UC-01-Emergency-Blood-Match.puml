@@ -1,0 +1,38 @@
+@startuml
+TITLE UC-01: Emergency Blood Matching (Sequence)
+autoactivate on
+
+actor "Hospital Staff" as Staff
+participant "Field App" as App
+participant "SCP API" as API
+participant "Person Registry\n(Health Vertical)" as Registry
+participant "Geo Engine" as Geo
+participant "SMS Gateway" as SMS
+
+note over Staff: Scenario: Need O- Blood within 10km radius\nfor urgent delivery case.
+
+Staff -> App: Critical Search("O- Negative", "10km")
+    App -> API: InternalSearch(Factors=[BloodType:O-Neg], Radius=10km, Reason=Emergency)
+    
+        API -> Geo: GetZonesWithin(CurrentLocation, 10km)
+        return GeoZones[]
+
+        API -> Registry: FindPersons(GeoZones, Attributes=[BloodType:O-Neg])
+        return CandidateList[]
+        
+        API -> Registry: Filter(CandidateList, HealthStatus="Healthy", Age="18-50")
+        return ValidDonors[]
+        
+    return Display(ValidDonors.Count)
+
+Staff -> App: Request Donation Alert(ValidDonors)
+    App -> API: BroadcastAlert(ValidDonors, Template="EmergencyBlood")
+    
+        API -> SMS: SendBatch(PhoneNumbers, Msg="Urgent O- needed at Hospital")
+        return SentIDs
+        
+    return AlertSentConfirmation
+
+note over SMS: Donors receive SMS:\n"Urgent: O- needed at City Hospital. Reply YES to confirm."
+
+@enduml
