@@ -1,0 +1,16 @@
+@startuml geo-lifecycle
+title Geo Node Lifecycle
+
+[*] --> Draft : Hierarchy Level Defined
+
+Draft --> Active : Tenant Admin Activates
+Active --> Restricted : Boundary Dispute / Re-org Pending
+
+state Active {
+  [*] --> Authoritative
+}
+
+Active --> Archived : Node Deprecated (Hierarchy Moved)
+Archived --> [*] : Historical Retention
+
+@enduml

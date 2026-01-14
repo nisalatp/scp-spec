@@ -1,0 +1,23 @@
+@startuml form-import-sequence
+actor "DevOps / Admin" as AD
+participant "SCP CLI" as CLI
+participant "Form Service" as FS
+participant "Metadata Registry" as MR
+participant "Audit System" as AS
+
+AD -> CLI : Run `forms:import --file my-form.yaml`
+CLI -> CLI : Validate YAML against Core Schema
+CLI -> FS : Push Payload (Multipart/JSON)
+
+FS -> FS : Verify Auth Token & Tenant Scope
+FS -> MR : Check existing formKey Collision
+
+alt New Form
+  FS -> MR : Store as Version 1
+else Update
+  FS -> MR : Increment Version & Perform Diff
+end
+
+FS -> AS : Log FORM_IMPORT event
+FS --> AD : Success (Version ID: 45)
+@enduml

@@ -1,0 +1,16 @@
+@startuml finance-obligation-lifecycle
+title Financial Obligation Lifecycle
+
+[*] --> Planned : Case Drafted / Budget Scoped
+
+Planned --> Committed : Case moves to ACTIVE (Earmarked)
+Committed --> Disbursed : external Payment Gateway Confirms Success
+Committed --> Failed : Gateway Rejection / Invalid Account
+
+Disbursed --> Settled : Final Reconciliation Passed
+Settled --> [*] : Locked
+
+Committed --> Cancelled : Case Suspended before Payout
+Cancelled --> Planned : Allocation returned to Program Budget
+
+@enduml

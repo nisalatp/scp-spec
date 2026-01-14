@@ -1,0 +1,14 @@
+@startuml notification-lifecycle
+title Notification Dispatch Lifecycle
+
+[*] --> Pending : Event Triggered (e.g., Case Approved)
+
+Pending --> Templated : Localized Template Resolved
+Templated --> Dispatched : Passed to External Adapter (SMTP/SMS)
+
+Dispatched --> Delivered : Provider Confirmation Received
+Dispatched --> Bounced : Invalid Recipient (Permanent Failure)
+Dispatched --> Failed : Provider Downtown (Pending Retry)
+
+Failed --> Templated : Exponential Backoff Retry
+@enduml

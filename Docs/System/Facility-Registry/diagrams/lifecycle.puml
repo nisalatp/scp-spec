@@ -1,0 +1,18 @@
+@startuml facility-lifecycle
+title Facility Lifecycle
+
+[*] --> Draft : Location & Name defined
+
+Draft --> Requested : Submitted for Vertical Review
+Requested --> Approved : Ownership & Geo-link verified
+
+state Approved {
+  [*] --> Active
+}
+
+Active --> Restricted : Service Hold (e.g., Staff shortage)
+Active --> Suspended : Governance Hold
+Active --> Deprecated : Facility Replaced
+
+Deprecated --> Archived : Historical Reference
+@enduml

@@ -1,0 +1,20 @@
+@startuml partner-onboarding-sequence
+actor "External Partner" as EP
+actor "Umbrella Authority" as UA
+participant "Marketplace Service" as MS
+participant "Keycloak / Identity" as KC
+participant "Audit System" as AS
+
+EP -> MS : Request Access (Purpose="Health Research", Verticals=[Health])
+MS -> MS : Set status to REQUESTED
+MS -> AS : Log ACCESS_REQUESTED
+
+UA -> MS : Review & Approve Request
+MS -> KC : Provision Machine Client (ClientID/Secret)
+KC --> MS : Client Ready
+
+MS -> MS : Create ACCESS_GRANT (Active)
+MS -> AS : Log ACCESS_GRANTED
+MS --> EP : Credentials Issued (Encrypted)
+
+@enduml

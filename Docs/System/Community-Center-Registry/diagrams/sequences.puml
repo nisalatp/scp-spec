@@ -1,0 +1,15 @@
+@startuml geo-linkage-sequence
+actor "Tenant Admin" as TA
+participant "Center Registry" as CR
+participant "Geo Engine" as GE
+participant "Audit System" as AS
+
+TA -> CR : Create Center (Name="Center A")
+CR -> GE : Validate Geo-Node Reference (Node="Village X")
+GE --> CR : Valid
+
+CR -> CR : Link Center to Node
+CR -> AS : Log CENTER_CREATED (Geo-Bound)
+CR --> TA : Center Active in Village X
+
+@enduml

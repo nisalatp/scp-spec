@@ -1,0 +1,29 @@
+@startuml multi-vertical-case-sequence
+actor "Health Officer" as HO
+actor "Education Officer" as EO
+participant "Workflows System" as WS
+participant "Consent System" as CS
+participant "Audit System" as AS
+
+HO -> WS : Create Case (Primary=Health, Subject=ID-123)
+WS -> CS : Check Health Consent
+CS --> WS : Valid
+WS -> AS : Log Case Creation
+WS --> HO : Case-001 Created (Draft)
+
+HO -> WS : Invite Participant Vertical (Education)
+WS -> AS : Log Participant Invitation
+WS --> EO : Invitation Received
+
+EO -> WS : Accept Participation
+WS -> CS : Check Education Consent for ID-123
+alt Consent MISSING
+  CS --> WS : Denied
+  WS --> EO : Cannot Accept: Missing Consent
+else Consent VALID
+  CS --> WS : Allowed
+  WS -> AS : Log Participation JOINED
+  WS --> EO : Joined Case-001
+end
+
+@enduml

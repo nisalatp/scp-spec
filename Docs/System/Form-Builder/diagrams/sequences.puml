@@ -1,0 +1,21 @@
+@startuml submission-versioning-sequence
+actor "Field Agent" as FA
+actor "Case Worker" as CW
+participant "Form Service" as FS
+participant "Submission Store" as SS
+participant "Audit System" as AS
+
+FA -> FS : Submit Initial Record (V1)
+FS -> SS : Create Record (V1, status=PROVISIONAL)
+FS --> FA : Success
+
+CW -> FS : Edit Record for Correction
+FS -> SS : Create Branch (V2, linked to V1)
+FS -> SS : Set V2 status=PROVISIONAL
+FS -> AS : Log SUBMISSION_VERSION_CREATED
+FS --> CW : Edit Stored as New Version
+
+CW -> FS : Verify V2
+FS -> SS : Mark V2=VERIFIED (Immutable)
+FS -> AS : Log RECORD_VERIFIED
+@enduml

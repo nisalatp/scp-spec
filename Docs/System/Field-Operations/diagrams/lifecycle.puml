@@ -1,0 +1,16 @@
+@startuml field-ops-sync-lifecycle
+title Field Data Sync Lifecycle
+
+[*] --> Draft : Captured on Mobile (Offline)
+
+Draft --> ReadyToSync : Submission Completed Locally
+ReadyToSync --> Processing : Connection Established (Sync Initiated)
+
+Processing --> Synced : Succesfully Transmitted to Server
+Processing --> Conflict : Modification Collision detected
+Processing --> Failed : Network Interruption / Schema mismatch
+
+Synced --> Verified : Case Worker approves record
+Conflict --> Draft : Manual Resolution required on Mobile
+
+@enduml

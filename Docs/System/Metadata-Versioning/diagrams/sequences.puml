@@ -1,0 +1,21 @@
+@startuml version-pinning-sequence
+participant "Submission Engine" as SE
+participant "Versioning Service" as VS
+participant "Metadata Store" as MS
+participant "Audit System" as AS
+
+SE -> VS : Get Active Form Schema (Key="REG_FORM")
+VS -> MS : Resolve CURRENT version
+MS --> VS : Version 12
+
+VS -> VS : Pin Submission to VERSION_12
+VS -> AS : Log VERSION_PINNED (SubmissionID, V12)
+VS --> SE : Return Schema V12
+
+... Week Passes, Schema updated to V13 ...
+
+SE -> VS : Recall Submission (ID-1)
+VS -> MS : Fetch Schema for ID-1 (Fixed at V12)
+MS --> VS : Schema V12 (Archived)
+VS --> SE : Return Schema V12 (Consistent rendering)
+@enduml

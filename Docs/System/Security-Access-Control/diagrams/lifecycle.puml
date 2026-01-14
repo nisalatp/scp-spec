@@ -1,0 +1,21 @@
+@startuml sac-lifecycle
+title Access Policy / Session Lifecycle
+
+[*] --> Inactive : No Token / Logged Out
+
+Inactive --> Active : Authentication (Keycloak)
+Active --> Authenticated : Token Issued
+
+state Authenticated {
+  [*] --> Scoped : Context Resolved
+  Scoped --> Authorized : PDP Evaluates (Allow)
+  Scoped --> Forbidden : PDP Evaluates (Deny)
+}
+
+Authenticated --> SessionExpired : TTL Reached
+Authenticated --> Revoked : Admin Kill-Switch
+
+SessionExpired --> Inactive
+Revoked --> Inactive
+
+@enduml

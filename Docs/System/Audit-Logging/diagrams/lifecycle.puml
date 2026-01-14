@@ -1,0 +1,13 @@
+@startuml audit-record-lifecycle
+title Audit Record Lifecycle
+
+[*] --> Recorded : Event Occurs (Fail-Closed)
+
+state Recorded {
+  [*] --> Immutable
+}
+
+Recorded --> Archived : Cold Storage (Encryption Layer 2)
+Archived --> Purged : Permanent Deletion (Legal requirement only)
+
+@enduml

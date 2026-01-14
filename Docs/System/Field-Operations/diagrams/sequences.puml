@@ -1,0 +1,28 @@
+@startuml offline-capture-sequence
+actor "Field Agent" as FA
+participant "Mobile App" as MA
+participant "Form Engine" as FE
+participant "Server Registry" as SR
+participant "Audit System" as AS
+
+FA -> MA : Open Form (Offline)
+MA -> FE : Load Metadata Version
+FE --> FA : Render Form
+
+FA -> FE : Enter PII / Capture GPS
+FE -> FE : Run JSONLogic Validation (Offline)
+FE --> FA : Success / Validation Errors
+
+FA -> MA : Finalize & Secure
+MA -> MA : Encrypt record in local Vault
+MA --> FA : Submission Stored Locally
+
+... Connectivity Regained ...
+
+MA -> SR : Initiate Sync (Delta)
+SR -> SR : Intercept for Role/Scope
+SR -> SR : Perform Conflict Check
+SR -> AS : Log Sync Event
+SR --> MA : Sync Acknowledged
+MA -> MA : Purge local decrypted cache
+@enduml

@@ -1,0 +1,23 @@
+@startuml config-runtime-reload-sequence
+actor "Tenant Admin" as TA
+actor "Umbrella Authority" as UA
+participant "Config Service" as CS
+participant "App Instances" as APP
+participant "Audit System" as AS
+
+TA -> CS : Propose Change (RateLimit=5000)
+CS -> CS : Set status to PENDING
+CS -> AS : Log CONFIG_PROPOSAL
+
+UA -> CS : Approve Change
+CS -> CS : Create New Version (V5)
+CS -> CS : Mark V5 as EFFECTIVE
+
+CS -> APP : Broadcast RELOAD (V5)
+APP -> CS : Fetch New Config
+APP -> APP : Apply settings in-memory
+APP --> CS : ACK Reload Successful
+
+CS -> AS : Log CONFIG_ACTIVATION (V5)
+CS --> TA : Change Live
+@enduml

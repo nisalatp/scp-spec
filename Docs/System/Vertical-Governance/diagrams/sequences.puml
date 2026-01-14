@@ -1,0 +1,19 @@
+@startuml cross-vertical-access-sequence
+actor "Education Auditor" as EA
+participant "Security System" as SS
+participant "Health Service" as HS
+participant "Consent System" as CS
+participant "Audit System" as AS
+
+EA -> SS : Request CROSS-VERTICAL Access (Target=HealthData)
+SS -> AS : Log CROSS-VERTICAL Request
+
+SS -> CS : Check Education-to-Health Shared Consent for Subject
+CS --> SS : Valid (Intersection Rule applied)
+
+SS -> HS : Fetch Data (Masked for Auditor)
+HS --> SS : Data Stream
+SS -> AS : Log Cross-Vertical DATA_CONSUMED
+SS --> EA : Return Masked Response
+
+@enduml

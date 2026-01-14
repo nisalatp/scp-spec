@@ -1,0 +1,30 @@
+@startuml authorization-request-sequence
+actor "Client App" as CA
+participant "Security System (PDP)" as PDP
+participant "Consent System (PIP)" as PIP
+participant "Audit System" as AS
+
+CA -> PDP : Request Resource (Vertical=Health, Action=Person.View, Target=ID-123)
+PDP -> PDP : Check ROOT/Admin Override
+
+alt Not ROOT
+  PDP -> PIP : Check Active Consent (Person=ID-123, Vertical=Health)
+  PIP --> PDP : Valid Consent Found
+  
+  PDP -> PDP : Resolve Geo-Scope Inheritance
+  PDP -> PDP : Apply Deny Rules (User Status)
+  PDP -> PDP : Apply Allow Rules (Role Permissions)
+  
+  alt Authorized
+    PDP -> AS : Log Access GRANTED
+    PDP --> CA : Return Authorized Header + Masking Rules
+  else Denied
+    PDP -> AS : Log Access DENIED (Reason)
+    PDP --> CA : ERR_AUTH_FORBIDDEN (403)
+  end
+else ROOT
+  PDP -> AS : Log ROOT BYPASS (Critical)
+  PDP --> CA : Return Full Access (Non-Masked)
+end
+
+@enduml

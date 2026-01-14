@@ -1,0 +1,28 @@
+@startuml differential-privacy-sequence
+actor "Researcher" as RE
+participant "Data Mesh Interface" as DM
+participant "Domain Store (Health)" as DS
+participant "Consent Filter" as CF
+participant "Noise Injector" as NI
+participant "Audit System" as AS
+
+RE -> DM : Request Aggregate (Count Sick Persons in Node-X)
+DM -> AS : Log Analytics Request (Intention Required)
+
+DM -> DS : Fetch Raw Count
+DS --> DM : Result: 4
+
+DM -> CF : Verify Group Anonymity (K-Threshold)
+
+alt K-Group Too Small (<5)
+  CF -> CF : Apply Suppression
+  CF --> DM : Result: SUPPRESSED
+  DM --> RE : Error: Group size too small for anonymity
+else Valid Group
+  DM -> NI : Apply Differential Privacy (Add Epsilon Noise)
+  NI --> DM : Result: 4 (Unchanged) or 5 (Noisy)
+  NI -> AS : Log DP_APPLIED
+  DM --> RE : Return Safe Aggregate
+end
+
+@enduml

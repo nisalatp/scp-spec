@@ -1,0 +1,18 @@
+@startuml identity-lifecycle
+title Person Identity Lifecycle
+
+[*] --> Provisional : Self-Registration / Field Capture
+
+Provisional --> Verified : Case Worker Confirms NIC/Biometrics
+Provisional --> Rejected : Duplicate Detected / Invalid IDs
+
+state Verified {
+  [*] --> Active
+  Active --> Restricted : Legal/Compliance Hold
+  Restricted --> Active : Hold Lifted
+}
+
+Verified --> Merged : Duplicate found post-verification
+Merged --> [*] : Pointer to Master Record
+
+@enduml

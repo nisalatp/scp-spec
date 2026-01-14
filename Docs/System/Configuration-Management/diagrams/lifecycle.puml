@@ -1,0 +1,14 @@
+@startuml config-snapshot-lifecycle
+title Configuration Snapshot Lifecycle
+
+[*] --> Draft : Proposed Change
+
+Draft --> PendingApproval : Submitted for Umbrella Review
+PendingApproval --> Approved : Governance Approval Received
+PendingApproval --> Rejected : Change Denied
+
+Approved --> Active : Replaced current runtime config
+Active --> Rollback : Previous version restored
+
+Active --> Archived : Version Superseded
+@enduml

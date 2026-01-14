@@ -1,0 +1,15 @@
+@startuml center-lifecycle
+title Community Center Lifecycle
+
+[*] --> Draft : Physical Site Profiled
+
+Draft --> Active : Tenant Admin Activates (Linked to Geo)
+Active --> Restricted : Maintenance / Incident Hold
+
+state Active {
+  [*] --> Operational
+}
+
+Active --> Archived : Center Closed / Re-org
+Archived --> [*] : Locked history
+@enduml

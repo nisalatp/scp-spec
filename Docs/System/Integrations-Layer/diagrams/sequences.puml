@@ -1,0 +1,23 @@
+@startuml internal-external-exchange-sequence
+participant "Partner System" as PS
+participant "Integration Layer" as IL
+participant "Security System" as SS
+participant "Consent System" as CS
+participant "Core API" as API
+participant "Audit System" as AS
+
+PS -> IL : Resource Request (ClientID, vertical=Health)
+IL -> SS : Validate Machine Token & Scope
+SS --> IL : Valid
+
+IL -> API : Fetch Bulk Data (SubjectList)
+API --> IL : Raw Dataset
+
+IL -> CS : Intercept (Filter by Consent for Health)
+CS -> CS : Remove records without active consent
+CS --> IL : Filtered/Consented Dataset
+
+IL -> IL : Apply Field Masking (Auditor Role)
+IL -> AS : Log EXTERNAL_EXCHANGE (RecordsCount)
+IL --> PS : Return Safe JSON Payload
+@enduml

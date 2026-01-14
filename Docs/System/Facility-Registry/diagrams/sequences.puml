@@ -1,0 +1,16 @@
+@startuml service-capability-sequence
+actor "Facility Admin" as FA
+actor "Vertical Owner" as VO
+participant "Facility Service" as FS
+participant "Audit System" as AS
+
+FA -> FS : Request Capability Add (e.g., "Maternity Care")
+FS -> FS : Set service status to REQUESTED
+FS -> AS : Log SERVICE_CHANGE_REQUEST
+
+VO -> FS : Review & Verify Capability
+FS -> FS : Set service status to ACTIVE
+FS -> AS : Log SERVICE_ACTIVATED
+FS --> FA : Facility now discoverable for Service X
+
+@enduml

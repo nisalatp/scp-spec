@@ -1,0 +1,19 @@
+@startuml tenant-lifecycle
+title Tenant Lifecycle
+
+[*] --> Draft : Onboarding Initialized
+
+Draft --> Active : Umbrella Approval + DB Partition Created
+Active --> Restricted : Compliance Audit / Multi-Vertical Review
+
+state Active {
+  [*] --> Operational
+}
+
+Active --> Suspended : Policy Violation
+Suspended --> Active : Remediation Approved
+
+Active --> Archived : Country Exit / Data Retention
+Archived --> [*] : Frozen History
+
+@enduml

@@ -1,0 +1,18 @@
+@startuml integration-contract-lifecycle
+title Integration Contract Lifecycle
+
+[*] --> Draft : Defined by Partner / Admin
+
+Draft --> Requested : Submitted for Review
+Requested --> Approved : Governance Review Complete
+
+state Approved {
+  [*] --> Active
+}
+
+Active --> Restricted : Rate Limit Breach / Audit Hold
+Active --> Suspended : Policy Violation
+Active --> Deprecated : Contract Replaced
+
+Deprecated --> Archived : Locked history
+@enduml

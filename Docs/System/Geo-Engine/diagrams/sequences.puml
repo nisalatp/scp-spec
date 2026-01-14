@@ -1,0 +1,22 @@
+@startuml geo-scoping-sequence
+actor "Admin" as AD
+participant "Geo Engine" as GE
+participant "Security System" as SS
+participant "Audit System" as AS
+
+AD -> GE : Create Hierarchy Levels (State -> District -> Village)
+GE -> AS : Log Hierarchy Config
+GE --> AD : Levels Defined
+
+AD -> GE : Create Geo Node (Village X in District Y)
+GE -> AS : Log Node Creation
+GE --> AD : Node Active
+
+AD -> SS : Assign User to Geo Node (Village X)
+SS -> GE : Validate Node Existence
+GE --> SS : Valid
+SS -> SS : Apply Scope to User Session
+SS -> AS : Log Scope Assignment
+SS --> AD : User Scoped Successfully
+
+@enduml

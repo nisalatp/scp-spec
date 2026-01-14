@@ -1,0 +1,26 @@
+@startuml rule-evaluation-sequence
+actor "Workflow Engine" as WE
+participant "Rules Engine" as RE
+participant "Identity System" as IS
+participant "Geo Engine" as GE
+participant "Audit System" as AS
+
+WE -> RE : Evaluate Eligibility (Person=ID-123, Program=Scholarship)
+RE -> RE : Load ACTIVE RuleSet Version
+
+RE -> IS : Fetch Demographics (Age, SchoolStatus)
+IS --> RE : Data Provided
+RE -> GE : Fetch Geo-Context (IncomeGroup)
+GE --> RE : Data Provided
+
+RE -> RE : Execute JSONLogic Evaluation
+
+alt Eligible
+  RE -> AS : Log EVALUATION_SUCCESS
+  RE --> WE : Result: ELIGIBLE (Rationales attached)
+else Ineligible
+  RE -> AS : Log EVALUATION_FAIL
+  RE --> WE : Result: NOT_ELIGIBLE (Failure nodes identified)
+end
+
+@enduml

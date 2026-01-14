@@ -1,0 +1,29 @@
+@startuml case-lifecycle
+title Case (Intervention) Lifecycle
+
+[*] --> Draft : Created by Vertical Representative
+
+Draft --> Submitted : PII Captured & Evidence Attached
+Submitted --> Verified : Verification Officer Confirms Integrity
+
+state Verified {
+  [*] --> ReadyForActivation
+}
+
+Verified --> Active : Program Manager Approves Enrollment
+Active --> Suspended : Consent Withdrawn / Geo-Reorg / Policy Breach
+Suspended --> Active : Remedy Applied / Consent Renewed
+
+state Active {
+  [*] --> InProgress
+  InProgress --> Stabilized : Objectives Met (Final Assessment)
+}
+
+Stabilized --> Closed : Manual Closure by Vertical Owner
+Closed --> Reopened : Exceptional Appeal Approved
+Reopened --> Active
+
+Closed --> Archived : Retained after Retention Period
+Archived --> [*]
+
+@enduml

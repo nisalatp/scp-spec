@@ -1,0 +1,26 @@
+@startuml consent-verification-sequence
+actor "Field Agent" as FA
+actor "Case Worker" as CW
+participant "Consent System" as CS
+participant "Audit System" as AS
+
+FA -> CS : Capture Consent (Offline/Online)
+CS -> AS : Log Capture Event
+CS --> FA : Record Created (Pending)
+
+CW -> CS : Review Evidence (NIC/Signature)
+CS -> CS : Validate Record Linkage
+
+alt Valid Evidence
+  CW -> CS : Approve
+  CS -> CS : Set Status to ACTIVE
+  CS -> AS : Log Verification Event
+  CS --> CW : Verification Successful
+else Invalid Evidence
+  CW -> CS : Reject
+  CS -> CS : Set Status to REJECTED
+  CS -> AS : Log Rejection (Reason Required)
+  CS --> CW : Rejection Recorded
+end
+
+@enduml

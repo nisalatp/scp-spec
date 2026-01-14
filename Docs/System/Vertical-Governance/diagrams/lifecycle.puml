@@ -1,0 +1,20 @@
+@startuml vertical-lifecycle
+title Vertical (Interest Domain) Lifecycle
+
+[*] --> Draft : Domain proposed by Region/Country
+
+Draft --> Requested : Submitted for Umbrella Approval
+Requested --> Reviewed : Compliance & Capability Review
+
+state Reviewed {
+  [*] --> Approved
+}
+
+Approved --> Active : Credentials & Budgets Allocated
+Active --> Restricted : Audit in Progress
+Active --> Suspended : Governance Hold
+
+Active --> Deprecated : Mission Complete
+Deprecated --> Archived : Data Frozen
+
+@enduml

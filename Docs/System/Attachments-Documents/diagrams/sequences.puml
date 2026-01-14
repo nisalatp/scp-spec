@@ -1,0 +1,22 @@
+@startuml secure-upload-sequence
+actor "Field Agent" as FA
+participant "Attachment Service" as AS_SVC
+participant "Object Store" as OBJ
+participant "Scanner" as SCAN
+participant "Audit System" as AS
+
+FA -> AS_SVC : Init Upload (file="nic.jpg", size=2MB)
+AS_SVC -> AS_SVC : Create Entry (PENDING_UPLOAD)
+AS_SVC --> FA : Presigned URL (S3)
+
+FA -> OBJ : PUT File (Encrypted)
+OBJ --> FA : 200 OK
+
+FA -> AS_SVC : Finalize Upload
+AS_SVC -> SCAN : Scan for Threats
+SCAN --> AS_SVC : CLEAN
+
+AS_SVC -> AS_SVC : Update Status to SCANNED
+AS_SVC -> AS : Log UPLOAD_VERIFIED (Hash)
+AS_SVC --> FA : Upload Complete
+@enduml

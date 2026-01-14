@@ -1,0 +1,17 @@
+@startuml form-definition-lifecycle
+title Form Definition Lifecycle
+
+[*] --> Draft : Defined in UI / Payload
+
+Draft --> Requested : Submitted for Vertical Approval
+Requested --> Approved : Logic Verified by Subject Expert
+
+state Approved {
+  [*] --> Active
+}
+
+Active --> Restricted : Policy Review in Progress
+Active --> Deprecated : New Version Pushed
+
+Deprecated --> Archived : Data Frozen
+@enduml

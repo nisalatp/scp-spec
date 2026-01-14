@@ -1,0 +1,20 @@
+@startuml fail-closed-audit-sequence
+participant "App Service" as APP
+participant "Audit Logger" as AL
+participant "Audit Store" as DB
+participant "Security Monitor" as SM
+
+APP -> AL : Dispatch AuditEvent (Action=Login, User=Admin)
+AL -> AL : Verify Event Integrity (Hashing)
+
+alt Audit Store Online
+  AL -> DB : Commit Event (FLUSH)
+  DB --> AL : Success
+  AL --> APP : OK (Proceed with Action)
+else Audit Store Offline
+  AL -> SM : Raise SEVERITY_HIGH Alert
+  AL --> APP : FAIL_CLOSED (Block Action)
+  APP -> APP : Halting Transaction
+end
+
+@enduml

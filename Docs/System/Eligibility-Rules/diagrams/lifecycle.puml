@@ -1,0 +1,19 @@
+@startuml rules-lifecycle
+title Eligibility RuleSet Lifecycle
+
+[*] --> Draft : Logic defined by Policy Analyst
+
+Draft --> Requested : Submitted for Governance Review
+Requested --> Reviewed : Peer/Expert Review Complete
+
+state Reviewed {
+  [*] --> PendingActivation
+}
+
+Reviewed --> Active : Vertical Owner Approves Rollout
+Active --> Deprecated : Replaced by New Version
+Deprecated --> Archived : Historical Retention
+
+Active --> Suspended : Policy Hold (Emergency)
+
+@enduml

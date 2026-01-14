@@ -1,0 +1,15 @@
+@startuml metadata-version-lifecycle
+title Metadata Version Lifecycle
+
+[*] --> Draft : Design Phase
+
+Draft --> Published : Published (Immutable Snapshot)
+
+state Published {
+  [*] --> Active
+}
+
+Published --> Deprecated : Superseded by New Version
+Deprecated --> Archived : Historical Retention
+
+@enduml

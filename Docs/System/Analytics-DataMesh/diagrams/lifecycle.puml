@@ -1,0 +1,15 @@
+@startuml data-product-lifecycle
+title Data Product (Mesh) Lifecycle
+
+[*] --> Draft : Schema & Source Defined
+
+Draft --> Discovered : Published to Global Registry (Catalog)
+Discovered --> Consumed : Accessed by Authorized Consumer
+
+state Consumed {
+  [*] --> Aggregating
+}
+
+Consumed --> Deprecated : Source schema Changed
+Deprecated --> Archived : Historical Reference
+@enduml

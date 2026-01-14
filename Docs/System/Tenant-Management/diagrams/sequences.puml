@@ -1,0 +1,20 @@
+@startuml tenant-onboarding-sequence
+actor "Umbrella Authority" as UA
+actor "ROOT" as ROOT
+participant "Tenant System" as TS
+participant "Infrastructure Layer" as INF
+participant "Audit System" as AS
+
+UA -> TS : Propose New Tenant (Sovereign Country X)
+TS -> TS : Set status to DRAFT
+TS -> AS : Log Onboarding Request
+
+ROOT -> TS : Review & Approve Configuration
+TS -> INF : Provision Isolated Database Schema
+INF --> TS : Database Ready (TLS 1.3 Enabled)
+
+TS -> TS : Activate Tenant
+TS -> AS : Log Tenant Activation
+TS --> UA : Tenant "Country X" is LIVE
+
+@enduml

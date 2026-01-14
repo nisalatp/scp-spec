@@ -1,0 +1,21 @@
+@startuml overlap-detection-sequence
+actor "Planner" as PL
+participant "Project Registry" as PR
+participant "Geo Engine" as GE
+participant "Audit System" as AS
+
+PL -> PR : Submit New Project (Type="Water", Geo="Div-A")
+PR -> GE : Fetch existing projects for Geo="Div-A"
+GE --> PR : Return ProjectList [P1, P2]
+
+PR -> PR : Run Overlap Detector (Type Match)
+
+alt Overlap Found
+  PR -> AS : Log POTENTIAL_OVERLAP (Project-ID)
+  PR --> PL : Warning: Overlap with Project P1 (Type Match)
+else Clear
+  PR -> AS : Log PROJECT_REGISTERED
+  PR --> PL : Success
+end
+
+@enduml

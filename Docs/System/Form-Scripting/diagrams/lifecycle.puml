@@ -1,0 +1,13 @@
+@startuml form-script-lifecycle
+title Form Script (DSL) Lifecycle
+
+[*] --> Draft : YAML definition authored (.forms.yaml)
+
+Draft --> Validated : Passed CLI / Schema Validation
+Validated --> Imported : Imported to Tenant Registry
+
+Imported --> Active : Version Promoted for Use
+Imported --> Deprecated : Replaced by Newer Build
+Deprecated --> Archived : Historical Reference
+
+@enduml

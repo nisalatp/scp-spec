@@ -1,0 +1,14 @@
+@startuml attachment-lifecycle
+title Attachment (Vault) Lifecycle
+
+[*] --> PendingUpload : Metadata Created
+
+PendingUpload --> Uploaded : S3/Object-Store ACK
+Uploaded --> Scanned : Virus Scan Successful
+Uploaded --> Failed : Virus Detected / Integrity Failure
+
+Scanned --> Verified : Case Worker Confirms Context
+Verified --> Archived : Document Superseded / Redacted
+
+Archived --> Purged : Permanent Deletion
+@enduml

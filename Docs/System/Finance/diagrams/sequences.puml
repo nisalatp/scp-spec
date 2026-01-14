@@ -1,0 +1,21 @@
+@startuml budget-commitment-sequence
+actor "Program Manager" as PM
+participant "Finance System" as FS
+participant "Budget Registry" as BR
+participant "External Gateway" as EG
+participant "Audit System" as AS
+
+PM -> FS : Approve Case for Payout (ID-123, Vertical=Social)
+FS -> BR : Check Available Program Budget
+BR --> FS : Sufficient Funds Found ($100)
+
+FS -> FS : Create OBLIGATION (Committed)
+FS -> BR : Lock Budget Earmark
+FS -> AS : Log Financial Commitment
+FS --> PM : Case Activated & Funds Locked
+
+FS -> EG : Dispatch Disbursement File (ISO 20022)
+EG --> FS : ACK/Payment Success
+FS -> FS : Mark OBLIGATION (Disbursed)
+FS -> AS : Log Final Payout
+@enduml

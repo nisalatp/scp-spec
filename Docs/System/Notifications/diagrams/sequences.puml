@@ -1,0 +1,20 @@
+@startuml notification-dispatch-sequence
+participant "Watch Engine" as WE
+participant "Notification Service" as NS
+participant "Template Registry" as TR
+participant "Identity System" as IS
+participant "External Provider" as EP
+participant "Audit System" as AS
+
+WE -> NS : Trigger Notify (Subject=ID-123, Event=PAY_READY)
+NS -> IS : Fetch Preferences (Language, ContactDetails)
+IS --> NS : SriLankan, SMS: 077...
+
+NS -> TR : Resolve Template (Key=PAY_READY, Lang=SI)
+TR --> NS : Compiled Body
+
+NS -> EP : Dispatch SMS
+EP --> NS : ACK (MessageID)
+
+NS -> AS : Log NOTIFY_SENT
+@enduml

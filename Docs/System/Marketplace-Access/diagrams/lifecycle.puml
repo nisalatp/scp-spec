@@ -1,0 +1,15 @@
+@startuml access-grant-lifecycle
+title Marketplace Access Grant Lifecycle
+
+[*] --> Requested : External Org submits Request
+
+Requested --> Approved : Umbrella Authority Reviews
+Requested --> Rejected : Request Denied (Policy mismatch)
+
+Approved --> Active : Token/Client Issued (Within Time-Window)
+Active --> Revoked : Kill-Switch Triggered
+Active --> Expired : CurrentDate > UntilDate
+
+Expired --> Archived
+Revoked --> Archived
+@enduml

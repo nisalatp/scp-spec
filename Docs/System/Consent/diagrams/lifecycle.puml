@@ -1,0 +1,25 @@
+@startuml consent-lifecycle
+title Consent Record Lifecycle
+
+[*] --> Captured : Online/Offline Capture
+
+state Captured {
+  [*] --> PendingVerification : Offline
+  [*] --> Active : Online (Auto-Verified)
+}
+
+PendingVerification --> Active : Case Worker Verifies Evidence
+PendingVerification --> Rejected : Invalid Evidence
+
+state Active {
+  [*] --> Valid
+  Valid --> Expiring : Within 30 Days of UntilDate
+}
+
+Active --> Expired : CurrentDate > UntilDate
+Active --> Withdrawn : User Withdraws Consent
+
+Expired --> Active : Consent Renewed
+Withdrawn --> [*] : Immutably Blocked
+
+@enduml

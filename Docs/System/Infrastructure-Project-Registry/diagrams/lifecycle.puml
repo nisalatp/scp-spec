@@ -1,0 +1,17 @@
+@startuml project-lifecycle
+title Infrastructure Project Lifecycle
+
+[*] --> Draft : Project Scoped (Proposed)
+
+Draft --> Requested : Submitted for Review
+Requested --> Approved : Funding & Geo-Coverage Confirmed
+
+state Approved {
+  [*] --> Active
+}
+
+Active --> Suspended : Funding Pause / Policy Breach
+Active --> Deprecated : Project Completed / Superseded
+
+Deprecated --> Archived : Historical Outcome record
+@enduml

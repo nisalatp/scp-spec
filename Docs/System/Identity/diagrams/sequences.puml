@@ -1,0 +1,25 @@
+@startuml registration-linking-sequence
+actor "Field Agent" as FA
+actor "Case Worker" as CW
+participant "Identity System" as IS
+participant "Deduplication Engine" as DE
+participant "Audit System" as AS
+
+FA -> IS : Submit Registration (Person + Household)
+IS -> DE : Search existing (NIC/Hash/Fuzzy)
+
+alt Match Found
+  DE -> IS : Return Conflict
+  IS --> FA : Flag Duplicate (Workflow Pending)
+else No Match
+  DE -> IS : Clear
+  IS -> IS : Create Record (Provisional)
+  IS -> AS : Log Provisional Registration
+  IS --> FA : Registration Success
+end
+
+CW -> IS : Verify Provisional Record
+IS -> AS : Log Verification Action
+IS --> CW : Record marked VERIFIED
+
+@enduml
