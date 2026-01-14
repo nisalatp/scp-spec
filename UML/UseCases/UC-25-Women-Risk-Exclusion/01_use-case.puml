@@ -1,0 +1,10 @@
+@startuml
+title UC-25: Women at Risk of Exclusion (Use Case)
+actor "Policy Planner" as Planner
+package "Vertical: Education" <<standard-vertical>> { usecase "Check Degree" as Edu }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Employment" as Job }
+package "Geo-Vertical: Social Welfare" <<geo-vertical>> { usecase "Check Aid Status" as Aid }
+Planner --> Edu
+Edu ..> Job : "and"
+Job ..> Aid : "and"
+@enduml

@@ -1,0 +1,16 @@
+@startuml uc37_sequence
+title UC-37: Child Malnutrition (Sequence)
+autoactivate on
+actor Worker
+participant "Vertical: Health" as Health
+participant "Geo-Vertical: Env" as Env
+participant "Vertical: Edu" as Edu
+Worker -> Health: FindComplexCases()
+    Health -> Health: GetMalnourished()
+    return ListA
+    Health -> Env: CheckWaterSource(ListA)
+    return ListB
+    Health -> Edu: CheckParentEdu(ListB)
+    return PriorityList
+return Display(PriorityList)
+@enduml

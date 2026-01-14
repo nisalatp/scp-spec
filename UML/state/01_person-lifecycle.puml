@@ -1,0 +1,27 @@
+@startuml
+title 01_person-lifecycle
+
+[*] --> Provisional : Register
+
+state Provisional {
+    [*] --> DataCaptured
+    DataCaptured --> PendingDedup
+    PendingDedup --> FlaggedReview : Duplicate Found
+}
+
+Provisional --> Verified : Verify Identity
+Provisional --> Rejected : Fraud/Invalid
+
+state Verified {
+    [*] --> Active
+    Active --> Suspended : Policy Violation
+    Suspended --> Active : Resolved
+}
+
+Verified --> Archived : Soft Delete
+Verified --> Deceased : Death Reported
+
+Archived --> [*]
+Deceased --> [*]
+
+@enduml

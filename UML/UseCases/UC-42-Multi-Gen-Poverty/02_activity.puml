@@ -1,0 +1,15 @@
+@startuml uc42_activity
+title UC-42: Multi-Generational Poverty (Activity)
+|User|
+start
+:Query Households;
+|SCP Core|
+:Traverse Family Tree (Grandparents -> Parents -> Kids);
+|Vertical: Education|
+:Check Low Edu for All Gens;
+|Vertical: Economy|
+:Check Poverty for All Gens;
+|SCP Core|
+:Flag "Cycle of Poverty";
+stop
+@enduml

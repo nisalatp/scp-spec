@@ -1,0 +1,12 @@
+@startuml
+title UC-44: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Health"
+rectangle "Vertical: Education"
+rectangle "Geo-Vertical: Infrastructure" <<geo-vertical>>
+rectangle "Geo-Vertical: Environment" <<geo-vertical>>
+"SCP Core" --> "Vertical: Health"
+"SCP Core" --> "Vertical: Education"
+"SCP Core" --> "Geo-Vertical: Infrastructure"
+"SCP Core" --> "Geo-Vertical: Environment"
+@enduml

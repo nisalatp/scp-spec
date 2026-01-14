@@ -1,0 +1,15 @@
+@startuml
+title UC-09: Sanitation Infrastructure Planning (Activity)
+|Org|
+start
+:Plan Toilet Construction;
+|Geo-Vertical: WASH|
+:Survey Households (No Toilet);
+|Vertical: Health|
+:Correlate with Disease Rates;
+|Geo-Vertical: WASH|
+:Prioritize High Risk HHs;
+|Vertical: Finance|
+:Allocate Grants;
+stop
+@enduml

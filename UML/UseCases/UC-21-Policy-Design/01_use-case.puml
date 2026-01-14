@@ -1,0 +1,8 @@
+@startuml
+title UC-21: Policy Design (Use Case)
+actor "Local Authority" as Auth
+package "Vertical: Data" <<standard-vertical>> { usecase "Population Stats" as Stats }
+package "Geo-Vertical: Governance" <<geo-vertical>> { usecase "Draft Policy" as Draft }
+Auth --> Draft
+Draft ..> Stats : "uses"
+@enduml

@@ -1,0 +1,8 @@
+@startuml uc40_usecase
+title UC-40: Health Access Gap Analysis (Use Case)
+actor "Planner" as Planner
+package "Vertical: Health" <<standard-vertical>> { usecase "Disease Prevalence" as Disease }
+package "Geo-Vertical: Transport" <<geo-vertical>> { usecase "Travel Time" as Travel }
+Planner --> Disease
+Disease ..> Travel : "vs"
+@enduml

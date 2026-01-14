@@ -1,0 +1,113 @@
+@startuml
+title SCP - System Domain Model (Class Diagram)
+hide empty members
+left to right direction
+skinparam packageStyle rectangle
+
+package "Governance & Policy" {
+    class UmbrellaAuthority {
+        +Name: string
+        +Jurisdiction: GeoPolygon
+    }
+
+    class Policy {
+        +PolicyID: GUID
+        +Type: Enum
+        +Rules: JSON
+        +Status: Enum
+    }
+
+    class Tenant {
+        +TenantID: GUID
+        +Name: string
+        +Config: JSON
+    }
+}
+
+package "Integrations & External" {
+    class Partner {
+        +PartnerID: GUID
+        +Name: string
+        +Type: Enum
+    }
+
+    class Integration {
+        +IntegrationID: GUID
+        +Protocol: Enum
+        +AuthClient: ClientID
+        +Status: Enum
+    }
+}
+
+package "Platform Core" {
+    class Person {
+        +SystemGUID: GUID
+        +FullName: string
+        +DateOfBirth: Date
+        +Status: Enum
+        +ConsentProfile: Map
+    }
+
+    class Household {
+        +HouseholdID: GUID
+        +Address: string
+        +LeaderID: GUID
+    }
+
+    class GeoNode {
+        +NodeID: GUID
+        +Type: Enum
+        +Boundary: Polygon
+    }
+}
+
+package "Operations" {
+    abstract class Vertical {
+        +Name: string
+        +IsSystemVertical: boolean
+    }
+
+    class Program {
+        +Name: string
+        +Budget: Decimal
+        +StartDate: Date
+        +EndDate: Date
+    }
+
+    class Case {
+        +CaseID: GUID
+        +Status: Enum
+        +Priority: int
+    }
+    
+    class Intervention {
+        +Type: string
+        +Value: Decimal
+        +Date: Date
+    }
+}
+
+' Relationships
+
+' Governance flows down
+UmbrellaAuthority "1" --> "*" Tenant : Governs
+Tenant "1" --> "*" Policy : Enforces
+Policy "*" ..> "*" Vertical : Applies To
+
+' Integrations connect to Tenant
+Partner "1" --> "*" Integration : Owns
+Integration "*" --> "1" Tenant : Connects To
+
+' Core Registry
+Tenant "1" --> "*" Person : Registers
+Tenant "1" --> "*" Household : Registers
+Household "1" o-- "*" Person : Contains
+Person "*" --> "1" GeoNode : Resides In
+
+' Operations flow
+Vertical "1" --> "*" Program : Runs
+Program "1" --> "*" Case : Funds
+Case "*" --> "1" Person : Benefits
+Case "1" *-- "*" Intervention : Includes
+
+@enduml

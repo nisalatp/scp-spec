@@ -1,0 +1,8 @@
+@startuml uc40_vertical
+title UC-40: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Health"
+rectangle "Geo-Vertical: Transport" <<geo-vertical>>
+"SCP Core" --> "Vertical: Health"
+"SCP Core" --> "Geo-Vertical: Transport"
+@enduml

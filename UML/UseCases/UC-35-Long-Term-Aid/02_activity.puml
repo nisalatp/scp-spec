@@ -1,0 +1,15 @@
+@startuml
+title UC-35: Long-Term Aid Dependency (Activity)
+|Admin|
+start
+:Query Aid Recipients;
+|Geo-Vertical: Social Welfare|
+:Filter: Duration > 3 Years;
+|Vertical: Economy|
+:Check Income History;
+:Flag "No Improvement";
+|SCP Core|
+:Identify Skills Gaps;
+:Refer to Livelihood Program;
+stop
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+title UC-14: Vertical Interaction Map
+left to right direction
+rectangle "Geo-Vertical: Welfare" <<geo-vertical>>
+rectangle "Vertical: Health"
+rectangle "Vertical: Finance"
+"Geo-Vertical: Welfare" --> "Vertical: Health" : "Verification"
+"Geo-Vertical: Welfare" --> "Vertical: Finance" : "Instruction"
+@enduml

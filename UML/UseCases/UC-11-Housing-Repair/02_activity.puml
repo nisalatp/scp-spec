@@ -1,0 +1,15 @@
+@startuml
+title UC-11: Housing Repair Safety (Activity)
+|Team|
+start
+:Survey Post-Disaster;
+|Geo-Vertical: Housing|
+:Flag Unsafe Structures;
+|Vertical: Health|
+:Check for Disabled/Elderly Members;
+|Geo-Vertical: Housing|
+:Prioritize for Repair;
+|Vertical: Finance|
+:Release Emergency Funds;
+stop
+@enduml

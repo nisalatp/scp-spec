@@ -1,0 +1,10 @@
+@startuml
+title UC-30: Disaster Sensitive Households (Use Case)
+actor "Admin" as Admin
+package "Geo-Vertical: Environment" <<geo-vertical>> { usecase "Identify Flood Zone" as Flood }
+package "Vertical: Health" <<standard-vertical>> { usecase "Identify Children" as Kids }
+package "Geo-Vertical: Housing" <<geo-vertical>> { usecase "Check Safety" as Safe }
+Admin --> Flood
+Flood ..> Kids : "intersect"
+Kids ..> Safe : "intersect"
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+title UC-17: Evidence Based Funding (Activity)
+|Donor|
+start
+:View Impact Dashboard;
+|Vertical: Data|
+:Show Heatmap (Poverty/Health);
+|Donor|
+:Select High Need Region;
+|Vertical: Finance|
+:Create Funding Project;
+:Allocate Budget;
+stop
+@enduml

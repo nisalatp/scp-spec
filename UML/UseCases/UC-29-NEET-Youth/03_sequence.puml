@@ -1,0 +1,17 @@
+@startuml
+title UC-29: NEET Youth (Sequence)
+autoactivate on
+actor Officer
+participant "SCP Core" as Core
+participant "Vertical: Edu" as Edu
+participant "Vertical: Econ" as Econ
+participant "Geo-Vertical: Welfare" as Welfare
+Officer -> Core: FindNEET()
+    Core -> Edu: GetNotEnrolled(18-29)
+    return ListA
+    Core -> Econ: FilterUnemployed(ListA)
+    return ListB
+    Core -> Welfare: CheckHouseholdContext(ListB)
+    return VulnerableList
+return Report(VulnerableList)
+@enduml

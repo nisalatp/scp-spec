@@ -1,7 +1,8 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
 
-TITLE SCP - Component Diagram (Level 3) - Modules & Pillars (Comprehensive)
+title SCP - Component Diagram (Level 3) - Modules & Pillars (Comprehensive)
+left to right direction
 
 Container(api, "API Layer", "Controllers/Middleware", "REST endpoints, Request Validation.")
 ContainerDb(db, "Database", "PostgreSQL", "Persistence")

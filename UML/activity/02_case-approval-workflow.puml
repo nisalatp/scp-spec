@@ -1,0 +1,42 @@
+@startuml
+title 02_case-approval-workflow
+
+|Field Agent|
+start
+:Create Case (Draft);
+:Attach Documents;
+:Submit for Approval;
+
+|System|
+:Validate Eligibility Rules;
+if (Eligible?) then (No)
+    :Auto-Reject;
+    |Field Agent|
+    :Notify Rejection;
+    stop
+else (Yes)
+    |System|
+    :Route to Supervisor;
+endif
+
+|Supervisor|
+:Review Case Details;
+if (Approved?) then (No)
+    :Reject Case;
+    :Add Comments;
+    stop
+else (Yes)
+    :Approve Case;
+endif
+
+|System|
+:Check Budget Availability;
+if (Budget Available?) then (Yes)
+    :Authorize Payment/Service;
+    :Notify Field Agent;
+else (No)
+    :Queue for Funds;
+endif
+
+stop
+@enduml

@@ -1,0 +1,30 @@
+@startuml
+title UC-05: Vertical Interaction Map
+left to right direction
+
+rectangle "Vertical: Education (Standard)" as Edu {
+    component "School Registry" 
+    component "Student Performance"
+}
+
+rectangle "Vertical: Finance (Standard)" as Fin {
+    component "Wallet/Voucher System"
+    component "Donation Logic"
+}
+
+rectangle "SCP Core" as Core {
+    component "Person Registry"
+    component "Household Income"
+}
+
+Edu --> Core : "Reads Income Data"
+Fin --> Edu : "Verifies Enrollment"
+Fin --> Core : "Sends Notifications"
+
+note right of Fin
+  Cross-Vertical Logic:
+  Education qualifies,
+  Finance fulfils.
+end note
+
+@enduml

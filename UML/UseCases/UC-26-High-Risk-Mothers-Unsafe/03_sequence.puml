@@ -1,0 +1,13 @@
+@startuml
+title UC-26: High-Risk Mothers Unsafe Living (Sequence)
+autoactivate on
+actor Officer
+participant "Vertical: Health" as Health
+participant "Geo-Vertical: Housing" as Housing
+Officer -> Health: FindVulnerableMothers()
+    Health -> Health: GetHighRisk()
+    return ListA
+    Health -> Housing: CheckConditions(ListA)
+    return UnsafeList
+return Report(UnsafeList)
+@enduml

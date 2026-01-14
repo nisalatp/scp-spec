@@ -1,0 +1,32 @@
+@startuml
+title 01_dotnet-packages
+left to right direction
+
+package "Scp.Core" {
+    class Domain
+    class Application
+}
+
+package "Scp.Verticals.Standard" {
+    package "Health"
+    package "Education"
+    package "Economy"
+    package "Finance"
+    package "Data"
+}
+
+package "Scp.Verticals.Custom" {
+    class DynamicVerticalLoader
+    class TenantVerticalConfig
+}
+
+package "Scp.Infrastructure" {
+    class Persistence
+    class Messaging
+}
+
+"Scp.Verticals.Standard" --> "Scp.Core"
+"Scp.Verticals.Custom" --> "Scp.Core"
+"Scp.Infrastructure" --> "Scp.Core"
+
+@enduml

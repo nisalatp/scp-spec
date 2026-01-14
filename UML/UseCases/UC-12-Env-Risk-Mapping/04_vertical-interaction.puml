@@ -1,0 +1,9 @@
+@startuml
+title UC-12: Vertical Interaction Map
+left to right direction
+rectangle "Geo-Vertical: Disaster" <<geo-vertical>>
+rectangle "SCP Core"
+rectangle "Vertical: Health"
+"Geo-Vertical: Disaster" --> "SCP Core" : "Geo Query"
+"Geo-Vertical: Disaster" --> "Vertical: Health" : "Needs Analysis"
+@enduml

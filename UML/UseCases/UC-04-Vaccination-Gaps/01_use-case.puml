@@ -1,0 +1,9 @@
+@startuml
+title UC-04: Vaccination Coverage Gaps (Use Case)
+left to right direction
+actor "Health Authority" as Auth
+package "Vertical: Health" <<standard-vertical>> { usecase "Check Records" as Rec }
+package "Vertical: Data" <<standard-vertical>> { usecase "Analyze Gaps" as Gap }
+Auth --> Gap
+Gap ..> Rec : "reads"
+@enduml

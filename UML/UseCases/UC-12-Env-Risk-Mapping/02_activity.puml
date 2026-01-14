@@ -1,0 +1,16 @@
+@startuml
+title UC-12: Environmental Risk Mapping (Activity)
+|Auth|
+start
+:Define Flood Zones;
+|Geo-Vertical: Disaster Mgmt|
+:Overlay 100-year Flood Map;
+|SCP Core|
+:Identify Households in Zone;
+|Vertical: Health|
+:Flag "Medically Fragile" Residents;
+:Generate Evacuation List;
+|Auth|
+:Pre-position Resources;
+stop
+@enduml

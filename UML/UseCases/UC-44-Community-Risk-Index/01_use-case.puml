@@ -1,0 +1,12 @@
+@startuml
+title UC-44: Community Compound Risk Index (Use Case)
+actor "Planner" as Planner
+package "Vertical: Health" <<standard-vertical>> { usecase "Health Risk" as Health }
+package "Vertical: Education" <<standard-vertical>> { usecase "Education Gap" as Edu }
+package "Geo-Vertical: Infrastructure" <<geo-vertical>> { usecase "Infra Gap" as Infra }
+package "Geo-Vertical: Environment" <<geo-vertical>> { usecase "Disaster Risk" as Env }
+Planner --> Health
+Health ..> Edu : "plus"
+Edu ..> Infra : "plus"
+Infra ..> Env : "plus"
+@enduml

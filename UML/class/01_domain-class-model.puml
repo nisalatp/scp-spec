@@ -1,0 +1,71 @@
+@startuml
+title 01_domain-class-model
+left to right direction
+hide empty members
+
+package "Core Domain" {
+    class Person {
+        +UUID person_id
+        +String full_name
+        +Date date_of_birth
+        +Enum verification_status
+    }
+
+    class Tenant {
+        +UUID tenant_id
+        +String name
+        +String country_code
+    }
+}
+
+package "Verticals Configuration" {
+    
+    abstract class Vertical {
+        +UUID vertical_id
+        +String name
+        +Boolean is_system_standard
+    }
+
+    class "system_verticals" as SysVert {
+        <<static>>
+        Health & Environment
+        Education & Skills
+        Economy & Livelihood
+        Finance
+        Data (Base)
+    }
+
+    class CustomVertical {
+        +UUID tenant_id
+        +UUID geo_scope_id
+        +JSON config
+    }
+}
+
+package "Program Management" {
+    class Program {
+        +UUID program_id
+        +String name
+    }
+    
+    class Case {
+        +UUID case_id
+        +Enum status
+    }
+}
+
+' Inheritance
+Vertical <|-- SysVert
+Vertical <|-- CustomVertical
+
+' Relationships
+Tenant "1" -- "*" CustomVertical : "Defines"
+Tenant "1" ..> "5" SysVert : "Adopts"
+
+SysVert "1" -- "*" Program : "Categorizes"
+CustomVertical "1" -- "*" Program : "Categorizes"
+
+Program "1" -- "*" Case
+Case "*" -- "1" Person : "Beneficiary"
+
+@enduml

@@ -1,0 +1,29 @@
+@startuml
+title UC-05: School Supplies Donation (Activity)
+
+|Donor|
+start
+:Select "School Supplies Program";
+:Pledge Amount ($1000);
+
+|Vertical: Education|
+:Query: Students with HouseholdIncome < Threshold;
+:Query: Active School Enrollment;
+:List Eligible Candidates;
+
+|SCP Core (Policies)|
+:Apply Equity Rules (Gender Balance, Region);
+
+|Vertical: Finance|
+:Calculate Amount Per Student;
+:Create "Pending Disbursement" Records;
+
+|Donor|
+:Approve Distribution;
+
+|Vertical: Finance|
+:Execute Payment (Vouchers/Cash);
+:Log Transaction;
+
+stop
+@enduml

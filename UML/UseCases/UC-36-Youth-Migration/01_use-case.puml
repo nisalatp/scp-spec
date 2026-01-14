@@ -1,0 +1,10 @@
+@startuml uc36_usecase
+title UC-36: Youth Migration Risk (Use Case)
+actor "Admin" as Admin
+package "Vertical: Education" <<standard-vertical>> { usecase "Check Grad Status" as Grad }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Job Status" as Job }
+package "Geo-Vertical: Migration" <<geo-vertical>> { usecase "Check Visa History" as Visa }
+Admin --> Grad
+Grad ..> Job : "and"
+Job ..> Visa : "and"
+@enduml

@@ -1,0 +1,16 @@
+@startuml uc39_activity
+title UC-39: Education ROI Optimization (Activity)
+|Sponsor|
+start
+:Define Scholarship Criteria;
+|Vertical: Education|
+:Filter: Top 10 Percentile;
+|Vertical: Economy|
+:Filter: Bottom 20 Income Percentile;
+|Geo-Vertical: Family|
+:Filter: Housing Stable;
+:Filter: Family Supportive;
+|SCP Core|
+:Generate High-ROI Candidates;
+stop
+@enduml

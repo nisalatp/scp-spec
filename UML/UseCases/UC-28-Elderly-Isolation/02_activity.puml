@@ -1,0 +1,16 @@
+@startuml
+title UC-28: Elderly Isolation Risks (Activity)
+|Worker|
+start
+:Query Elderly (65+);
+|Vertical: Health|
+:Filter Chronic Condition;
+|Geo-Vertical: Social Welfare|
+:Filter Living Alone;
+:Filter No Pension;
+|Geo-Vertical: Environment|
+:Filter High Risk Zone;
+|SCP Core|
+:Generate Visit List;
+stop
+@enduml

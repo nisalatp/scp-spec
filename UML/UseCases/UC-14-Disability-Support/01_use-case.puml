@@ -1,0 +1,10 @@
+@startuml
+title UC-14: Disability Support Allocation (Use Case)
+actor "Social Service" as Svc
+package "Vertical: Health" <<standard-vertical>> { usecase "Verify Disability" as Verify }
+package "Geo-Vertical: Social Welfare" <<geo-vertical>> { usecase "Assess Needs" as Needs }
+package "Vertical: Finance" <<standard-vertical>> { usecase "Disburse Aid" as Aid }
+Svc --> Needs
+Needs ..> Verify : "confirms"
+Needs ..> Aid : "requests"
+@enduml

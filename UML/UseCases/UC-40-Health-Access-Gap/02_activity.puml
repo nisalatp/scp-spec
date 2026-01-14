@@ -1,0 +1,14 @@
+@startuml uc40_activity
+title UC-40: Health Access Analysis (Activity)
+|Planner|
+start
+:Analyze Health Coverage;
+|Vertical: Health|
+:Map Chronic Disease Clusters;
+|Geo-Vertical: Transport|
+:Calculate Travel Time to Clinics;
+:Filter > 60 mins;
+|SCP Core|
+:Identify "Medical Deserts";
+stop
+@enduml

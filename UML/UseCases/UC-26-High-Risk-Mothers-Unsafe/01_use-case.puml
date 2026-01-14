@@ -1,0 +1,8 @@
+@startuml
+title UC-26: High-Risk Mothers Unsafe Living (Use Case)
+actor "Health Officer" as Officer
+package "Vertical: Health" <<standard-vertical>> { usecase "Identify High Risk" as Risk }
+package "Geo-Vertical: Housing" <<geo-vertical>> { usecase "Check Sanitation" as House }
+Officer --> Risk
+Risk ..> House : "cross-reference"
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+title UC-17: Evidence Based Funding (Sequence)
+autoactivate on
+actor Donor
+participant "Vertical: Data" as Data
+participant "Vertical: Finance" as Fin
+Donor -> Data: ViewNeedsMap()
+    Data -> Data: AggregateIndicators()
+    return Heatmap
+return Display
+Donor -> Fin: CommitFunds(RegionID, Amount)
+    Fin -> Fin: CreateProject()
+return Success
+@enduml

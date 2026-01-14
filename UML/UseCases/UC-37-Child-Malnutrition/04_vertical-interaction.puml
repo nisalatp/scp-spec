@@ -1,0 +1,9 @@
+@startuml uc37_vertical
+title UC-37: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Health"
+rectangle "Vertical: Education"
+rectangle "Geo-Vertical: Environment" <<geo-vertical>>
+"Vertical: Health" --> "Geo-Vertical: Environment"
+"Vertical: Health" --> "Vertical: Education"
+@enduml

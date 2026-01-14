@@ -1,5 +1,5 @@
 @startuml
-TITLE UC-01: Emergency Blood Matching (Sequence)
+title UC-01: Emergency Blood Matching (Sequence)
 autoactivate on
 
 actor "Hospital Staff" as Staff

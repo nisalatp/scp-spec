@@ -1,0 +1,8 @@
+@startuml
+title UC-13: Elderly Living Alone (Use Case)
+actor "Community Worker" as Worker
+package "Vertical: Health" <<standard-vertical>> { usecase "Identify Elderly" as ID }
+package "Geo-Vertical: Social Welfare" <<geo-vertical>> { usecase "Schedule Welfare Check" as Check }
+Worker --> ID
+ID ..> Check : "triggers"
+@enduml

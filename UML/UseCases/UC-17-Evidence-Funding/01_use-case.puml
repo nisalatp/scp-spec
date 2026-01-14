@@ -1,0 +1,9 @@
+@startuml
+title UC-17: Evidence Based Funding (Use Case)
+actor "Donor" as Donor
+package "Vertical: Data" <<standard-vertical>> { usecase "Aggregate Needs" as Stats }
+package "Vertical: Finance" <<standard-vertical>> { usecase "Commit Funds" as Fund }
+Donor --> Stats
+Donor --> Fund
+Fund ..> Stats : "justifies"
+@enduml

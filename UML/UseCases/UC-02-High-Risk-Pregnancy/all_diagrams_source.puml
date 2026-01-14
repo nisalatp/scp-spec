@@ -1,0 +1,63 @@
+@startuml
+title UC-02: High-Risk Pregnancy Monitoring (Use Case)
+left to right direction
+actor "Public Health Officer" as PHO
+actor "Pregnant Mother" as Mother
+package "SCP Core" {
+    usecase "Register Pregnancy" as Reg
+    usecase "Flag High Risk" as Flag
+    usecase "Schedule Visit" as Schedule
+}
+package "Vertical: Health" <<standard-vertical>> {
+    usecase "Check Anemia/Chronic" as Check
+    usecase "Monitor Vitals" as Vitals
+}
+PHO --> Reg
+Reg ..> Check : include
+Check ..> Flag : triggers
+Flag --> Schedule
+Schedule --> Mother : "Notify"
+@enduml
+
+@startuml
+title UC-02: High-Risk Pregnancy Monitoring (Activity)
+|PHO|
+start
+:Login to SCP;
+:Select "Maternal Health";
+|Vertical: Health|
+:Query: Pregnant Mothers;
+:Filter: Hb < 10 (Anemia) OR Hypertension;
+|SCP Core|
+:Identify High Risk List;
+|PHO|
+:Review List;
+:Assign Field Midwife;
+stop
+@enduml
+
+@startuml
+title UC-02: High-Risk Pregnancy Monitoring (Sequence)
+autoactivate on
+actor PHO
+participant "Vertical: Health" as Health
+participant "SCP Core: Person" as Core
+PHO -> Health: GetHighRiskMothers()
+    Health -> Core: Search(Attributes: Pregnant)
+    return List[]
+    Health -> Health: Filter(MedicalRiskIndicators)
+    return HighRiskList[]
+return Display(HighRiskList)
+PHO -> Health: ScheduleFollowUp(PersonID)
+    Health -> Core: CreateTask(Midwife, Visit)
+    return TaskID
+return Success
+@enduml
+
+@startuml
+title UC-02: Vertical Interaction Map
+left to right direction
+rectangle "SCP Core" { component "Person Registry" }
+rectangle "Vertical: Health" { component "Maternal Module" }
+Maternal Module --> Person Registry : "Links Health Data"
+@enduml

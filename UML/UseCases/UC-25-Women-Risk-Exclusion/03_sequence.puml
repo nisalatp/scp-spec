@@ -1,0 +1,19 @@
+@startuml
+title UC-25: Women at Risk Exclusion (Sequence)
+autoactivate on
+actor Planner
+participant "SCP Core: Analytics" as Core
+participant "Vertical: Edu" as Edu
+participant "Vertical: Econ" as Econ
+participant "Geo-Vertical: Welfare" as Welfare
+Planner -> Core: FindAtRiskWomen()
+    Core -> Edu: GetGraduates(Female, 25-35)
+    return ListA
+    Core -> Econ: CheckEmployment(ListA)
+    return UnemployedList
+    Core -> Econ: CheckIncome(UnemployedList)
+    return LowIncomeList
+    Core -> Welfare: CheckAidStatus(LowIncomeList)
+    return NoAidList
+return Report(NoAidList)
+@enduml

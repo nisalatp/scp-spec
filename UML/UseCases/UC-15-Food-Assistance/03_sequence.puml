@@ -1,0 +1,16 @@
+@startuml
+title UC-15: Food Assistance (Sequence)
+autoactivate on
+actor Agency
+participant "Geo-Vertical: Welfare" as Welfare
+participant "Vertical: Economy" as Econ
+participant "SCP Core: HH" as HH
+Agency -> Welfare: PlanDistribution(Crieria)
+    Welfare -> Econ: GetFoodInsecure(Criteria)
+    return HH_IDs
+    Welfare -> HH: GetComposition(HH_IDs)
+    return Details (Size, Adults, Kids)
+    Welfare -> Welfare: CalculateRations(Details)
+    return PackList
+return OpsPlan
+@enduml

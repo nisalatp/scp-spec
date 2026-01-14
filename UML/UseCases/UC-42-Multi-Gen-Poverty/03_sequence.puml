@@ -1,0 +1,18 @@
+@startuml uc42_sequence
+title UC-42: Multi-Gen Poverty (Sequence)
+autoactivate on
+actor User
+participant "SCP Core: Graph" as Graph
+participant "Vertical: Edu" as Edu
+participant "Vertical: Econ" as Econ
+User -> Graph: FindChronicPoverty()
+    Graph -> Graph: Get3Generations()
+    return FamilyUnits
+    Graph -> Edu: CheckEduStatus(FamilyUnits)
+    return EduStatus
+    Graph -> Econ: CheckIncomeHistory(FamilyUnits)
+    return EconStatus
+    Graph -> Graph: Filter(AllLow)
+    return ChronicList
+return Report(ChronicList)
+@enduml

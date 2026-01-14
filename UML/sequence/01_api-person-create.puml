@@ -1,0 +1,36 @@
+@startuml
+title 01_api-person-create
+autoactivate on
+
+participant "Client (App/Web)" as Client
+participant "API Gateway" as API
+participant "Person Service" as Svc
+participant "Deduplication Svc" as Dedup
+participant "Database" as DB
+
+Client -> API: POST /persons (JSON)
+API -> Svc: CreatePerson(DTO)
+
+    Svc -> Svc: Validate(DTO)
+    return Valid
+
+    Svc -> Dedup: CheckDuplicates(DTO)
+    return Matches[]
+
+    alt Matches Found
+        Svc -> Svc: Set Status = Provisional
+        Svc -> Svc: Link Potential Duplicates
+    else No Matches
+        Svc -> Svc: Set Status = Verified
+    end
+
+    Svc -> DB: Insert(Person)
+    return Success
+
+    Svc -> DB: Insert(AuditLog)
+    return Success
+
+return PersonResponse (ID, Status)
+return 201 Created
+
+@enduml

@@ -11,6 +11,7 @@ This index links to all specification documents in this repository.
 
 ## 02 Architecture
 - [**C4 Architecture Diagrams**](../Docs/Diagrams/README.md)
+- [**System UML Diagrams**](../Docs/UML/README.md)
 - [SCP-SPEC-ARCH-01: System Context](02-architecture/01-system-context.md)
 - [SCP-SPEC-ARCH-02: Logical Architecture](02-architecture/02-logical-architecture.md)
 - [SCP-SPEC-ARCH-03: Modular Monolith Architecture](02-architecture/03-modular-monolith-architecture.md)

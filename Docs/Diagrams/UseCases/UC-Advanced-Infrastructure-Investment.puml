@@ -1,5 +1,6 @@
 @startuml
-TITLE UC-Advanced: Infrastructure Investment (Aggregation & Decision)
+title UC-Advanced: Infrastructure Investment (Aggregation & Decision)
+left to right direction
 
 start
 :Planner defines problem: "High Disease + Poor Sanitation";

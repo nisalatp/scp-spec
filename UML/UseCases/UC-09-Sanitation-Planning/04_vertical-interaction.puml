@@ -1,0 +1,9 @@
+@startuml
+title UC-09: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Health"
+rectangle "Vertical: Finance"
+rectangle "Geo-Vertical: WASH" <<geo-vertical>>
+"Geo-Vertical: WASH" --> "Vertical: Health" : "Reads Health Data"
+"Vertical: Finance" --> "Geo-Vertical: WASH" : "Funds Projects"
+@enduml

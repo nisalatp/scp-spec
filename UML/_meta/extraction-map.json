@@ -1,0 +1,68 @@
+{
+  "project": "Smart Community Platform (SCP)",
+  "modules": [
+    "Security",
+    "Governance",
+    "Platform Core",
+    "Verticals",
+    "Operations",
+    "Integrations",
+    "Data",
+    "API Layer",
+    "Frontend"
+  ],
+  "actors": [
+    "Beneficiary",
+    "Field Agent",
+    "Donor",
+    "Government Official",
+    "NGO Manager",
+    "System Admin",
+    "Tenant Admin"
+  ],
+  "entities": [
+    "Tenant", "User", "Role", "Permission", "Policy", "Person", "Household", 
+    "GeoNode", "CommunityCenter", "Facility", "Program", "Vertical", "Case", 
+    "Intervention", "Consent", "Integration", "Partner", "Report", "Chart", 
+    "Broadcast", "InfrastructureProject", "FormDefinition", "FormSubmission"
+  ],
+  "external_systems": [
+    "National Identity System",
+    "Payment Gateway",
+    "SMS/Email Provider",
+    "Legacy NGO MIS",
+    "Biometric System",
+    "Keycloak (IDP)",
+    "Object Storage (MinIO/S3)",
+    "PostgreSQL",
+    "Redis"
+  ],
+  "apis": [
+    { "name": "Auth API", "path": "/auth" },
+    { "name": "Tenant API", "path": "/tenants" },
+    { "name": "Geo API", "path": "/geo" },
+    { "name": "Person Household API", "path": "/persons, /households" },
+    { "name": "Verticals API", "path": "/verticals" },
+    { "name": "Program API", "path": "/programs" },
+    { "name": "Case API", "path": "/cases" },
+    { "name": "Workflow API", "path": "/workflows" },
+    { "name": "Attachments API", "path": "/attachments" },
+    { "name": "Reporting API", "path": "/reports" },
+    { "name": "Admin Security API", "path": "/admin" },
+    { "name": "Integration API", "path": "/integrations" },
+    { "name": "Forms API", "path": "/forms" },
+    { "name": "Communications API", "path": "/communications" }
+  ],
+  "workflows": [
+    "Person Registration (Offline/Online)",
+    "Household Registration",
+    "Consent Capture & Withdrawal",
+    "Case Creation & Approval",
+    "Program Eligibility Check",
+    "Benefit Disbursement",
+    "Integration Webhook Delivery",
+    "Data Sync (Mobile Offline)",
+    "Report Generation",
+    "Policy Change Control"
+  ]
+}

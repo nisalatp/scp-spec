@@ -1,0 +1,14 @@
+@startuml uc43_activity
+title UC-43: Climate Vulnerability (Activity)
+|User|
+start
+:Identify At Risk;
+|Geo-Vertical: Environment|
+:Filter: Drought/Flood Zone;
+|Vertical: Economy|
+:Filter: Agriculture/Fishing (Climate Sensitive);
+:Filter: No Savings;
+|SCP Core|
+:Prioritize for Insurance/Relief;
+stop
+@enduml

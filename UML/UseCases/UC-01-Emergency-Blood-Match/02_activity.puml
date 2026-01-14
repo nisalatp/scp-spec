@@ -1,0 +1,37 @@
+@startuml
+title UC-01: Emergency Blood Matching (Activity)
+
+' Trace Block
+' Case: UC-01
+' Verticals: Health & Env (Standard)
+
+|Hospital User|
+start
+:Login to SCP;
+:Select "Emergency Blood Request";
+:Input: Blood Type (O-Neg), Radius (5km);
+
+|SCP Core (Geo Engine)|
+:Calculate 5km Geofence;
+:Fetch Person IDs in Zone;
+
+|Vertical: Health|
+:Filter: BloodGroup == O-Neg;
+:Filter: Eligible Status (Not donated recently);
+
+|SCP Core (Consent)|
+if (Consent: Emergency Contact?) then (Yes)
+    :Include in List;
+else (No)
+    :Exclude;
+endif
+
+|Vertical: Health (Comm)|
+:Generate Alert List;
+:Dispatch SMS/Push Notification;
+
+|Hospital User|
+:View Count of Alerts Sent;
+stop
+
+@enduml

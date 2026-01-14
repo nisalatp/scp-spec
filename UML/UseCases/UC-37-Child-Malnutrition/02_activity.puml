@@ -1,0 +1,15 @@
+@startuml uc37_activity
+title UC-37: Child Malnutrition Environmental (Activity)
+|Worker|
+start
+:Query Stunted Children;
+|Vertical: Health|
+:Filter: Wt/Age < -2SD;
+|Geo-Vertical: Environment|
+:Filter: Unsafe Water Source;
+|Vertical: Education|
+:Filter: Maternal Edu < Primary;
+|SCP Core|
+:Prioritize Intervention;
+stop
+@enduml

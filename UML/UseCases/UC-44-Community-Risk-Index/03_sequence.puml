@@ -1,0 +1,23 @@
+@startuml
+title UC-44: Community Compound Risk Index (Sequence)
+autoactivate on
+actor Planner
+participant "SCP Core: Analytics" as Core
+participant "Vertical: Health" as Health
+participant "Vertical: Edu" as Edu
+participant "Geo-Vertical: Infra" as Infra
+participant "Geo-Vertical: Env" as Env
+Planner -> Core: CalculateIndex()
+    loop For Each Community
+        Core -> Health: GetScore()
+        return S1
+        Core -> Edu: GetScore()
+        return S2
+        Core -> Infra: GetScore()
+        return S3
+        Core -> Env: GetScore()
+        return S4
+        Core -> Core: ComputeSum(S1..S4)
+    end
+return RankedList
+@enduml

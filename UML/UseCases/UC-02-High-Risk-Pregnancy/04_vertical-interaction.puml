@@ -1,0 +1,7 @@
+@startuml
+title UC-02: Vertical Interaction Map
+left to right direction
+rectangle "SCP Core" { component "Person Registry" }
+rectangle "Vertical: Health" { component "Maternal Module" }
+Maternal Module --> Person Registry : "Links Health Data"
+@enduml

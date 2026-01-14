@@ -1,0 +1,25 @@
+@startuml
+title UC-44: Community Compound Risk Index (Activity)
+|Planner|
+start
+:Compute Community Index;
+|SCP Core|
+:Iterate all Communities;
+fork
+    |Vertical: Health|
+    :Get Disease Rate;
+fork again
+    |Vertical: Education|
+    :Get Dropout Rate;
+fork again
+    |Geo-Vertical: Infrastructure|
+    :Get Sanitation Gap;
+fork again
+    |Geo-Vertical: Environment|
+    :Get Disaster Prob;
+end fork
+|SCP Core|
+:Weighted Sum;
+:Rank Communities;
+stop
+@enduml

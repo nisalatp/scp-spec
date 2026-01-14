@@ -1,0 +1,16 @@
+@startuml
+title UC-27: Multi-Dimensional Poverty (Activity)
+|Worker|
+start
+:Run Multi-Dim Scan;
+|Vertical: Education|
+:Flag irregular attendance;
+|Vertical: Economy|
+:Flag food insecure;
+|Geo-Vertical: Housing|
+:Flag overcrowded (>3 per room);
+|SCP Core|
+:Compute Vulnerability Index;
+:Prioritize for Support;
+stop
+@enduml

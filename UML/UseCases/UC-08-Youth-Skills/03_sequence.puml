@@ -1,0 +1,15 @@
+@startuml
+title UC-08: Youth Skills Matching (Sequence)
+autoactivate on
+actor Leader
+participant "Vertical: Economy" as Econ
+participant "Vertical: Edu" as Edu
+Leader -> Econ: FindCandidates(LocalArea)
+    Econ -> Econ: GetUnemployed()
+    return List[]
+    Econ -> Edu: GetQualifications(List[])
+    return QualMap
+    Econ -> Econ: Match(List, Vacancies)
+    return Matches
+return ShowMatches
+@enduml

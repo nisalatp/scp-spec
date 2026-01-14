@@ -1,0 +1,41 @@
+@startuml
+title 01_system-use-case
+left to right direction
+
+actor "Beneficiary" as B
+actor "Field Agent" as A
+actor "NGO Manager" as M
+actor "Gov Official" as G
+actor "Donor" as D
+actor "Sys/Tenant Admin" as Adm
+
+package "Smart Community Platform (SCP)" {
+    
+    usecase "Register & Manage Identity" as UC1
+    usecase "Manage Households" as UC2
+    usecase "Manage Consent" as UC3
+    usecase "Manage Programs" as UC4
+    usecase "Manage Cases & Aid" as UC5
+    usecase "View Analytics & Reports" as UC6
+    usecase "Configure Tenants & Policies" as UC7
+    usecase "Audit & Compliance" as UC8
+}
+
+B --> UC1 : "Provides Info"
+A --> UC1 : "Registers"
+A --> UC2 : "Visits"
+B --> UC3 : "Grants/Revokes"
+A --> UC5 : "Delivers Aid"
+
+M --> UC4 : "Defines"
+M --> UC5 : "Approves"
+M --> UC6 : "Analyzes"
+
+G --> UC8 : "Audits"
+G --> UC6 : "Monitors"
+
+D --> UC6 : "Views Impact"
+
+Adm --> UC7 : "Configures"
+
+@enduml

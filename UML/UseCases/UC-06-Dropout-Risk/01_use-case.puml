@@ -1,0 +1,11 @@
+@startuml
+title UC-06: Dropout Risk Identification (Use Case)
+left to right direction
+actor "NGO" as NGO
+package "Vertical: Education" <<standard-vertical>> { usecase "Track Attendance" as Att }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Income" as Inc }
+package "SCP Core" { usecase "Analyze Risk" as Risk }
+NGO --> Risk
+Risk ..> Att : "reads"
+Risk ..> Inc : "reads"
+@enduml

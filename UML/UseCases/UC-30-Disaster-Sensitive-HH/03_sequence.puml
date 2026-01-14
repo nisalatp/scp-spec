@@ -1,0 +1,16 @@
+@startuml
+title UC-30: Disaster Sensitive Households (Sequence)
+autoactivate on
+actor Admin
+participant "Geo-Vertical: Env" as Env
+participant "Vertical: Health" as Health
+participant "Geo-Vertical: Housing" as House
+Admin -> Env: AnalyzeVulnerability()
+    Env -> Health: GetChildHHs()
+    return HH_List
+    Env -> House: CheckSafety(HH_List)
+    return UnsafeHHs
+    Env -> Env: MapToZones(UnsafeHHs)
+    return FinalMap
+return Display
+@enduml

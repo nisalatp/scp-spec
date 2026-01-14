@@ -1,0 +1,16 @@
+@startuml uc40_sequence
+title UC-40: Health Access (Sequence)
+autoactivate on
+actor Planner
+participant "SCP Core: Geo" as Geo
+participant "Vertical: Health" as Health
+participant "Geo-Vertical: Transport" as Trans
+Planner -> Geo: AnalyzeAccess()
+    Geo -> Health: GetPatientClusters()
+    return Clusters[]
+    Geo -> Trans: CalculateTime(Clusters, ClosestClinic)
+    return TimeMap
+    Geo -> Geo: Filter(Time > 60min)
+    return Gaps
+return Map(Gaps)
+@enduml

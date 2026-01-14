@@ -1,5 +1,5 @@
 @startuml
-TITLE SCP - Level 4 Flow: Person Registration (Pseudo-Code)
+title SCP - Level 4 Flow: Person Registration (Pseudo-Code)
 autoactivate on
 
 participant "Field Agent\n(Mobile App)" as App

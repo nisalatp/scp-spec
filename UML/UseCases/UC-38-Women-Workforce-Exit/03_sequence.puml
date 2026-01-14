@@ -1,0 +1,14 @@
+@startuml uc38_sequence
+title UC-38: Women Workforce Exit (Sequence)
+autoactivate on
+actor Planner
+participant "SCP Core" as Core
+participant "Vertical: Economy" as Econ
+participant "Geo-Vertical: Family" as Family
+Planner -> Core: AnalyzeExitRisk()
+    Core -> Econ: GetWorkingPoorWomen()
+    return ListA
+    Core -> Family: CheckCareBurden(ListA)
+    return RiskList (No Childcare)
+return Report(RiskList)
+@enduml

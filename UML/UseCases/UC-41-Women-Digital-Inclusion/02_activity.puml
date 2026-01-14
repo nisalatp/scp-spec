@@ -1,0 +1,15 @@
+@startuml uc41_activity
+title UC-41: Women Digital Inclusion (Activity)
+|NGO|
+start
+:Identify Digital Workers;
+|Vertical: Education|
+:Filter: Secondary+ Edu;
+|Vertical: Economy|
+:Filter: Unemployed;
+:Filter: Has Smartphone;
+|SCP Core|
+:Filter: Area has 4G;
+:List Candidates;
+stop
+@enduml

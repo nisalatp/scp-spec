@@ -1,0 +1,10 @@
+@startuml uc39_usecase
+title UC-39: Education ROI Optimization (Use Case)
+actor "Sponsor" as Sponsor
+package "Vertical: Education" <<standard-vertical>> { usecase "Check Performance" as Perf }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Need" as Need }
+package "Geo-Vertical: Family" <<geo-vertical>> { usecase "Check Stability" as Stable }
+Sponsor --> Perf
+Perf ..> Need : "and"
+Need ..> Stable : "and"
+@enduml

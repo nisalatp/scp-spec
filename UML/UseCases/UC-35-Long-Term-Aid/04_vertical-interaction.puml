@@ -1,0 +1,9 @@
+@startuml
+title UC-35: Vertical Interaction Map
+left to right direction
+rectangle "Geo-Vertical: Social Welfare" <<geo-vertical>>
+rectangle "Vertical: Economy"
+rectangle "Vertical: Education"
+"Geo-Vertical: Social Welfare" --> "Vertical: Economy"
+"Geo-Vertical: Social Welfare" --> "Vertical: Education"
+@enduml

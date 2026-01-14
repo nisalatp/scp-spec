@@ -1,0 +1,14 @@
+@startuml
+title UC-21: Policy Design (Activity)
+|Auth|
+start
+:Define Policy Goal (e.g., Subsidize Water);
+|Vertical: Data|
+:Simulate Cost;
+:Identify Beneficiaries;
+|Geo-Vertical: Governance|
+:Draft Definition;
+:Set Eligibility Rules;
+:Publish Policy;
+stop
+@enduml

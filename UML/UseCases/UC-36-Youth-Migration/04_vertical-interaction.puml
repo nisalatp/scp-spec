@@ -1,0 +1,10 @@
+@startuml uc36_vertical
+title UC-36: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Education"
+rectangle "Vertical: Economy"
+rectangle "Geo-Vertical: Migration" <<geo-vertical>>
+"SCP Core" --> "Vertical: Education"
+"SCP Core" --> "Vertical: Economy"
+"SCP Core" --> "Geo-Vertical: Migration"
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+title 01_person-registration-workflow
+
+start
+:Agent logs in (Mobile App);
+:Select "Register New Person";
+:Capture Basic Info (Name, DOB, Gender);
+:Capture Biometrics/Photos (Optional);
+
+if (Online?) then (Yes)
+    :Check Deduplication (Real-time);
+else (No)
+    :Store Locally;
+    :Mark as "Pending Sync";
+endif
+
+:Capture Consent (Digital/Paper);
+:Submit Registration;
+
+if (Online?) then (Yes)
+    :Upload to Server;
+    if (Duplicate Found?) then (Yes)
+        :Flag for Manual Review;
+        :Status = Provisional;
+    else (No)
+        :Status = Active/Verified;
+    endif
+else (No)
+    :Queue for Sync;
+endif
+
+stop
+@enduml

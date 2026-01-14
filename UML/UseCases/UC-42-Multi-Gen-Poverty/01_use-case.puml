@@ -1,0 +1,8 @@
+@startuml uc42_usecase
+title UC-42: Multi-Generational Poverty (Use Case)
+actor "Researcher" as User
+package "Vertical: Education" <<standard-vertical>> { usecase "Check 3 Gen Edu" as Edu }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check 3 Gen Income" as Econ }
+User --> Edu
+Edu ..> Econ : "correlate"
+@enduml

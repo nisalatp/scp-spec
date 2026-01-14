@@ -1,0 +1,7 @@
+@startuml uc43_vertical
+title UC-43: Vertical Interaction Map
+left to right direction
+rectangle "Geo-Vertical: Environment" <<geo-vertical>>
+rectangle "Vertical: Economy"
+"Geo-Vertical: Environment" --> "Vertical: Economy" : "Risk Correlation"
+@enduml

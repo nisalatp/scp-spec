@@ -1,0 +1,16 @@
+@startuml
+title UC-30: Disaster Sensitive Households (Activity)
+|Admin|
+start
+:Select Disaster Probabilities;
+|Geo-Vertical: Environment|
+:Map Flood/Landslide Areas;
+|Vertical: Health|
+:Filter HHs with Children < 5;
+|Geo-Vertical: Housing|
+:Filter WASH Access = None;
+:Filter Poverty = True;
+|SCP Core|
+:Generate Relocation List;
+stop
+@enduml

@@ -1,0 +1,10 @@
+@startuml uc37_usecase
+title UC-37: Child Malnutrition Environmental (Use Case)
+actor "Health Worker" as Worker
+package "Vertical: Health" <<standard-vertical>> { usecase "Check Weight" as Wt }
+package "Geo-Vertical: Environment" <<geo-vertical>> { usecase "Check Water Quality" as Water }
+package "Vertical: Education" <<standard-vertical>> { usecase "Check Mother Edu" as Mother }
+Worker --> Wt
+Wt ..> Water : "context"
+Wt ..> Mother : "context"
+@enduml

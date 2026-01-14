@@ -1,0 +1,10 @@
+@startuml
+title UC-28: Elderly Isolation Risks (Use Case)
+actor "Social Worker" as Worker
+package "Vertical: Health" <<standard-vertical>> { usecase "Check Conditions" as Health }
+package "Geo-Vertical: Social Welfare" <<geo-vertical>> { usecase "Check Support" as Welfare }
+package "Geo-Vertical: Environment" <<geo-vertical>> { usecase "Check Risk Zone" as Env }
+Worker --> Health
+Health ..> Welfare : "and"
+Welfare ..> Env : "and"
+@enduml

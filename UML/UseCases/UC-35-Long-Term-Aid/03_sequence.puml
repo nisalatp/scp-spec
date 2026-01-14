@@ -1,0 +1,16 @@
+@startuml
+title UC-35: Long-Term Aid Dependency (Sequence)
+autoactivate on
+actor Admin
+participant "Geo-Vertical: Welfare" as Welfare
+participant "Vertical: Economy" as Econ
+participant "Vertical: Education" as Edu
+Admin -> Welfare: FindChronicDependency()
+    Welfare -> Welfare: GetLongTermRecipients(>3yrs)
+    return ListA
+    Welfare -> Econ: CheckIncomeGrowth(ListA)
+    return StagnantList
+    Welfare -> Edu: CheckSkills(StagnantList)
+    return UnskilledList
+return Report(UnskilledList)
+@enduml

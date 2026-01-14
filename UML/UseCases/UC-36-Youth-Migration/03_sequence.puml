@@ -1,0 +1,17 @@
+@startuml uc36_sequence
+title UC-36: Youth Migration Risk (Sequence)
+autoactivate on
+actor Admin
+participant "SCP Core" as Core
+participant "Vertical: Edu" as Edu
+participant "Vertical: Econ" as Econ
+participant "Geo-Vertical: Migration" as Mig
+Admin -> Core: AnalyzeMigrationRisk()
+    Core -> Edu: GetGraduates()
+    return Grads
+    Core -> Econ: GetUnemployed(Grads)
+    return UnemployedGrads
+    Core -> Mig: GetVisaApplicants(UnemployedGrads)
+    return RiskList
+return Report(RiskList)
+@enduml

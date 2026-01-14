@@ -1,0 +1,15 @@
+@startuml uc38_activity
+title UC-38: Women Workforce Exit Risk (Activity)
+|Planner|
+start
+:Identify Working Mothers;
+|Vertical: Economy|
+:Filter: Low Wage / Informal;
+:Filter: Recent Income Drop;
+|Geo-Vertical: Family|
+:Filter: Child < 5;
+:Filter: No Other Caregiver;
+|SCP Core|
+:Flag "At Risk of Exit";
+stop
+@enduml

@@ -1,0 +1,64 @@
+@startuml
+title 01_database-erd
+left to right direction
+hide circle
+skinparam linetype ortho
+
+entity "tenants" {
+  *tenant_id : uuid <<PK>>
+  --
+  name : text
+  country : text
+}
+
+entity "verticals" {
+  *vertical_id : uuid <<PK>>
+  --
+  name : text
+  is_system : boolean
+  tenant_id : uuid <<FK, Nullable>>
+  geo_scope_id : uuid <<Nullable>>
+  --
+  Note: Stores both Standard (5)
+  and Custom Tenant Verticals
+}
+
+entity "programs" {
+  *program_id : uuid <<PK>>
+  --
+  tenant_id : uuid <<FK>>
+  vertical_id : uuid <<FK>>
+  name : text
+}
+
+entity "persons" {
+  *person_id : uuid <<PK>>
+  --
+  tenant_id : uuid <<FK>>
+  full_name : text
+}
+
+entity "cases" {
+  *case_id : uuid <<PK>>
+  --
+  program_id : uuid <<FK>>
+  person_id : uuid <<FK>>
+  status : text
+}
+
+entity "geo_nodes" {
+  *geo_id : uuid <<PK>>
+  --
+  name : text
+  boundary : polygon
+}
+
+' Relations
+tenants ||..o{ verticals : "defines custom"
+verticals ||..o{ programs : "organizes"
+programs ||..o{ cases : "funds"
+persons ||..o{ cases : "benefits"
+tenants ||..|| persons : "registers"
+verticals }o..o| geo_nodes : "scoped to"
+
+@enduml

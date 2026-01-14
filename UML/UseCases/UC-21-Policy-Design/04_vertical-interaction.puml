@@ -1,0 +1,7 @@
+@startuml
+title UC-21: Vertical Interaction Map
+left to right direction
+rectangle "Geo-Vertical: Governance" <<geo-vertical>>
+rectangle "Vertical: Data"
+"Geo-Vertical: Governance" --> "Vertical: Data" : "Modeling"
+@enduml

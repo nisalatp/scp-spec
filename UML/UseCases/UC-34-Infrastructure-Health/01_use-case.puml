@@ -1,0 +1,10 @@
+@startuml
+title UC-34: Infrastructure Health Impact (Use Case)
+actor "Planner" as Planner
+package "Vertical: Health" <<standard-vertical>> { usecase "Disease Rate" as Health }
+package "Geo-Vertical: Infrastructure" <<geo-vertical>> { usecase "Sanitation Gaps" as Infra }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Income Level" as Econ }
+Planner --> Infra
+Infra ..> Health : "correlates"
+Infra ..> Econ : "checks"
+@enduml

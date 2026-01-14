@@ -1,0 +1,16 @@
+@startuml
+title UC-29: NEET Youth Households (Activity)
+|Officer|
+start
+:Identify Youth 18-29;
+|Vertical: Education|
+:Filter Not Enrolled;
+|Vertical: Economy|
+:Filter Not Employed;
+|Geo-Vertical: Social Welfare|
+:Filter Single Income HH;
+:Filter Has Dependents;
+|SCP Core|
+:Prioritize for Skills Program;
+stop
+@enduml

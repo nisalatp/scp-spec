@@ -1,0 +1,16 @@
+@startuml uc36_activity
+title UC-36: Youth Migration Risk (Activity)
+|Admin|
+start
+:Scan for Brain Drain Risk;
+|Vertical: Education|
+:Filter: University Graduate;
+|Vertical: Economy|
+:Filter: Unemployed > 6mo;
+|Geo-Vertical: Migration|
+:Filter: Applied for Passport/Visa;
+:Filter: Region = High Outbound;
+|SCP Core|
+:Identify Retention Targets;
+stop
+@enduml

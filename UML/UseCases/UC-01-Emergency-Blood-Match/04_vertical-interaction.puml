@@ -1,0 +1,26 @@
+@startuml
+title UC-01: Vertical Interaction Map
+left to right direction
+
+rectangle "SCP Core" {
+    component "Person Registry" as Person
+    component "Geo Engine" as Geo
+    component "Consent Mgr" as Consent
+}
+
+rectangle "Vertical: Health (Standard)" as V_Health {
+    component "Clinical Records" as Clinical
+    component "Emergency Ops" as Ops
+}
+
+V_Health --> Geo : "1. Get Zone"
+V_Health --> Person : "2. Resolve Identities"
+V_Health --> Clinical : "3. Check Blood Group"
+V_Health --> Consent : "4. Check Permissions"
+
+note right of V_Health
+  Orchestrates the
+  Emergency Flow
+end note
+
+@enduml

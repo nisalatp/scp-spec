@@ -1,0 +1,37 @@
+@startuml
+title 02_consent-check-flow
+autoactivate on
+
+participant "Consumer Service" as Consumer
+participant "Policy Engine (PDP)" as PDP
+participant "Consent Manager" as CM
+participant "Database" as DB
+
+Consumer -> PDP: EvaluateAccess(User, Resource, Action)
+
+    PDP -> PDP: Check User Role/Scope
+    return RoleOK
+
+    PDP -> CM: CheckConsent(SubjectID, DataCategory)
+    
+        CM -> DB: Query Active Consents
+        return ConsentRecord
+        
+        alt Consent Active
+             CM -> CM: Verify Expiry/Revocation
+             return Valid
+        else No Consent
+             return Invalid
+        end
+    
+    return ConsentResult
+
+    alt RoleOK && ConsentResult
+        PDP -> PDP: Allow
+    else
+        PDP -> PDP: Deny
+    end
+
+return AccessDecision (Allow/Deny)
+
+@enduml

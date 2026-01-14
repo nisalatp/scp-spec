@@ -1,0 +1,46 @@
+@startuml
+title 02_core-modules-use-case
+left to right direction
+
+actor "Field Agent" as Agent
+actor "NGO Manager" as Manager
+actor "System Admin" as Admin
+
+package "Platform Core" {
+    usecase "Create Person" as U_CreatePerson
+    usecase "Update Person" as U_UpdatePerson
+    usecase "Register Household" as U_RegHH
+    usecase "Search Registry" as U_Search
+}
+
+package "Governance & Security" {
+    usecase "Manage Policies" as U_Policy
+    usecase "Define Permissions" as U_Perms
+    usecase "Capture Consent" as U_Consent
+    usecase "Review Audit Logs" as U_Audit
+}
+
+package "Operations (Verticals)" {
+    usecase "Create Program" as U_Prog
+    usecase "Enrol Beneficiary" as U_Enrol
+    usecase "Create Case" as U_Case
+    usecase "Approve Case" as U_Approve
+    usecase "Log Service Encounter" as U_Svc
+}
+
+Agent --> U_CreatePerson
+Agent --> U_RegHH
+Agent --> U_Case
+Agent --> U_Svc
+Agent --> U_Consent
+
+Manager --> U_Search
+Manager --> U_Prog
+Manager --> U_Enrol
+Manager --> U_Approve
+Manager --> U_Audit
+
+Admin --> U_Policy
+Admin --> U_Perms
+
+@enduml

@@ -1,0 +1,10 @@
+@startuml
+title UC-29: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Education"
+rectangle "Vertical: Economy"
+rectangle "Geo-Vertical: Social Welfare" <<geo-vertical>>
+"SCP Core" --> "Vertical: Education"
+"SCP Core" --> "Vertical: Economy"
+"SCP Core" --> "Geo-Vertical: Social Welfare"
+@enduml

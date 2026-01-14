@@ -1,0 +1,8 @@
+@startuml uc42_vertical
+title UC-42: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Education"
+rectangle "Vertical: Economy"
+"SCP Core" --> "Vertical: Education"
+"SCP Core" --> "Vertical: Economy"
+@enduml

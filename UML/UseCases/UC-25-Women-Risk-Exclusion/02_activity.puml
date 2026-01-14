@@ -1,0 +1,17 @@
+@startuml
+title UC-25: Women at Risk Exclusion (Activity)
+|Planner|
+start
+:Define Target: Women 25-35;
+|Vertical: Education|
+:Filter: Has Degree;
+|Vertical: Economy|
+:Filter: Unemployed > 12mo;
+:Filter: Low Income HH;
+|Geo-Vertical: Social Welfare|
+:Filter: NO Active Support;
+|SCP Core|
+:Intersect Results;
+:List Candidates;
+stop
+@enduml

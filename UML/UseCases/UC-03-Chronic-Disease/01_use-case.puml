@@ -1,0 +1,9 @@
+@startuml
+title UC-03: Chronic Disease Outreach (Use Case)
+left to right direction
+actor "Clinic Staff" as Staff
+package "SCP Core" { usecase "Geo Search" as Geo }
+package "Vertical: Health" <<standard-vertical>> { usecase "Identify Chronic Patients" as ID }
+Staff --> ID
+ID ..> Geo : include
+@enduml

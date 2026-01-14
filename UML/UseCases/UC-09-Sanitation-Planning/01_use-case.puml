@@ -1,0 +1,11 @@
+@startuml
+title UC-09: Sanitation Infrastructure Planning (Use Case)
+left to right direction
+actor "International Org" as Org
+package "Vertical: Health" <<standard-vertical>> { usecase "Assess Health Risk" as Health }
+package "Vertical: Finance" <<standard-vertical>> { usecase "Budget Allocation" as Budget }
+package "Geo-Vertical: WASH" <<geo-vertical>> { usecase "Sanitation Survey" as Survey }
+Org --> Survey
+Survey ..> Health : "Risk Context"
+Survey ..> Budget : "Funding"
+@enduml

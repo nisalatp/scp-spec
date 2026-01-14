@@ -1,0 +1,8 @@
+@startuml uc43_usecase
+title UC-43: Climate Vulnerability Economic (Use Case)
+actor "Policy Maker" as User
+package "Geo-Vertical: Environment" <<geo-vertical>> { usecase "Climate Risk" as Env }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Livelihood Sensitive" as Job }
+User --> Env
+Env ..> Job : "impacts"
+@enduml

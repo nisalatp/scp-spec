@@ -1,7 +1,8 @@
 @startuml
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 
-TITLE SCP - System Context Diagram (Level 1) - Comprehensive
+title SCP - System Context Diagram (Level 1) - Comprehensive
+left to right direction
 
 ' Actors
 Person(beneficiary, "Beneficiary", "A member of the community receiving support.")

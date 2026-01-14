@@ -1,0 +1,10 @@
+@startuml uc39_vertical
+title UC-39: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Education"
+rectangle "Vertical: Economy"
+rectangle "Geo-Vertical: Family" <<geo-vertical>>
+"SCP Core" --> "Vertical: Education"
+"SCP Core" --> "Vertical: Economy"
+"SCP Core" --> "Geo-Vertical: Family"
+@enduml

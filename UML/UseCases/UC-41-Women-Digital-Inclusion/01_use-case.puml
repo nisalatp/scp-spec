@@ -1,0 +1,8 @@
+@startuml uc41_usecase
+title UC-41: Women Digital Inclusion (Use Case)
+actor "NGO" as NGO
+package "Vertical: Education" <<standard-vertical>> { usecase "Check Literacy" as Edu }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Device Access" as Tech }
+NGO --> Edu
+Edu ..> Tech : "and"
+@enduml

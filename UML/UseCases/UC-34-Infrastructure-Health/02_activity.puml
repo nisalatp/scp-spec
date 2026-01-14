@@ -1,0 +1,15 @@
+@startuml
+title UC-34: Infrastructure Health Impact (Activity)
+|Planner|
+start
+:Identify Regions;
+|Geo-Vertical: Infrastructure|
+:Filter: Toilet Coverage < 50%;
+|Vertical: Health|
+:Filter: High Disease Incidence;
+|Vertical: Economy|
+:Filter: Below Avg Income;
+|SCP Core|
+:Rank for Investment;
+stop
+@enduml

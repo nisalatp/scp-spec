@@ -1,0 +1,8 @@
+@startuml uc38_usecase
+title UC-38: Women Workforce Exit Risk (Use Case)
+actor "Social Planner" as Planner
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Job" as Job }
+package "Geo-Vertical: Family" <<geo-vertical>> { usecase "Check Caregiving" as Care }
+Planner --> Job
+Job ..> Care : "risk factor"
+@enduml

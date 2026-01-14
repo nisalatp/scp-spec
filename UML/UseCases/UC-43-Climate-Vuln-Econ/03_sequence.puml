@@ -1,0 +1,16 @@
+@startuml uc43_sequence
+title UC-43: Climate Vulnerability (Sequence)
+autoactivate on
+actor User
+participant "Geo-Vertical: Env" as Env
+participant "Vertical: Econ" as Econ
+participant "SCP Core" as Core
+User -> Env: AnalyzeClimateEconRisk()
+    Env -> Env: GetRiskZones()
+    return Zones
+    Env -> Econ: GetSensitiveLivelihoods(Zones)
+    return VulnerableJobs (Farmers)
+    Env -> Econ: CheckFinancialResilience(VulnerableJobs)
+    return FinalRiskList
+return Report
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+title UC-34: Infrastructure Health Impact (Sequence)
+autoactivate on
+actor Planner
+participant "Geo-Vertical: Infra" as Infra
+participant "Vertical: Health" as Health
+participant "Vertical: Econ" as Econ
+Planner -> Infra: AnalyzeNeeds()
+    Infra -> Infra: GetLowSanitationZones()
+    return Zones[]
+    Infra -> Health: GetDiseaseRates(Zones)
+    return HealthMap
+    Infra -> Econ: GetIncomeLevels(Zones)
+    return IncomeMap
+    Infra -> Infra: Rank(HealthMap, IncomeMap)
+    return PriorityList
+return Display(PriorityList)
+@enduml

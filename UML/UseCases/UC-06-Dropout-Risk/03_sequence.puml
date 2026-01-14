@@ -1,0 +1,16 @@
+@startuml
+title UC-06: Dropout Risk Identification (Sequence)
+autoactivate on
+actor NGO
+participant "SCP Core: Analytics" as Core
+participant "Vertical: Edu" as Edu
+participant "Vertical: Economy" as Econ
+NGO -> Core: IdentifyRisk()
+    Core -> Edu: GetLowAttendance()
+    return ListA[]
+    Core -> Econ: GetLowIncome()
+    return ListB[]
+    Core -> Core: Intersect(ListA, ListB)
+    return RiskList
+return Report(RiskList)
+@enduml

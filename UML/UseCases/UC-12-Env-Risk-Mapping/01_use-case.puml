@@ -1,0 +1,10 @@
+@startuml
+title UC-12: Environmental Risk Mapping (Use Case)
+actor "Local Authority" as Auth
+package "Geo-Vertical: Disaster Mgmt" <<geo-vertical>> { usecase "Map Flood Zones" as Flood }
+package "SCP Core" { usecase "Geo Overlay" as Overlay }
+package "Vertical: Health" <<standard-vertical>> { usecase "Plan Evacuation" as Evac }
+Auth --> Flood
+Flood --> Overlay
+Overlay ..> Evac : "Informs"
+@enduml

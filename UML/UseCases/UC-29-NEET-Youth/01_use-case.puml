@@ -1,0 +1,10 @@
+@startuml
+title UC-29: NEET Youth Households (Use Case)
+actor "Youth Officer" as Officer
+package "Vertical: Education" <<standard-vertical>> { usecase "Check Enrollment" as Edu }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Employment" as Job }
+package "Geo-Vertical: Social Welfare" <<geo-vertical>> { usecase "Check Household" as HH }
+Officer --> Edu
+Edu ..> Job : "and"
+Job ..> HH : "and"
+@enduml

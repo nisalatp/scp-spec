@@ -1,0 +1,7 @@
+@startuml
+title UC-03: Vertical Interaction Map
+left to right direction
+rectangle "SCP Core" { component "Geo Engine" }
+rectangle "Vertical: Health" { component "Disease Registry" }
+Disease Registry --> Geo Engine : "Scopes by Location"
+@enduml

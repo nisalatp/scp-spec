@@ -1,0 +1,15 @@
+@startuml
+title UC-26: High-Risk Mothers Unsafe Living (Activity)
+|Officer|
+start
+:Query High Risk Pregnancies;
+|Vertical: Health|
+:Filter: Medical Risk = High;
+:Filter: No Antenatal Visits;
+|Geo-Vertical: Housing|
+:Filter: Sanitation = Poor;
+:Filter: Distance > 10km;
+|SCP Core|
+:Generate Priority List;
+stop
+@enduml

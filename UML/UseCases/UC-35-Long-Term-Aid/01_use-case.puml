@@ -1,0 +1,8 @@
+@startuml
+title UC-35: Long-Term Aid Dependency (Use Case)
+actor "Analyst" as Admin
+package "Geo-Vertical: Social Welfare" <<geo-vertical>> { usecase "Track Aid History" as Aid }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Income Trend" as Econ }
+Admin --> Aid
+Aid ..> Econ : "Analyzes"
+@enduml

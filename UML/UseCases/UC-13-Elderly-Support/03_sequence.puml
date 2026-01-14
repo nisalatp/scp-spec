@@ -1,0 +1,17 @@
+@startuml
+title UC-13: Elderly Living Alone (Sequence)
+autoactivate on
+actor Worker
+participant "Vertical: Health" as Health
+participant "SCP Core: HH" as Core
+participant "Geo-Vertical: Welfare" as Welfare
+Worker -> Health: FindIsolatedElderly()
+    Health -> Core: GetHouseholds(Size=1)
+    return SoloHH_IDs
+    Health -> Health: FilterByAge(SoloHH_IDs, >70)
+    return VulnerableList
+return ShowList
+Worker -> Welfare: ScheduleCheck(VulnerableList)
+    Welfare -> Welfare: CreateTasks()
+return TasksCreated
+@enduml

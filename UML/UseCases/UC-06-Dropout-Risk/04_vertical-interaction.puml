@@ -1,0 +1,9 @@
+@startuml
+title UC-06: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Education" 
+rectangle "Vertical: Economy"
+rectangle "SCP Core"
+SCP Core --> "Vertical: Education" : "Polls Attendance"
+SCP Core --> "Vertical: Economy" : "Polls Income"
+@enduml

@@ -1,0 +1,7 @@
+@startuml
+title UC-04: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Data" { component "Analytics Engine" }
+rectangle "Vertical: Health" { component "Immunization DB" }
+Analytics Engine --> Immunization DB : "Queries Status"
+@enduml

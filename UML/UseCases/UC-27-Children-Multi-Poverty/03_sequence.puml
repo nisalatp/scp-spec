@@ -1,0 +1,17 @@
+@startuml
+title UC-27: Multi-Dimensional Poverty (Sequence)
+autoactivate on
+actor Worker
+participant "SCP Core" as Core
+participant "Vertical: Edu" as Edu
+participant "Vertical: Econ" as Econ
+participant "Geo-Vertical: Housing" as House
+Worker -> Core: DetailedRiskAnalysis()
+    Core -> Edu: GetRiskList()
+    return ListA
+    Core -> Econ: FilterFoodInsecure(ListA)
+    return ListB
+    Core -> House: FilterOvercrowded(ListB)
+    return FinalList
+return Show(FinalList)
+@enduml

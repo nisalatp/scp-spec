@@ -1,0 +1,9 @@
+@startuml
+title UC-07: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Education"
+rectangle "Vertical: Economy"
+rectangle "Vertical: Finance"
+"Vertical: Education" -> "Vertical: Economy" : "Means Test"
+"Vertical: Education" -> "Vertical: Finance" : "Triggers Payment"
+@enduml

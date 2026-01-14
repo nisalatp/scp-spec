@@ -1,0 +1,10 @@
+@startuml
+title UC-27: Multi-Dimensional Poverty (Use Case)
+actor "Social Worker" as Worker
+package "Vertical: Education" <<standard-vertical>> { usecase "Check Attendance" as Att }
+package "Vertical: Economy" <<standard-vertical>> { usecase "Check Food Security" as Food }
+package "Geo-Vertical: Housing" <<geo-vertical>> { usecase "Check Overcrowding" as Crowd }
+Worker --> Att
+Att ..> Food : "combine"
+Food ..> Crowd : "combine"
+@enduml

@@ -1,0 +1,47 @@
+@startuml
+title 01_kubernetes-deployment
+left to right direction
+
+node "Kubernetes Cluster" {
+    
+    node "Ingress Namespace" {
+        component "Ingress Controller" as Ingress
+    }
+    
+    node "App Namespace" {
+        component "Web Portal (SPA)" as Web
+        component "Modular Monolith API" as API
+        component "Background Worker" as Worker
+    }
+    
+    node "Data Namespace" {
+        database "PostgreSQL" as DB
+        database "Redis Cache" as Cache
+        database "MinIO (Object Store)" as Obj
+    }
+    
+    node "Auth Namespace" {
+        component "Keycloak (IDP)" as IDP
+    }
+}
+
+node "Client Devices" {
+    agent "Mobile App" as Mobile
+    agent "Browser" as Browser
+}
+
+Browser --> Ingress
+Mobile --> Ingress
+
+Ingress --> Web
+Ingress --> API
+Ingress --> IDP
+
+API --> DB
+API --> Cache
+API --> Obj
+API --> IDP
+
+Worker --> DB
+
+@enduml

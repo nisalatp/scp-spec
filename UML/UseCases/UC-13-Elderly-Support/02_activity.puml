@@ -1,0 +1,16 @@
+@startuml
+title UC-13: Elderly Living Alone (Activity)
+|Worker|
+start
+:Query Vulnerable Elderly;
+|Vertical: Health|
+:Filter Age > 70;
+|SCP Core|
+:Filter Household Size = 1;
+|Geo-Vertical: Social Welfare|
+:Generate Visit Schedule;
+|Worker|
+:Conduct Visit;
+:Log Status;
+stop
+@enduml

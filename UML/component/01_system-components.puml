@@ -1,0 +1,47 @@
+@startuml
+title 01_system-components
+left to right direction
+
+package "SCP Core Platform" {
+    component "API Gateway" as API
+    component "AuthZ Service" as AuthZ
+    component "Person Registry" as Person
+    component "Household Registry" as Household
+    component "Forms Engine" as Forms
+}
+
+package "Standard Verticals (Mandatory)" {
+    component "Health & Env" as V_Health
+    component "Education & Skills" as V_Edu
+    component "Economy & Livelihood" as V_Econ
+    component "Finance" as V_Fin
+    component "Data (Base)" as V_Data
+}
+
+package "Custom Extensions" {
+    component "Tenant Specific Verticals" as V_Custom
+    note right of V_Custom
+      Geo-specific logic
+      (e.g., Flood Relief)
+    end note
+}
+
+database "PostgreSQL" as DB
+
+API --> AuthZ
+API --> Person
+API --> Household
+
+' Vertical Dependencies
+V_Health --> Person
+V_Edu --> Person
+V_Econ --> Person
+V_Fin --> Person
+V_Data --> Person
+
+V_Custom --> Forms : "Uses Dynamic Schema"
+V_Custom --> Person
+
+Person --> DB
+
+@enduml

@@ -1,0 +1,449 @@
+[
+    {
+        "id": "UC-01",
+        "name": "Emergency Blood Matching",
+        "standard_verticals": [
+            "Health"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-02",
+        "name": "High-Risk Pregnancy Monitoring",
+        "standard_verticals": [
+            "Health"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-03",
+        "name": "Chronic Disease Outreach",
+        "standard_verticals": [
+            "Health"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-04",
+        "name": "Vaccination Coverage Gaps",
+        "standard_verticals": [
+            "Health",
+            "Data"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-05",
+        "name": "School Supplies Donation",
+        "standard_verticals": [
+            "Education",
+            "Finance"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-06",
+        "name": "Dropout Risk Identification",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-07",
+        "name": "Scholarship Targeting",
+        "standard_verticals": [
+            "Education",
+            "Finance"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-08",
+        "name": "Youth Skills Matching",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-09",
+        "name": "Sanitation Infrastructure Planning",
+        "standard_verticals": [
+            "Health",
+            "Finance"
+        ],
+        "geo_verticals": [
+            "WASH"
+        ]
+    },
+    {
+        "id": "UC-10",
+        "name": "Clean Water Access",
+        "standard_verticals": [
+            "Health"
+        ],
+        "geo_verticals": [
+            "WASH"
+        ]
+    },
+    {
+        "id": "UC-11",
+        "name": "Housing Repair Safety",
+        "standard_verticals": [
+            "Health",
+            "Finance"
+        ],
+        "geo_verticals": [
+            "Housing"
+        ]
+    },
+    {
+        "id": "UC-12",
+        "name": "Environmental Risk Mapping",
+        "standard_verticals": [
+            "Health",
+            "Data"
+        ],
+        "geo_verticals": [
+            "Disaster Mgmt"
+        ]
+    },
+    {
+        "id": "UC-13",
+        "name": "Elderly Living Alone",
+        "standard_verticals": [
+            "Health"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-14",
+        "name": "Disability Support Allocation",
+        "standard_verticals": [
+            "Health",
+            "Finance"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-15",
+        "name": "Food Assistance Targeting",
+        "standard_verticals": [
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-16",
+        "name": "Single Parent Support",
+        "standard_verticals": [
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-17",
+        "name": "Evidence Based Funding",
+        "standard_verticals": [
+            "Data",
+            "Finance"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-18",
+        "name": "Duplication Prevention",
+        "standard_verticals": [
+            "Data"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-19",
+        "name": "Impact Measurement",
+        "standard_verticals": [
+            "Data"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-20",
+        "name": "Cross Region Comparison",
+        "standard_verticals": [
+            "Data"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-21",
+        "name": "Policy Design",
+        "standard_verticals": [
+            "Data"
+        ],
+        "geo_verticals": [
+            "Governance"
+        ]
+    },
+    {
+        "id": "UC-22",
+        "name": "Transparent Selection",
+        "standard_verticals": [
+            "Data",
+            "Finance"
+        ],
+        "geo_verticals": [
+            "Governance"
+        ]
+    },
+    {
+        "id": "UC-23",
+        "name": "Audit and Oversight",
+        "standard_verticals": [
+            "Data"
+        ],
+        "geo_verticals": [
+            "Governance"
+        ]
+    },
+    {
+        "id": "UC-24",
+        "name": "Community Progress Tracking",
+        "standard_verticals": [
+            "Data",
+            "Health",
+            "Education"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-25",
+        "name": "Women at Risk Exclusion",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-26",
+        "name": "High-Risk Mothers Unsafe Living",
+        "standard_verticals": [
+            "Health"
+        ],
+        "geo_verticals": [
+            "Housing"
+        ]
+    },
+    {
+        "id": "UC-27",
+        "name": "Children Multi-Dimensional Poverty",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Social Welfare",
+            "Housing"
+        ]
+    },
+    {
+        "id": "UC-28",
+        "name": "Elderly Isolation Risks",
+        "standard_verticals": [
+            "Health"
+        ],
+        "geo_verticals": [
+            "Social Welfare",
+            "Housing",
+            "Environment"
+        ]
+    },
+    {
+        "id": "UC-29",
+        "name": "NEET Youth Households",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-30",
+        "name": "Disaster Sensitive Households",
+        "standard_verticals": [
+            "Health"
+        ],
+        "geo_verticals": [
+            "Environment",
+            "Housing",
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-31",
+        "name": "Women-Led Households Potential",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Housing"
+        ]
+    },
+    {
+        "id": "UC-32",
+        "name": "Chronic Illness Poverty Risk",
+        "standard_verticals": [
+            "Health",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-33",
+        "name": "School Dropout Housing Instability",
+        "standard_verticals": [
+            "Education"
+        ],
+        "geo_verticals": [
+            "Housing",
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-34",
+        "name": "Infrastructure Health Impact",
+        "standard_verticals": [
+            "Health",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Infrastructure"
+        ]
+    },
+    {
+        "id": "UC-35",
+        "name": "Long-Term Aid Dependency",
+        "standard_verticals": [
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-36",
+        "name": "Youth Migration Risk",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Migration"
+        ]
+    },
+    {
+        "id": "UC-37",
+        "name": "Child Malnutrition Environmental",
+        "standard_verticals": [
+            "Health",
+            "Education"
+        ],
+        "geo_verticals": [
+            "Environment"
+        ]
+    },
+    {
+        "id": "UC-38",
+        "name": "Women Workforce Exit Risk",
+        "standard_verticals": [
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Family"
+        ]
+    },
+    {
+        "id": "UC-39",
+        "name": "Education ROI Optimization",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Family"
+        ]
+    },
+    {
+        "id": "UC-40",
+        "name": "Health Access Gap Analysis",
+        "standard_verticals": [
+            "Health",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Transport"
+        ]
+    },
+    {
+        "id": "UC-41",
+        "name": "Women Digital Inclusion",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": []
+    },
+    {
+        "id": "UC-42",
+        "name": "Multi-Generational Poverty",
+        "standard_verticals": [
+            "Education",
+            "Economy"
+        ],
+        "geo_verticals": [
+            "Social Welfare"
+        ]
+    },
+    {
+        "id": "UC-43",
+        "name": "Climate Vulnerability Economic",
+        "standard_verticals": [
+            "Economy",
+            "Education"
+        ],
+        "geo_verticals": [
+            "Environment"
+        ]
+    },
+    {
+        "id": "UC-44",
+        "name": "Community Compound Risk Index",
+        "standard_verticals": [
+            "Health",
+            "Education"
+        ],
+        "geo_verticals": [
+            "Infrastructure",
+            "Environment",
+            "Governance"
+        ]
+    }
+]

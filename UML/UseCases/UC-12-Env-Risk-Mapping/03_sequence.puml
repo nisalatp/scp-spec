@@ -1,0 +1,16 @@
+@startuml
+title UC-12: Environmental Risk Mapping (Sequence)
+autoactivate on
+actor Auth
+participant "Geo-Vertical: Disaster" as Disaster
+participant "SCP Core: Geo" as Geo
+participant "Vertical: Health" as Health
+Auth -> Disaster: AnalyzeRisk(FloodMap)
+    Disaster -> Geo: GetHouseholdsInPoly(FloodMap)
+    return AtRiskHH[]
+    Disaster -> Health: GetMedicalNeeds(AtRiskHH)
+    return NeedsMap
+    Disaster -> Disaster: PrioritizeEvacuation(NeedsMap)
+    return Plan
+return Display(Plan)
+@enduml

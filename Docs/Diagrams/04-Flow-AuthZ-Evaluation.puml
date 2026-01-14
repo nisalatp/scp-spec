@@ -1,5 +1,5 @@
 @startuml
-TITLE SCP - Level 4 Flow: Authorization Evaluation (Pseudo-Code)
+title SCP - Level 4 Flow: Authorization Evaluation (Pseudo-Code)
 autoactivate on
 
 participant "API Middleware" as API

@@ -1,5 +1,5 @@
 @startuml
-TITLE UC-Advanced: High-Risk Mothers in Unsafe Conditions (Cross-Vertical Query)
+title UC-Advanced: High-Risk Mothers in Unsafe Conditions (Cross-Vertical Query)
 autoactivate on
 
 actor "Health Official" as User

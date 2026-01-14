@@ -1,0 +1,14 @@
+@startuml
+title UC-07: Scholarship Targeting (Activity)
+|Foundation|
+start
+:Define Criteria (Grades > A, Income < X);
+|Vertical: Education|
+:Filter Students by Grades;
+|Vertical: Economy|
+:Filter by Household Income;
+|Vertical: Finance|
+:Allocate Scholarship Fund;
+:Schedule Monthly Payment;
+stop
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+title UC-21: Policy Design (Sequence)
+autoactivate on
+actor Auth
+participant "Geo-Vertical: Governance" as Gov
+participant "Vertical: Data" as Data
+Auth -> Gov: PlanPolicy("WaterSubsidy")
+    Gov -> Data: InspectPopulation(Income<Poverty, NoWater)
+    return Count, CostEst
+return ImpactReport
+Auth -> Gov: PublishPolicy(Rules)
+    Gov -> Gov: Activate()
+return Success
+@enduml

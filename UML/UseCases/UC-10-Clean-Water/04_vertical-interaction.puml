@@ -1,0 +1,7 @@
+@startuml
+title UC-10: Vertical Interaction Map
+left to right direction
+rectangle "Geo-Vertical: WASH" <<geo-vertical>>
+rectangle "Vertical: Health"
+"Geo-Vertical: WASH" --> "Vertical: Health" : "Risk Analysis"
+@enduml

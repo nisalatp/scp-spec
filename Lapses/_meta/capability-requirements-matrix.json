@@ -1,0 +1,52 @@
+[
+    {
+        "id": "UC-01",
+        "status": "Supported",
+        "notes": "Standard Ops"
+    },
+    {
+        "id": "UC-04",
+        "status": "Partial",
+        "notes": "Requires GIS"
+    },
+    {
+        "id": "UC-09",
+        "status": "Partial",
+        "notes": "Requires Geo-Vertical Extensibility"
+    },
+    {
+        "id": "UC-10",
+        "status": "Partial",
+        "notes": "Requires GIS (Distance)"
+    },
+    {
+        "id": "UC-12",
+        "status": "Partial",
+        "notes": "Requires GIS (Overlay)"
+    },
+    {
+        "id": "UC-21",
+        "status": "Gap",
+        "notes": "Requires Simulation Engine"
+    },
+    {
+        "id": "UC-25",
+        "status": "Partial",
+        "notes": "Complex Cross-Vertical Query"
+    },
+    {
+        "id": "UC-30",
+        "status": "Partial",
+        "notes": "Requires GIS (Overlay)"
+    },
+    {
+        "id": "UC-40",
+        "status": "Gap",
+        "notes": "Requires Routing Engine"
+    },
+    {
+        "id": "UC-42",
+        "status": "Partial",
+        "notes": "Requires Graph/Recursive Query"
+    }
+]

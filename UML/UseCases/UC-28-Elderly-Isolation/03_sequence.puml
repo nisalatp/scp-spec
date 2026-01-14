@@ -1,0 +1,17 @@
+@startuml
+title UC-28: Elderly Isolation Risks (Sequence)
+autoactivate on
+actor Worker
+participant "SCP Core" as Core
+participant "Vertical: Health" as Health
+participant "Geo-Vertical: Welfare" as Welfare
+participant "Geo-Vertical: Env" as Env
+Worker -> Core: FindVulnerableElderly()
+    Core -> Health: GetChronicPatients(>65)
+    return ListA
+    Core -> Welfare: FilterIsolated(ListA)
+    return ListB
+    Core -> Env: FilterHighRiskZone(ListB)
+    return FinalList
+return Show(FinalList)
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+title UC-03: Chronic Disease Outreach (Sequence)
+autoactivate on
+actor Staff
+participant "Vertical: Health" as Health
+participant "SCP Core: Geo" as Geo
+Staff -> Health: FindPatients(Diabetes, ZoneA)
+    Health -> Geo: GetHouseholdsInZone(ZoneA)
+    return HH_IDs[]
+    Health -> Health: FilterByDisease(HH_IDs, Diabetes)
+    return PatientList[]
+return Display(PatientList)
+@enduml

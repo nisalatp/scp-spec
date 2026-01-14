@@ -1,0 +1,7 @@
+@startuml
+title UC-26: Vertical Interaction Map
+left to right direction
+rectangle "Vertical: Health"
+rectangle "Geo-Vertical: Housing" <<geo-vertical>>
+"Vertical: Health" --> "Geo-Vertical: Housing" : "Context Check"
+@enduml
