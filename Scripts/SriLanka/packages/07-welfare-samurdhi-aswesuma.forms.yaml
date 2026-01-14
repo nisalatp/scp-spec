@@ -1,0 +1,146 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.welfare.samurdhi.aswesuma.v1"
+    title: "Welfare Application (Samurdhi / Aswesuma)"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "welfare"
+    sections:
+      - sectionKey: "applicant_household"
+        title: "Applicant & Household"
+        fields:
+          - fieldKey: "applicant_full_name"
+            label: "Applicant Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "applicant_nic"
+            label: "Applicant NIC"
+            type: "text"
+            required: true
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "identity.nic" }
+          - fieldKey: "household_address"
+            label: "Household Address"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "address" }
+          - fieldKey: "household_gn_division"
+            label: "GN Division"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "geo.gn_division" }
+          - fieldKey: "household_members_count"
+            label: "Member Count"
+            type: "number"
+            validation: { min: 1, max: 30 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.household_members_count" }
+          - fieldKey: "applicant_role_in_household"
+            label: "Role in Household"
+            type: "enum"
+            options: ["Leader", "Spouse", "AdultMember", "Guardian", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.applicant_role_in_household" }
+
+      - sectionKey: "eligibility_indicators"
+        title: "Eligibility Indicators"
+        fields:
+          - fieldKey: "household_monthly_income"
+            label: "Monthly Income Breakdown"
+            type: "number"
+            required: true
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.household_monthly_income" }
+          - fieldKey: "housing_ownership"
+            label: "Housing Ownership"
+            type: "enum"
+            options: ["Owned", "Rented", "Shared", "Unauthorized", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.housing_ownership" }
+          - fieldKey: "land_owned"
+            label: "Land Owned?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.land_owned" }
+          - fieldKey: "land_extent"
+            label: "Land Extent"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.land_extent" }
+          - fieldKey: "vehicle_owned"
+            label: "Vehicle Owned?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.vehicle_owned" }
+          - fieldKey: "vehicle_details"
+            label: "Vehicle Details"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.vehicle_details" }
+          - fieldKey: "chronic_illness_in_household"
+            label: "Chronic Illness?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.chronic_illness_in_household" }
+          - fieldKey: "disability_in_household"
+            label: "Disability?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.disability_in_household" }
+
+      - sectionKey: "assistance_requested"
+        title: "Assistance Requested"
+        fields:
+          - fieldKey: "requested_program"
+            label: "Program"
+            type: "enum"
+            options: ["Samurdhi", "Aswesuma", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.requested_program" }
+          - fieldKey: "assistance_type"
+            label: "Assistance Type"
+            type: "enum"
+            options: ["Cash", "Food", "Livelihood", "Medical", "Education", "Housing", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.assistance_type" }
+          - fieldKey: "assistance_reason"
+            label: "Reason"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.assistance_reason" }
+
+      - sectionKey: "verification"
+        title: "Verification"
+        fields:
+          - fieldKey: "gn_officer_name"
+            label: "GN Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.gn_officer_name" }
+          - fieldKey: "gn_recommendation"
+            label: "Recommendation"
+            type: "enum"
+            options: ["Recommended", "NotRecommended", "Pending"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.gn_recommendation" }
+          - fieldKey: "verification_date"
+            label: "Verification Date"
+            type: "date"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.verification_date" }
+          - fieldKey: "verification_notes"
+            label: "Notes"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.verification_notes" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_nic"
+            label: "NIC Copy"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.nic" }
+          - fieldKey: "attachment_income_proof"
+            label: "Income Proof"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.income_proof" }
+          - fieldKey: "attachment_household_certificate"
+            label: "Household Cert"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.household_certificate" }

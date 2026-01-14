@@ -1,0 +1,157 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.household.registration.v1"
+    title: "Household Registration / Census Update"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "core"
+    sections:
+      - sectionKey: "household_core"
+        title: "Household Core"
+        fields:
+          - fieldKey: "household_name"
+            label: "Household Name"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "name" }
+          - fieldKey: "household_code_local"
+            label: "Local Code"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.household_code_local" }
+          - fieldKey: "household_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "address" }
+          - fieldKey: "area_gn"
+            label: "GN Division"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "geo.gn_division" }
+          - fieldKey: "area_ds"
+            label: "DS Division"
+            type: "text"
+            binding: { entity: "Household", path: "geo.ds_division" }
+          - fieldKey: "district"
+            label: "District"
+            type: "text"
+            binding: { entity: "Household", path: "geo.district" }
+          - fieldKey: "province"
+            label: "Province"
+            type: "text"
+            binding: { entity: "Household", path: "geo.province" }
+          - fieldKey: "contact_phone"
+            label: "Contact Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Household", path: "phone" }
+          - fieldKey: "housing_type"
+            label: "Housing Type"
+            type: "enum"
+            options: ["Permanent", "Semi-permanent", "Temporary", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.housing_type" }
+          - fieldKey: "ownership_status"
+            label: "Ownership Status"
+            type: "enum"
+            options: ["Owned", "Rented", "Provided", "Unauthorized", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.ownership_status" }
+
+      - sectionKey: "household_leader"
+        title: "Household Leader"
+        fields:
+          - fieldKey: "leader_full_name"
+            label: "Leader Name"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "leader.full_name" }
+          - fieldKey: "leader_nic"
+            label: "Leader NIC"
+            type: "text"
+            required: true
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Household", path: "leader.identity.nic" }
+          - fieldKey: "leader_dob"
+            label: "Leader DOB"
+            type: "date"
+            binding: { entity: "Household", path: "leader.date_of_birth" }
+          - fieldKey: "leader_phone"
+            label: "Leader Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Household", path: "leader.phone" }
+          - fieldKey: "leader_occupation"
+            label: "Leader Occupation"
+            type: "text"
+            binding: { entity: "Household", path: "leader.occupation" }
+
+      - sectionKey: "members"
+        title: "Members"
+        fields:
+          - fieldKey: "members"
+            label: "Members List"
+            type: "repeater"
+            required: true
+            validation: { min: 1, max: 30 }
+            binding: { entity: "Household", path: "members" }
+            fields:
+              - fieldKey: "member_full_name"
+                label: "Full Name"
+                type: "text"
+                required: true
+              - fieldKey: "member_nic"
+                label: "NIC"
+                type: "text"
+                validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+              - fieldKey: "member_dob"
+                label: "DOB"
+                type: "date"
+              - fieldKey: "member_sex"
+                label: "Sex"
+                type: "enum"
+                options: ["Male", "Female", "Other"]
+              - fieldKey: "relationship_to_leader"
+                label: "Relationship"
+                type: "enum"
+                options: ["Spouse", "Child", "Parent", "Sibling", "Grandparent", "Other"]
+                required: true
+              - fieldKey: "member_marital_status"
+                label: "Marital Status"
+                type: "enum"
+                options: ["Single", "Married", "Divorced", "Widowed", "Separated"]
+              - fieldKey: "member_education_level"
+                label: "Education"
+                type: "enum"
+                options: ["None", "Primary", "O/L", "A/L", "Diploma", "Degree", "Postgraduate", "Other"]
+              - fieldKey: "member_employment_status"
+                label: "Employment"
+                type: "enum"
+                options: ["Employed", "Self-Employed", "Unemployed", "Student", "Retired", "Other"]
+
+      - sectionKey: "living_conditions"
+        title: "Basic Living Conditions"
+        fields:
+          - fieldKey: "water_source"
+            label: "Water Source"
+            type: "enum"
+            options: ["Piped", "Well", "River", "Bowser", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.water_source" }
+          - fieldKey: "sanitation_type"
+            label: "Sanitation"
+            type: "enum"
+            options: ["FlushToilet", "PitLatrine", "Shared", "None", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.sanitation_type" }
+          - fieldKey: "cooking_fuel"
+            label: "Cooking Fuel"
+            type: "enum"
+            options: ["Gas", "Electric", "Firewood", "Kerosene", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.cooking_fuel" }
+          - fieldKey: "electricity_access"
+            label: "Electricity Access"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.electricity_access" }

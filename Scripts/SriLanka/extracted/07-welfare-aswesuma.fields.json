@@ -1,0 +1,66 @@
+{
+    "form_id": "07",
+    "name": "Aswesuma Welfare Benefit Application",
+    "official_id": "WBB/001",
+    "authority": "WBB",
+    "sections": [
+        {
+            "title": "Head of Household",
+            "fields": [
+                {
+                    "label": "Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "NIC",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Mobile Number",
+                    "type": "text",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Indicators",
+            "fields": [
+                {
+                    "label": "Average Monthly Electricity Consumption (Units)",
+                    "type": "number"
+                },
+                {
+                    "label": "Total Floor Area of House (Sq ft)",
+                    "type": "number"
+                },
+                {
+                    "label": "Number of Vehicles Owned",
+                    "type": "number"
+                },
+                {
+                    "label": "Has household member with Disability?",
+                    "type": "boolean"
+                },
+                {
+                    "label": "Has household member with Chronic Illness (Kidney/Cancer)?",
+                    "type": "boolean"
+                }
+            ]
+        },
+        {
+            "title": "Bank Details",
+            "fields": [
+                {
+                    "label": "Bank Name",
+                    "type": "text"
+                },
+                {
+                    "label": "Account Number",
+                    "type": "text"
+                }
+            ]
+        }
+    ]
+}

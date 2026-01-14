@@ -1,0 +1,55 @@
+{
+    "form_id": "14",
+    "name": "Initial Damage Assessment",
+    "official_id": "DMC Form",
+    "authority": "DMC",
+    "sections": [
+        {
+            "title": "Event Details",
+            "fields": [
+                {
+                    "label": "Date of Incident",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "label": "Nature of Disaster (Flood/Landslide/Wind)",
+                    "type": "enum",
+                    "required": true
+                },
+                {
+                    "label": "GN Division",
+                    "type": "text",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Damage Details",
+            "fields": [
+                {
+                    "label": "House Damage (Fully/Partially)",
+                    "type": "enum",
+                    "required": true
+                },
+                {
+                    "label": "Estimated Loss (LKR)",
+                    "type": "number"
+                },
+                {
+                    "label": "Deaths/Injuries",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Evidence",
+            "fields": [
+                {
+                    "label": "Photos of Damage",
+                    "type": "file"
+                }
+            ]
+        }
+    ]
+}

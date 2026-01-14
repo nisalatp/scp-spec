@@ -1,0 +1,151 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.death.registration.v1"
+    title: "Death Registration / Notification (Sri Lanka)"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "core"
+    sections:
+      - sectionKey: "deceased_details"
+        title: "Deceased Details"
+        fields:
+          - fieldKey: "deceased_full_name"
+            label: "Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "deceased_nic"
+            label: "NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "identity.nic" }
+          - fieldKey: "deceased_sex"
+            label: "Sex"
+            type: "enum"
+            options: ["Male", "Female", "Other"]
+            binding: { entity: "Person", path: "gender" }
+          - fieldKey: "deceased_date_of_birth"
+            label: "Date of Birth"
+            type: "date"
+            binding: { entity: "Person", path: "date_of_birth" }
+          - fieldKey: "deceased_age_years"
+            label: "Age (Years)"
+            type: "number"
+            validation: { min: 0, max: 130 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.deceased_age_years" }
+          - fieldKey: "deceased_address_last"
+            label: "Last Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "address_current" }
+          - fieldKey: "deceased_civil_status"
+            label: "Civil Status"
+            type: "enum"
+            options: ["Single", "Married", "Divorced", "Widowed", "Separated"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.deceased_civil_status" }
+          - fieldKey: "deceased_occupation"
+            label: "Occupation"
+            type: "text"
+            binding: { entity: "Person", path: "occupation" }
+
+      - sectionKey: "death_details"
+        title: "Death Details"
+        fields:
+          - fieldKey: "death_date"
+            label: "Date of Death"
+            type: "date"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.death_date" }
+          - fieldKey: "death_time"
+            label: "Time of Death"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.death_time" }
+          - fieldKey: "death_place_type"
+            label: "Place Type"
+            type: "enum"
+            options: ["Hospital", "Home", "PublicPlace", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.death_place_type" }
+          - fieldKey: "death_place_name"
+            label: "Place Name"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.death_place_name" }
+          - fieldKey: "death_district"
+            label: "District"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.death_district" }
+          - fieldKey: "death_division"
+            label: "Division"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.death_division" }
+          - fieldKey: "cause_of_death_primary"
+            label: "Primary Cause"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.cause_of_death_primary" }
+          - fieldKey: "cause_of_death_secondary"
+            label: "Secondary Cause"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.cause_of_death_secondary" }
+          - fieldKey: "manner_of_death"
+            label: "Manner of Death"
+            type: "enum"
+            options: ["Natural", "Accident", "Suicide", "Homicide", "Unknown"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.manner_of_death" }
+
+      - sectionKey: "informant"
+        title: "Informant Details"
+        fields:
+          - fieldKey: "informant_role"
+            label: "Role"
+            type: "enum"
+            options: ["Relative", "Guardian", "HospitalOfficer", "Registrar", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_role" }
+          - fieldKey: "informant_full_name"
+            label: "Name"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_full_name" }
+          - fieldKey: "informant_nic"
+            label: "NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_nic" }
+          - fieldKey: "informant_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_address" }
+          - fieldKey: "informant_phone"
+            label: "Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_phone" }
+          - fieldKey: "declaration_date"
+            label: "Declaration Date"
+            type: "date"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.declaration_date" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_medical_certificate"
+            label: "Medical Certificate"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.medical_certificate" }
+          - fieldKey: "attachment_deceased_nic"
+            label: "Deceased NIC"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.deceased_nic" }
+          - fieldKey: "attachment_police_report"
+            label: "Police Report"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.police_report" }

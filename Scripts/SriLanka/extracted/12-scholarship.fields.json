@@ -1,0 +1,63 @@
+{
+    "form_id": "12",
+    "name": "Application for Scholarship Assistance",
+    "official_id": "Presidents Fund App",
+    "authority": "Presidents Fund",
+    "sections": [
+        {
+            "title": "Student Details",
+            "fields": [
+                {
+                    "label": "Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "School",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Grade/Year",
+                    "type": "text",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Family Economics",
+            "fields": [
+                {
+                    "label": "Monthly Family Income",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "label": "Number of Dependent Children",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "label": "Grama Niladhari Confirmation",
+                    "type": "file",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Bank Details",
+            "fields": [
+                {
+                    "label": "Bank Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Account Number",
+                    "type": "text",
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

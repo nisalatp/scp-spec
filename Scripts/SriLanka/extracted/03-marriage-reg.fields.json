@@ -1,0 +1,74 @@
+{
+    "form_id": "03",
+    "name": "Notice of Marriage (General)",
+    "official_id": "Form B100",
+    "authority": "RGD",
+    "sections": [
+        {
+            "title": "Party 1 (Male)",
+            "fields": [
+                {
+                    "label": "Name in Full",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Civil Condition (Bachelor/Widower/Divorced)",
+                    "type": "enum",
+                    "required": true
+                },
+                {
+                    "label": "Age",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "label": "Rank or Profession",
+                    "type": "text"
+                },
+                {
+                    "label": "Residence (Division)",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Party 2 (Female)",
+            "fields": [
+                {
+                    "label": "Name in Full",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Civil Condition (Spinster/Widow/Divorced)",
+                    "type": "enum",
+                    "required": true
+                },
+                {
+                    "label": "Age",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "label": "Rank or Profession",
+                    "type": "text"
+                },
+                {
+                    "label": "Residence (Division)",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Marriage Details",
+            "fields": [
+                {
+                    "label": "Consent of Other Party?",
+                    "type": "boolean",
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

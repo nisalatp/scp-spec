@@ -1,0 +1,131 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.disaster.damage.assessment.v1"
+    title: "Disaster / Environmental Damage Assessment"
+    targetActors: ["agent", "admin", "citizen"]
+    scope:
+      vertical: "environment"
+    sections:
+      - sectionKey: "incident"
+        title: "Incident"
+        fields:
+          - fieldKey: "incident_type"
+            label: "Type"
+            type: "enum"
+            options: ["Flood", "Landslide", "Cyclone", "Drought", "Fire", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.incident_type" }
+          - fieldKey: "incident_date"
+            label: "Date"
+            type: "date"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.incident_date" }
+          - fieldKey: "incident_location_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.incident_location_address" }
+          - fieldKey: "incident_gn_division"
+            label: "GN Division"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.incident_gn_division" }
+          - fieldKey: "incident_notes"
+            label: "Notes"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.incident_notes" }
+
+      - sectionKey: "affected_household"
+        title: "Affected Household"
+        fields:
+          - fieldKey: "leader_full_name"
+            label: "Leader Name"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "leader.full_name" }
+          - fieldKey: "leader_nic"
+            label: "Leader NIC"
+            type: "text"
+            required: true
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Household", path: "leader.identity.nic" }
+          - fieldKey: "household_address"
+            label: "Household Address"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "address" }
+          - fieldKey: "members_affected_count"
+            label: "Members Affected"
+            type: "number"
+            validation: { min: 0, max: 30 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.members_affected_count" }
+          - fieldKey: "injuries_reported"
+            label: "Injuries?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.injuries_reported" }
+          - fieldKey: "deaths_reported"
+            label: "Deaths?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.deaths_reported" }
+
+      - sectionKey: "damage_details"
+        title: "Damage Details"
+        fields:
+          - fieldKey: "house_damage_level"
+            label: "Damage Level"
+            type: "enum"
+            options: ["None", "Partial", "Severe", "Destroyed"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.house_damage_level" }
+          - fieldKey: "damage_description"
+            label: "Description"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.damage_description" }
+          - fieldKey: "estimated_loss_lkr"
+            label: "Estimated Loss"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.estimated_loss_lkr" }
+          - fieldKey: "essential_needs"
+            label: "Needs"
+            type: "enum"
+            options: ["Food", "Water", "Shelter", "Medicine", "Clothing", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.essential_needs" }
+          - fieldKey: "immediate_assistance_required"
+            label: "Immediate Assistance?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.immediate_assistance_required" }
+
+      - sectionKey: "verification"
+        title: "Verification"
+        fields:
+          - fieldKey: "assessed_by_name"
+            label: "Assessor Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.assessed_by_name" }
+          - fieldKey: "assessed_by_role"
+            label: "Assessor Role"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.assessed_by_role" }
+          - fieldKey: "assessment_date"
+            label: "Date"
+            type: "date"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.assessment_date" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_damage_photos"
+            label: "Photos"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.damage_photos" }
+          - fieldKey: "attachment_gn_report"
+            label: "GN Report"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.gn_report" }

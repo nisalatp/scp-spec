@@ -1,0 +1,75 @@
+{
+    "form_id": "04",
+    "name": "Application for National Identity Card",
+    "official_id": "Form V/1",
+    "authority": "DRP",
+    "sections": [
+        {
+            "title": "Applicant Details",
+            "fields": [
+                {
+                    "label": "Full Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Original Name (if different)",
+                    "type": "text"
+                },
+                {
+                    "label": "Permanent Address",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Date of Birth",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "label": "Birth Certificate Number",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Place of Birth",
+                    "type": "text"
+                },
+                {
+                    "label": "Gender",
+                    "type": "enum",
+                    "required": true
+                },
+                {
+                    "label": "Profession / Occupation",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Biometrics",
+            "fields": [
+                {
+                    "label": "Photograph (ICAO)",
+                    "type": "file",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Attestation",
+            "fields": [
+                {
+                    "label": "Grama Niladhari Signature",
+                    "type": "file",
+                    "required": true
+                },
+                {
+                    "label": "Divisional Secretary Signature",
+                    "type": "file",
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

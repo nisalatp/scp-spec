@@ -1,0 +1,63 @@
+{
+    "form_id": "10",
+    "name": "Clinic Record (NCD)",
+    "official_id": "H 519",
+    "authority": "Ministry of Health",
+    "sections": [
+        {
+            "title": "Patient Profile",
+            "fields": [
+                {
+                    "label": "Clinic Number",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Age",
+                    "type": "number"
+                },
+                {
+                    "label": "Gender",
+                    "type": "enum"
+                }
+            ]
+        },
+        {
+            "title": "Diagnosis",
+            "fields": [
+                {
+                    "label": "Principal Diagnosis",
+                    "type": "enum",
+                    "options": [
+                        "Diabetes",
+                        "Hypertension",
+                        "Ischaemic Heart Disease",
+                        "Stroke"
+                    ]
+                },
+                {
+                    "label": "Date of Diagnosis",
+                    "type": "date"
+                }
+            ]
+        },
+        {
+            "title": "Current Status",
+            "fields": [
+                {
+                    "label": "Current Medication",
+                    "type": "text"
+                },
+                {
+                    "label": "Last BP Reading",
+                    "type": "text"
+                }
+            ]
+        }
+    ]
+}

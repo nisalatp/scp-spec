@@ -1,0 +1,108 @@
+{
+    "form_id": "05",
+    "name": "Census of Population and Housing",
+    "official_id": "Census Schedule (General)",
+    "authority": "DCS",
+    "sections": [
+        {
+            "title": "Location",
+            "fields": [
+                {
+                    "label": "District",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "DS Division",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "GN Division",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Census Unit Number",
+                    "type": "text",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Members List (Repeater)",
+            "fields": [
+                {
+                    "label": "Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Relationship to Head",
+                    "type": "enum",
+                    "required": true
+                },
+                {
+                    "label": "Sex",
+                    "type": "enum",
+                    "required": true
+                },
+                {
+                    "label": "Date of Birth",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "label": "Age",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "label": "Marital Status",
+                    "type": "enum"
+                },
+                {
+                    "label": "Religion",
+                    "type": "enum"
+                },
+                {
+                    "label": "Ethnic Group",
+                    "type": "enum"
+                }
+            ]
+        },
+        {
+            "title": "Housing Characteristics",
+            "fields": [
+                {
+                    "label": "Type of Unit",
+                    "type": "enum",
+                    "options": [
+                        "Housing Unit",
+                        "Collective"
+                    ]
+                },
+                {
+                    "label": "Principal Material of Walls",
+                    "type": "enum"
+                },
+                {
+                    "label": "Principal Material of Roof",
+                    "type": "enum"
+                },
+                {
+                    "label": "Principal Source of Drinking Water",
+                    "type": "enum"
+                },
+                {
+                    "label": "Toilet Facilities",
+                    "type": "enum"
+                },
+                {
+                    "label": "Principal Source of Energy for Lighting",
+                    "type": "enum"
+                }
+            ]
+        }
+    ]
+}

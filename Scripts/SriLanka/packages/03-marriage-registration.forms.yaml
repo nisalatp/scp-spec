@@ -1,0 +1,170 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.marriage.registration.v1"
+    title: "Marriage Registration (Sri Lanka)"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "core"
+    sections:
+      - sectionKey: "groom_details"
+        title: "Groom Details"
+        fields:
+          - fieldKey: "groom_full_name"
+            label: "Groom Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "groom.full_name" }
+          - fieldKey: "groom_nic"
+            label: "Groom NIC"
+            type: "text"
+            required: true
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "groom.identity.nic" }
+          - fieldKey: "groom_dob"
+            label: "Groom DOB"
+            type: "date"
+            required: true
+            binding: { entity: "Person", path: "groom.date_of_birth" }
+          - fieldKey: "groom_age_years"
+            label: "Groom Age"
+            type: "number"
+            validation: { min: 18, max: 100 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.groom_age_years" }
+          - fieldKey: "groom_address"
+            label: "Groom Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "groom.address_current" }
+          - fieldKey: "groom_occupation"
+            label: "Groom Occupation"
+            type: "text"
+            binding: { entity: "Person", path: "groom.occupation" }
+          - fieldKey: "groom_father_name"
+            label: "Groom Father Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.groom_father_name" }
+          - fieldKey: "groom_mother_name"
+            label: "Groom Mother Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.groom_mother_name" }
+
+      - sectionKey: "bride_details"
+        title: "Bride Details"
+        fields:
+          - fieldKey: "bride_full_name"
+            label: "Bride Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "bride.full_name" }
+          - fieldKey: "bride_nic"
+            label: "Bride NIC"
+            type: "text"
+            required: true
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "bride.identity.nic" }
+          - fieldKey: "bride_dob"
+            label: "Bride DOB"
+            type: "date"
+            required: true
+            binding: { entity: "Person", path: "bride.date_of_birth" }
+          - fieldKey: "bride_age_years"
+            label: "Bride Age"
+            type: "number"
+            validation: { min: 18, max: 100 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.bride_age_years" }
+          - fieldKey: "bride_address"
+            label: "Bride Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "bride.address_current" }
+          - fieldKey: "bride_occupation"
+            label: "Bride Occupation"
+            type: "text"
+            binding: { entity: "Person", path: "bride.occupation" }
+          - fieldKey: "bride_father_name"
+            label: "Bride Father Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.bride_father_name" }
+          - fieldKey: "bride_mother_name"
+            label: "Bride Mother Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.bride_mother_name" }
+
+      - sectionKey: "event"
+        title: "Marriage Event Details"
+        fields:
+          - fieldKey: "marriage_date"
+            label: "Date of Marriage"
+            type: "date"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.marriage_date" }
+          - fieldKey: "marriage_place"
+            label: "Place of Marriage"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.marriage_place" }
+          - fieldKey: "marriage_type"
+            label: "Marriage Type"
+            type: "enum"
+            options: ["General", "Kandyan", "Muslim", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.marriage_type" }
+          - fieldKey: "registrar_name"
+            label: "Registrar Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.registrar_name" }
+          - fieldKey: "registrar_office"
+            label: "Registrar Office"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.registrar_office" }
+
+      - sectionKey: "witnesses"
+        title: "Witnesses"
+        fields:
+          - fieldKey: "witnesses"
+            label: "Witness List"
+            type: "repeater"
+            required: true
+            validation: { min: 2, max: 3 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.witnesses" }
+            fields:
+              - fieldKey: "witness_full_name"
+                label: "Witness Name"
+                type: "text"
+                required: true
+              - fieldKey: "witness_nic"
+                label: "Witness NIC"
+                type: "text"
+                validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+              - fieldKey: "witness_address"
+                label: "Address"
+                type: "text"
+              - fieldKey: "witness_signature"
+                label: "Signature"
+                type: "text"
+
+      - sectionKey: "attachments"
+        title: "Declarations & Attachments"
+        fields:
+          - fieldKey: "declaration_date"
+            label: "Declaration Date"
+            type: "date"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.declaration_date" }
+          - fieldKey: "attachment_groom_nic"
+            label: "Groom NIC"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.groom_nic" }
+          - fieldKey: "attachment_bride_nic"
+            label: "Bride NIC"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.bride_nic" }
+          - fieldKey: "attachment_birth_certificates"
+            label: "Birth Certificates"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.birth_certificates" }

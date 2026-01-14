@@ -1,0 +1,66 @@
+{
+    "form_id": "08",
+    "name": "Pregnancy Record",
+    "official_id": "Form H 512",
+    "authority": "Family Health Bureau",
+    "sections": [
+        {
+            "title": "Basic Details",
+            "fields": [
+                {
+                    "label": "Mother's Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Age",
+                    "type": "number",
+                    "required": true
+                },
+                {
+                    "label": "PHM Area",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Registration No",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Obstetric History",
+            "fields": [
+                {
+                    "label": "Gravidity (G)",
+                    "type": "number"
+                },
+                {
+                    "label": "Parity (P)",
+                    "type": "number"
+                },
+                {
+                    "label": "LMP (Last Menstrual Period)",
+                    "type": "date"
+                },
+                {
+                    "label": "EDD (Estimated Delivery Date)",
+                    "type": "date"
+                }
+            ]
+        },
+        {
+            "title": "Health Risk",
+            "fields": [
+                {
+                    "label": "Risk Factors Identified",
+                    "type": "text"
+                },
+                {
+                    "label": "Blood Group",
+                    "type": "enum"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,137 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.health.mch.registration.v1"
+    title: "Maternal & Child Health Registration"
+    targetActors: ["citizen", "agent", "admin", "health_worker"]
+    scope:
+      vertical: "health"
+    sections:
+      - sectionKey: "mother"
+        title: "Mother Details"
+        fields:
+          - fieldKey: "mother_full_name"
+            label: "Mother Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "mother_nic"
+            label: "Mother NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "identity.nic" }
+          - fieldKey: "mother_dob"
+            label: "Mother DOB"
+            type: "date"
+            binding: { entity: "Person", path: "date_of_birth" }
+          - fieldKey: "mother_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "address_current" }
+          - fieldKey: "mother_phone"
+            label: "Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Person", path: "phone" }
+
+      - sectionKey: "pregnancy"
+        title: "Pregnancy"
+        fields:
+          - fieldKey: "is_pregnant"
+            label: "Is Pregnant?"
+            type: "boolean"
+            required: true
+            binding: { entity: "HealthRecord", path: "pregnancy_status" }
+          - fieldKey: "expected_delivery_date"
+            label: "EDD"
+            type: "date"
+            binding: { entity: "HealthRecord", path: "expected_delivery_date" }
+          - fieldKey: "pregnancy_weeks"
+            label: "Weeks"
+            type: "number"
+            validation: { min: 0, max: 45 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.pregnancy_weeks" }
+          - fieldKey: "gravida"
+            label: "Gravida"
+            type: "number"
+            validation: { min: 0, max: 20 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.gravida" }
+          - fieldKey: "parity"
+            label: "Parity"
+            type: "number"
+            validation: { min: 0, max: 20 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.parity" }
+          - fieldKey: "antenatal_clinic"
+            label: "Clinic"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.antenatal_clinic" }
+
+      - sectionKey: "risk_conditions"
+        title: "Risk & Conditions"
+        fields:
+          - fieldKey: "blood_group"
+            label: "Blood Group"
+            type: "enum"
+            options: ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "Unknown"]
+            binding: { entity: "HealthRecord", path: "blood_group" }
+          - fieldKey: "has_diabetes"
+            label: "Diabetes?"
+            type: "boolean"
+            binding: { entity: "HealthRecord", path: "diabetes" }
+          - fieldKey: "has_hypertension"
+            label: "Hypertension?"
+            type: "boolean"
+            binding: { entity: "HealthRecord", path: "hypertension" }
+          - fieldKey: "anemia_status"
+            label: "Anemia Status"
+            type: "enum"
+            options: ["None", "Mild", "Moderate", "Severe", "Unknown"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.anemia_status" }
+          - fieldKey: "other_risk_notes"
+            label: "Other Risks"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.other_risk_notes" }
+
+      - sectionKey: "children"
+        title: "Children"
+        fields:
+          - fieldKey: "children"
+            label: "Children List"
+            type: "repeater"
+            validation: { max: 10 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.children" }
+            fields:
+              - fieldKey: "child_full_name"
+                label: "Name"
+                type: "text"
+                required: true
+              - fieldKey: "child_dob"
+                label: "DOB"
+                type: "date"
+                required: true
+              - fieldKey: "child_sex"
+                label: "Sex"
+                type: "enum"
+                options: ["Male", "Female", "Other"]
+              - fieldKey: "child_birth_weight_kg"
+                label: "Birth Weight (kg)"
+                type: "number"
+                validation: { min: 0.5, max: 10 }
+              - fieldKey: "child_immunization_status"
+                label: "Immunization"
+                type: "enum"
+                options: ["UpToDate", "Pending", "Unknown"]
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_clinic_record"
+            label: "Clinic Record"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.clinic_record" }

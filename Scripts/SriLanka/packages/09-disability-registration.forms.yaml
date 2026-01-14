@@ -1,0 +1,120 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.welfare.disability.registration.v1"
+    title: "Disability Registration"
+    targetActors: ["citizen", "agent", "admin", "health_worker"]
+    scope:
+      vertical: "welfare"
+    sections:
+      - sectionKey: "applicant"
+        title: "Applicant"
+        fields:
+          - fieldKey: "person_full_name"
+            label: "Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "person_nic"
+            label: "NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "identity.nic" }
+          - fieldKey: "person_dob"
+            label: "DOB"
+            type: "date"
+            binding: { entity: "Person", path: "date_of_birth" }
+          - fieldKey: "person_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "address_current" }
+          - fieldKey: "person_phone"
+            label: "Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Person", path: "phone" }
+
+      - sectionKey: "disability_details"
+        title: "Disability Details"
+        fields:
+          - fieldKey: "disability_type"
+            label: "Type"
+            type: "enum"
+            options: ["Physical", "Visual", "Hearing", "Speech", "Intellectual", "Mental", "Multiple", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.disability_type" }
+          - fieldKey: "disability_description"
+            label: "Description"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.disability_description" }
+          - fieldKey: "disability_onset_date"
+            label: "Onset Date"
+            type: "date"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.disability_onset_date" }
+          - fieldKey: "disability_severity"
+            label: "Severity"
+            type: "enum"
+            options: ["Mild", "Moderate", "Severe", "Unknown"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.disability_severity" }
+          - fieldKey: "assistive_devices_needed"
+            label: "Devices Needed"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.assistive_devices_needed" }
+          - fieldKey: "caregiving_required"
+            label: "Caregiving Required?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.caregiving_required" }
+
+      - sectionKey: "certification"
+        title: "Certification"
+        fields:
+          - fieldKey: "certifying_doctor_name"
+            label: "Doctor Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.certifying_doctor_name" }
+          - fieldKey: "certifying_institution"
+            label: "Institution"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.certifying_institution" }
+          - fieldKey: "certification_date"
+            label: "Date"
+            type: "date"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.certification_date" }
+
+      - sectionKey: "assistance_req"
+        title: "Assistance Request"
+        fields:
+          - fieldKey: "request_allowance"
+            label: "Allowace?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.request_allowance" }
+          - fieldKey: "request_device_support"
+            label: "Device Support?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.request_device_support" }
+          - fieldKey: "request_transport_support"
+            label: "Transport Support?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.request_transport_support" }
+          - fieldKey: "request_other_support_notes"
+            label: "Other Support"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.request_other_support_notes" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_medical_report"
+            label: "Medical Report"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.medical_report" }
+          - fieldKey: "attachment_nic"
+            label: "NIC Copy"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.nic" }

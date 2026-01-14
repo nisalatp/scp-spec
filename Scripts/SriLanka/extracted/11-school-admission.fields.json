@@ -1,0 +1,61 @@
+{
+    "form_id": "11",
+    "name": "Application for Admission to Grade One",
+    "official_id": "MoE Specimen",
+    "authority": "Ministry of Education",
+    "sections": [
+        {
+            "title": "Child Details",
+            "fields": [
+                {
+                    "label": "Name in Full",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Date of Birth",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "label": "Religion",
+                    "type": "enum",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Applicant (Parent/Guardian) Details",
+            "fields": [
+                {
+                    "label": "Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "NIC No",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Permanent Address",
+                    "type": "text",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Proximity",
+            "fields": [
+                {
+                    "label": "Distance to School (km)",
+                    "type": "number"
+                },
+                {
+                    "label": "Electoral List Registration Details",
+                    "type": "text"
+                }
+            ]
+        }
+    ]
+}

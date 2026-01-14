@@ -1,0 +1,169 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.nic.application.v1"
+    title: "National Identity Card (NIC) Application / Update"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "core"
+    sections:
+      - sectionKey: "applicant_identity"
+        title: "Applicant Identity"
+        fields:
+          - fieldKey: "applicant_full_name"
+            label: "Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "applicant_name_with_initials"
+            label: "Name with Initials"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.applicant_name_with_initials" }
+          - fieldKey: "applicant_other_names"
+            label: "Other Names"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.applicant_other_names" }
+          - fieldKey: "applicant_sex"
+            label: "Sex"
+            type: "enum"
+            options: ["Male", "Female", "Other"]
+            required: true
+            binding: { entity: "Person", path: "gender" }
+          - fieldKey: "applicant_dob"
+            label: "Date of Birth"
+            type: "date"
+            required: true
+            binding: { entity: "Person", path: "date_of_birth" }
+          - fieldKey: "applicant_birth_place"
+            label: "Place of Birth"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.applicant_birth_place" }
+          - fieldKey: "applicant_nationality"
+            label: "Nationality"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.applicant_nationality" }
+          - fieldKey: "applicant_religion"
+            label: "Religion"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.applicant_religion" }
+          - fieldKey: "applicant_civil_status"
+            label: "Civil Status"
+            type: "enum"
+            options: ["Single", "Married", "Divorced", "Widowed", "Separated"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.applicant_civil_status" }
+
+      - sectionKey: "address_contacts"
+        title: "Address & Contacts"
+        fields:
+          - fieldKey: "address_permanent"
+            label: "Permanent Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "address_permanent" }
+          - fieldKey: "address_current"
+            label: "Current Address"
+            type: "text"
+            binding: { entity: "Person", path: "address_current" }
+          - fieldKey: "gn_division"
+            label: "GN Division"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.gn_division" }
+          - fieldKey: "ds_division"
+            label: "DS Division"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.ds_division" }
+          - fieldKey: "district"
+            label: "District"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.district" }
+          - fieldKey: "phone_mobile"
+            label: "Mobile Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Person", path: "phone" }
+          - fieldKey: "email"
+            label: "Email"
+            type: "text"
+            binding: { entity: "Person", path: "email" }
+
+      - sectionKey: "app_type"
+        title: "Application Type"
+        fields:
+          - fieldKey: "application_type"
+            label: "Application Type"
+            type: "enum"
+            options: ["New", "Replacement", "Correction", "UpdateAddress", "UpdateName"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.application_type" }
+          - fieldKey: "reason_for_replacement"
+            label: "Reason for Replacement"
+            type: "enum"
+            options: ["Lost", "Damaged", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.reason_for_replacement" }
+          - fieldKey: "correction_details"
+            label: "Correction Details"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.correction_details" }
+
+      - sectionKey: "parent_details"
+        title: "Parent Details"
+        fields:
+          - fieldKey: "father_full_name"
+            label: "Father Full Name"
+            type: "text"
+            binding: { entity: "Person", path: "father.full_name" }
+          - fieldKey: "mother_full_name"
+            label: "Mother Full Name"
+            type: "text"
+            binding: { entity: "Person", path: "mother.full_name" }
+          - fieldKey: "father_nic"
+            label: "Father NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "father.identity.nic" }
+          - fieldKey: "mother_nic"
+            label: "Mother NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "mother.identity.nic" }
+
+      - sectionKey: "certification"
+        title: "Certification"
+        fields:
+          - fieldKey: "certifying_officer_name"
+            label: "Officer Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.certifying_officer_name" }
+          - fieldKey: "certifying_officer_designation"
+            label: "Designation"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.certifying_officer_designation" }
+          - fieldKey: "certification_date"
+            label: "Date"
+            type: "date"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.certification_date" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_birth_certificate"
+            label: "Birth Certificate"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.birth_certificate" }
+          - fieldKey: "attachment_photo"
+            label: "Photo"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.photo" }
+          - fieldKey: "attachment_police_report"
+            label: "Police Report"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.police_report" }
+          - fieldKey: "attachment_old_nic"
+            label: "Old NIC"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.old_nic" }

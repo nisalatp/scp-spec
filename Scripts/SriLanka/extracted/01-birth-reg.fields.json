@@ -1,0 +1,116 @@
+{
+    "form_id": "01",
+    "name": "Application for Registration of Birth",
+    "official_id": "Form B4",
+    "authority": "RGD",
+    "sections": [
+        {
+            "title": "Date and Place of Birth",
+            "fields": [
+                {
+                    "label": "Date of Birth",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "label": "Place of Birth (Hospital/Home)",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Town/Revenue Division of Place of Birth",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Child Details",
+            "fields": [
+                {
+                    "label": "Name (if any)",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Gender",
+                    "type": "enum",
+                    "options": [
+                        "Male",
+                        "Female"
+                    ],
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Father's Details",
+            "fields": [
+                {
+                    "label": "Full Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Date of Birth",
+                    "type": "date"
+                },
+                {
+                    "label": "Place of Birth",
+                    "type": "text"
+                },
+                {
+                    "label": "Race",
+                    "type": "enum"
+                },
+                {
+                    "label": "Profession",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Mother's Details",
+            "fields": [
+                {
+                    "label": "Full Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Date of Birth",
+                    "type": "date"
+                },
+                {
+                    "label": "Place of Birth",
+                    "type": "text"
+                },
+                {
+                    "label": "Age at Birth of Child",
+                    "type": "number"
+                },
+                {
+                    "label": "Number of children of this mother (including this one)",
+                    "type": "number"
+                }
+            ]
+        },
+        {
+            "title": "Informant",
+            "fields": [
+                {
+                    "label": "Full Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Capacity (Father/Mother/etc)",
+                    "type": "enum"
+                },
+                {
+                    "label": "Signature",
+                    "type": "file"
+                }
+            ]
+        }
+    ]
+}

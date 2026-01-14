@@ -1,0 +1,229 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.birth.registration.v1"
+    title: "Birth Registration (Sri Lanka)"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "core"
+      program: null
+      geoFence: null
+    sections:
+      - sectionKey: "child_details"
+        title: "Child Details"
+        fields:
+          - fieldKey: "child_full_name"
+            label: "Child Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "child_sex"
+            label: "Sex"
+            type: "enum"
+            options: ["Male", "Female", "Other"]
+            required: true
+            binding: { entity: "Person", path: "gender" }
+          - fieldKey: "child_date_of_birth"
+            label: "Date of Birth"
+            type: "date"
+            required: true
+            binding: { entity: "Person", path: "date_of_birth" }
+          - fieldKey: "child_time_of_birth"
+            label: "Time of Birth"
+            type: "text"
+            helpText: "HH:MM"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.child_time_of_birth" }
+          - fieldKey: "child_place_of_birth_type"
+            label: "Place of Birth Type"
+            type: "enum"
+            options: ["Hospital", "Home", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.child_place_of_birth_type" }
+          - fieldKey: "child_place_of_birth_name"
+            label: "Place of Birth Name"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.child_place_of_birth_name" }
+          - fieldKey: "child_birth_district"
+            label: "Birth District"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.child_birth_district" }
+          - fieldKey: "child_birth_division"
+            label: "Birth Division"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.child_birth_division" }
+          - fieldKey: "child_weight_at_birth_kg"
+            label: "Weight at Birth (kg)"
+            type: "number"
+            validation: { min: 0.5, max: 10 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.child_weight_at_birth_kg" }
+          - fieldKey: "child_multiple_birth"
+            label: "Multiple Birth"
+            type: "enum"
+            options: ["Single", "Twin", "Triplet", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.child_multiple_birth" }
+          - fieldKey: "child_birth_order"
+            label: "Birth Order"
+            type: "number"
+            validation: { min: 1, max: 20 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.child_birth_order" }
+
+      - sectionKey: "mother_details"
+        title: "Mother Details"
+        fields:
+          - fieldKey: "mother_full_name"
+            label: "Mother's Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "mother.full_name" }
+          - fieldKey: "mother_nic"
+            label: "Mother's NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "mother.identity.nic" }
+          - fieldKey: "mother_dob"
+            label: "Mother's DOB"
+            type: "date"
+            binding: { entity: "Person", path: "mother.date_of_birth" }
+          - fieldKey: "mother_nationality"
+            label: "Mother's Nationality"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.mother_nationality" }
+          - fieldKey: "mother_address_current"
+            label: "Mother's Current Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "mother.address_current" }
+          - fieldKey: "mother_address_permanent"
+            label: "Mother's Permanent Address"
+            type: "text"
+            binding: { entity: "Person", path: "mother.address_permanent" }
+          - fieldKey: "mother_phone"
+            label: "Mother's Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Person", path: "mother.phone" }
+          - fieldKey: "mother_marital_status"
+            label: "Mother's Marital Status"
+            type: "enum"
+            options: ["Married", "Unmarried", "Divorced", "Widowed", "Separated"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.mother_marital_status" }
+          - fieldKey: "mother_occupation"
+            label: "Mother's Occupation"
+            type: "text"
+            binding: { entity: "Person", path: "mother.occupation" }
+
+      - sectionKey: "father_details"
+        title: "Father Details"
+        fields:
+          - fieldKey: "father_full_name"
+            label: "Father's Full Name"
+            type: "text"
+            binding: { entity: "Person", path: "father.full_name" }
+          - fieldKey: "father_nic"
+            label: "Father's NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "father.identity.nic" }
+          - fieldKey: "father_dob"
+            label: "Father's DOB"
+            type: "date"
+            binding: { entity: "Person", path: "father.date_of_birth" }
+          - fieldKey: "father_nationality"
+            label: "Father's Nationality"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.father_nationality" }
+          - fieldKey: "father_address"
+            label: "Father's Address"
+            type: "text"
+            binding: { entity: "Person", path: "father.address_current" }
+          - fieldKey: "father_phone"
+            label: "Father's Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Person", path: "father.phone" }
+          - fieldKey: "father_occupation"
+            label: "Father's Occupation"
+            type: "text"
+            binding: { entity: "Person", path: "father.occupation" }
+
+      - sectionKey: "marriage_legal"
+        title: "Marriage / Legal Basis"
+        fields:
+          - fieldKey: "parents_marriage_registered"
+            label: "Parents Marriage Registered?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.parents_marriage_registered" }
+          - fieldKey: "parents_marriage_registration_no"
+            label: "Marriage Reg No"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.parents_marriage_registration_no" }
+          - fieldKey: "parents_marriage_place"
+            label: "Place of Marriage"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.parents_marriage_place" }
+          - fieldKey: "parents_marriage_date"
+            label: "Date of Marriage"
+            type: "date"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.parents_marriage_date" }
+
+      - sectionKey: "informant"
+        title: "Informant & Declaration"
+        fields:
+          - fieldKey: "informant_role"
+            label: "Informant Role"
+            type: "enum"
+            options: ["Mother", "Father", "Guardian", "HospitalOfficer", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_role" }
+          - fieldKey: "informant_full_name"
+            label: "Informant Name"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_full_name" }
+          - fieldKey: "informant_nic"
+            label: "Informant NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_nic" }
+          - fieldKey: "informant_address"
+            label: "Informant Address"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_address" }
+          - fieldKey: "informant_phone"
+            label: "Informant Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.informant_phone" }
+          - fieldKey: "declaration_date"
+            label: "Date of Declaration"
+            type: "date"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.declaration_date" }
+          - fieldKey: "signature"
+            label: "Signature"
+            type: "text"
+            helpText: "captured digitally"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.signature" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_birth_hospital_record"
+            label: "Hospital Record"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.birth_hospital_record" }
+          - fieldKey: "attachment_parents_nic"
+            label: "Parents NIC"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.parents_nic" }
+          - fieldKey: "attachment_marriage_certificate"
+            label: "Marriage Certificate"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.marriage_certificate" }

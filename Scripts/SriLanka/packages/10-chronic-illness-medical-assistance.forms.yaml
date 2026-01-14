@@ -1,0 +1,125 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.health.medical.assistance.v1"
+    title: "Chronic Illness / Medical Assistance Application"
+    targetActors: ["citizen", "agent", "admin", "health_worker"]
+    scope:
+      vertical: "health"
+    sections:
+      - sectionKey: "patient"
+        title: "Patient Details"
+        fields:
+          - fieldKey: "patient_full_name"
+            label: "Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "patient_nic"
+            label: "NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "identity.nic" }
+          - fieldKey: "patient_dob"
+            label: "DOB"
+            type: "date"
+            binding: { entity: "Person", path: "date_of_birth" }
+          - fieldKey: "patient_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "address_current" }
+          - fieldKey: "patient_phone"
+            label: "Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Person", path: "phone" }
+
+      - sectionKey: "illness_details"
+        title: "Illness Details"
+        fields:
+          - fieldKey: "condition_category"
+            label: "Condition Category"
+            type: "enum"
+            options: ["Diabetes", "Hypertension", "Cancer", "KidneyDisease", "HeartDisease", "Asthma", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.condition_category" }
+          - fieldKey: "diagnosis_details"
+            label: "Diagnosis Details"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.diagnosis_details" }
+          - fieldKey: "diagnosis_date"
+            label: "Diagnosis Date"
+            type: "date"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.diagnosis_date" }
+          - fieldKey: "ongoing_treatment"
+            label: "Ongoing Treatment"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.ongoing_treatment" }
+          - fieldKey: "treating_hospital"
+            label: "Hospital"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.treating_hospital" }
+          - fieldKey: "treating_doctor"
+            label: "Doctor"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.treating_doctor" }
+
+      - sectionKey: "assistance_req"
+        title: "Assistance Request"
+        fields:
+          - fieldKey: "assistance_type"
+            label: "Type"
+            type: "enum"
+            options: ["Medicine", "Surgery", "Travel", "HospitalCharges", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.assistance_type" }
+          - fieldKey: "estimated_cost_lkr"
+            label: "Est. Cost (LKR)"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.estimated_cost_lkr" }
+          - fieldKey: "urgency_level"
+            label: "Urgency"
+            type: "enum"
+            options: ["Routine", "Urgent", "Emergency"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.urgency_level" }
+          - fieldKey: "assistance_reason"
+            label: "Reason"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.assistance_reason" }
+
+      - sectionKey: "financial_bg"
+        title: "Financial Background"
+        fields:
+          - fieldKey: "household_monthly_income"
+            label: "Monthly Income"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.household_monthly_income" }
+          - fieldKey: "existing_welfare_support"
+            label: "Existing Welfare?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.existing_welfare_support" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_medical_reports"
+            label: "Medical Reports"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.medical_reports" }
+          - fieldKey: "attachment_cost_estimate"
+            label: "Cost Estimate"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.cost_estimate" }
+          - fieldKey: "attachment_income_proof"
+            label: "Income Proof"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.income_proof" }

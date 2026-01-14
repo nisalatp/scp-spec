@@ -1,0 +1,120 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.education.scholarship.assistance.v1"
+    title: "Scholarship / Student Assistance Application"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "education"
+    sections:
+      - sectionKey: "student"
+        title: "Student Details"
+        fields:
+          - fieldKey: "student_full_name"
+            label: "Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "student_dob"
+            label: "DOB"
+            type: "date"
+            required: true
+            binding: { entity: "Person", path: "date_of_birth" }
+          - fieldKey: "student_grade"
+            label: "Grade"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.student_grade" }
+          - fieldKey: "student_school_name"
+            label: "School"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.student_school_name" }
+          - fieldKey: "student_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "address_current" }
+
+      - sectionKey: "guardian"
+        title: "Guardian & Household"
+        fields:
+          - fieldKey: "guardian_full_name"
+            label: "Guardian Name"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.guardian_full_name" }
+          - fieldKey: "guardian_nic"
+            label: "Guardian NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.guardian_nic" }
+          - fieldKey: "household_monthly_income"
+            label: "Monthly Income"
+            type: "number"
+            required: true
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.household_monthly_income" }
+          - fieldKey: "household_members_count"
+            label: "Household Members"
+            type: "number"
+            validation: { min: 1, max: 30 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.household_members_count" }
+
+      - sectionKey: "academic"
+        title: "Academic Performance"
+        fields:
+          - fieldKey: "last_term_average"
+            label: "Term Avg"
+            type: "number"
+            validation: { min: 0, max: 100 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.last_term_average" }
+          - fieldKey: "exam_results_summary"
+            label: "Exam Summary"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.exam_results_summary" }
+          - fieldKey: "attendance_summary"
+            label: "Attendance Summary"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.attendance_summary" }
+
+      - sectionKey: "assistance"
+        title: "Assistance Request"
+        fields:
+          - fieldKey: "scholarship_type"
+            label: "Type"
+            type: "enum"
+            options: ["Books", "Uniform", "Transport", "ExamFees", "Cash", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.scholarship_type" }
+          - fieldKey: "amount_requested_lkr"
+            label: "Amount (LKR)"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.amount_requested_lkr" }
+          - fieldKey: "justification"
+            label: "Justification"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.justification" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_income_proof"
+            label: "Income Proof"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.income_proof" }
+          - fieldKey: "attachment_school_letter"
+            label: "School Letter"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.school_letter" }
+          - fieldKey: "attachment_results_sheet"
+            label: "Results Sheet"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.results_sheet" }

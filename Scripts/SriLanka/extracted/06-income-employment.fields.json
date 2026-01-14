@@ -1,0 +1,68 @@
+{
+    "form_id": "06",
+    "name": "Application for Income Certificate",
+    "official_id": "GN Income Cert",
+    "authority": "MOHA",
+    "sections": [
+        {
+            "title": "Applicant",
+            "fields": [
+                {
+                    "label": "Full Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "NIC No",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Address",
+                    "type": "text",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Employment",
+            "fields": [
+                {
+                    "label": "Occupation",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Place of Work",
+                    "type": "text"
+                },
+                {
+                    "label": "Nature of Employment (Permanent/Casual)",
+                    "type": "enum"
+                }
+            ]
+        },
+        {
+            "title": "Income Declaration",
+            "fields": [
+                {
+                    "label": "Monthly Income from Employment",
+                    "type": "number"
+                },
+                {
+                    "label": "Income from Lands/Property",
+                    "type": "number"
+                },
+                {
+                    "label": "Income from Spouse",
+                    "type": "number"
+                },
+                {
+                    "label": "Total Annual Income",
+                    "type": "number",
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

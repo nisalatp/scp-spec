@@ -1,0 +1,85 @@
+{
+    "form_id": "02",
+    "name": "Declaration of Death",
+    "official_id": "Form B11",
+    "authority": "RGD",
+    "sections": [
+        {
+            "title": "Deceased Details",
+            "fields": [
+                {
+                    "label": "Date of Death",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "label": "Place of Death",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Full Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Sex",
+                    "type": "enum",
+                    "options": [
+                        "Male",
+                        "Female"
+                    ]
+                },
+                {
+                    "label": "Age at Death",
+                    "type": "number"
+                },
+                {
+                    "label": "Rank or Profession",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Cause of Death",
+            "fields": [
+                {
+                    "label": "Cause of Death",
+                    "type": "text",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Parents (If deceased is a minor)",
+            "fields": [
+                {
+                    "label": "Father's Name",
+                    "type": "text"
+                },
+                {
+                    "label": "Mother's Name",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Declarant",
+            "fields": [
+                {
+                    "label": "Name",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Residence",
+                    "type": "text"
+                },
+                {
+                    "label": "Capacity/Relationship",
+                    "type": "text"
+                }
+            ]
+        }
+    ]
+}

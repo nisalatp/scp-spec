@@ -1,0 +1,119 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.education.school.enrollment.v1"
+    title: "School Enrollment / Attendance Declaration"
+    targetActors: ["citizen", "agent", "admin", "school_officer"]
+    scope:
+      vertical: "education"
+    sections:
+      - sectionKey: "student"
+        title: "Student Details"
+        fields:
+          - fieldKey: "student_full_name"
+            label: "Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "student_dob"
+            label: "DOB"
+            type: "date"
+            required: true
+            binding: { entity: "Person", path: "date_of_birth" }
+          - fieldKey: "student_sex"
+            label: "Sex"
+            type: "enum"
+            options: ["Male", "Female", "Other"]
+            binding: { entity: "Person", path: "gender" }
+          - fieldKey: "student_nic_or_birth_cert_no"
+            label: "NIC/Birth Cert No"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.student_nic_or_birth_cert_no" }
+          - fieldKey: "student_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "address_current" }
+
+      - sectionKey: "guardian"
+        title: "Guardian Details"
+        fields:
+          - fieldKey: "guardian_full_name"
+            label: "Guardian Name"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.guardian_full_name" }
+          - fieldKey: "guardian_nic"
+            label: "Guardian NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.guardian_nic" }
+          - fieldKey: "guardian_relationship"
+            label: "Relationship"
+            type: "enum"
+            options: ["Mother", "Father", "Guardian", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.guardian_relationship" }
+          - fieldKey: "guardian_phone"
+            label: "Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.guardian_phone" }
+
+      - sectionKey: "school"
+        title: "School Details"
+        fields:
+          - fieldKey: "school_name"
+            label: "School Name"
+            type: "text"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.school_name" }
+          - fieldKey: "school_zone"
+            label: "Zone"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.school_zone" }
+          - fieldKey: "grade"
+            label: "Grade"
+            type: "enum"
+            options: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.grade" }
+          - fieldKey: "admission_date"
+            label: "Admission Date"
+            type: "date"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.admission_date" }
+          - fieldKey: "medium"
+            label: "Medium"
+            type: "enum"
+            options: ["Sinhala", "Tamil", "English", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.medium" }
+
+      - sectionKey: "attendance"
+        title: "Attendance"
+        fields:
+          - fieldKey: "attendance_status"
+            label: "Status"
+            type: "enum"
+            options: ["Regular", "Irregular", "DroppedOutRisk", "Unknown"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.attendance_status" }
+          - fieldKey: "attendance_notes"
+            label: "Notes"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.attendance_notes" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_birth_certificate"
+            label: "Birth Certificate"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.birth_certificate" }
+          - fieldKey: "attachment_guardian_nic"
+            label: "Guardian NIC"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.guardian_nic" }

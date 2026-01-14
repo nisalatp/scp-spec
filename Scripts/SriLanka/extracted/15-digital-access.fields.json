@@ -1,0 +1,48 @@
+{
+    "form_id": "15",
+    "name": "Digital Connectivity Survey",
+    "official_id": "TRCSL Specimen",
+    "authority": "TRCSL",
+    "sections": [
+        {
+            "title": "Household Access",
+            "fields": [
+                {
+                    "label": "Do you have a Smartphone?",
+                    "type": "boolean",
+                    "required": true
+                },
+                {
+                    "label": "Do you have a PC/Laptop?",
+                    "type": "boolean"
+                },
+                {
+                    "label": "Home Internet Connection Type (Fiber/4G/None)",
+                    "type": "enum"
+                }
+            ]
+        },
+        {
+            "title": "Digital Literacy",
+            "fields": [
+                {
+                    "label": "Can use email?",
+                    "type": "boolean"
+                },
+                {
+                    "label": "Can use online banking?",
+                    "type": "boolean"
+                },
+                {
+                    "label": "Use of e-Government Services",
+                    "type": "enum",
+                    "options": [
+                        "Frequent",
+                        "Rare",
+                        "Never"
+                    ]
+                }
+            ]
+        }
+    ]
+}

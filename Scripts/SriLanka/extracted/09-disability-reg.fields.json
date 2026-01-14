@@ -1,0 +1,62 @@
+{
+    "form_id": "09",
+    "name": "Application for Registration of PWDs",
+    "official_id": "DSS/Reg/01",
+    "authority": "Dept Social Services",
+    "sections": [
+        {
+            "title": "Applicant Details",
+            "fields": [
+                {
+                    "label": "Name of Person with Disability",
+                    "type": "text",
+                    "required": true
+                },
+                {
+                    "label": "Date of Birth",
+                    "type": "date",
+                    "required": true
+                },
+                {
+                    "label": "NIC (if available)",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Disability Details",
+            "fields": [
+                {
+                    "label": "Nature of Disability",
+                    "type": "enum",
+                    "options": [
+                        "Visual",
+                        "Hearing",
+                        "Speech",
+                        "Physical",
+                        "Mental",
+                        "Multiple"
+                    ]
+                },
+                {
+                    "label": "Date of Occurrence",
+                    "type": "date"
+                },
+                {
+                    "label": "Cause (Congenital/Accident/Disease)",
+                    "type": "text"
+                }
+            ]
+        },
+        {
+            "title": "Certification",
+            "fields": [
+                {
+                    "label": "Medical Officer Certification",
+                    "type": "file",
+                    "required": true
+                }
+            ]
+        }
+    ]
+}

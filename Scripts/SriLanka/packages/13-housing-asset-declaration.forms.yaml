@@ -1,0 +1,144 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.housing.asset.declaration.v1"
+    title: "Housing & Asset Declaration"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "environment"
+    sections:
+      - sectionKey: "household"
+        title: "Household Reference"
+        fields:
+          - fieldKey: "leader_full_name"
+            label: "Leader Name"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "leader.full_name" }
+          - fieldKey: "leader_nic"
+            label: "Leader NIC"
+            type: "text"
+            required: true
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Household", path: "leader.identity.nic" }
+          - fieldKey: "household_address"
+            label: "Address"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "address" }
+          - fieldKey: "gn_division"
+            label: "GN Division"
+            type: "text"
+            required: true
+            binding: { entity: "Household", path: "geo.gn_division" }
+
+      - sectionKey: "housing"
+        title: "Housing Details"
+        fields:
+          - fieldKey: "house_structure_type"
+            label: "Structure Type"
+            type: "enum"
+            options: ["Permanent", "Semi-permanent", "Temporary", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.house_structure_type" }
+          - fieldKey: "roof_material"
+            label: "Roof Material"
+            type: "enum"
+            options: ["Tile", "Asbestos", "Tin", "Concrete", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.roof_material" }
+          - fieldKey: "wall_material"
+            label: "Wall Material"
+            type: "enum"
+            options: ["Brick", "CementBlock", "Wood", "Mud", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.wall_material" }
+          - fieldKey: "floor_material"
+            label: "Floor Material"
+            type: "enum"
+            options: ["Cement", "Tile", "Earth", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.floor_material" }
+          - fieldKey: "rooms_count"
+            label: "Rooms Count"
+            type: "number"
+            validation: { min: 1, max: 50 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.rooms_count" }
+          - fieldKey: "toilets_available"
+            label: "Toilets Available?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.toilets_available" }
+          - fieldKey: "drinking_water_source"
+            label: "Water Source"
+            type: "enum"
+            options: ["Piped", "Well", "River", "Bowser", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.drinking_water_source" }
+          - fieldKey: "electricity_connection"
+            label: "Electricity?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.electricity_connection" }
+
+      - sectionKey: "ownership"
+        title: "Ownership & Land"
+        fields:
+          - fieldKey: "ownership_status"
+            label: "Status"
+            type: "enum"
+            options: ["Owned", "Rented", "Shared", "Unauthorized", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.ownership_status" }
+          - fieldKey: "deed_available"
+            label: "Deed Available?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.deed_available" }
+          - fieldKey: "land_extent"
+            label: "Land Extent"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.land_extent" }
+          - fieldKey: "land_type"
+            label: "Land Type"
+            type: "enum"
+            options: ["Paddy", "Garden", "Urban", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.land_type" }
+
+      - sectionKey: "assets"
+        title: "Assets"
+        fields:
+          - fieldKey: "owns_vehicle"
+            label: "Vehicle?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.owns_vehicle" }
+          - fieldKey: "vehicle_details"
+            label: "Details"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.vehicle_details" }
+          - fieldKey: "owns_livestock"
+            label: "Livestock?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.owns_livestock" }
+          - fieldKey: "livestock_details"
+            label: "Details"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.livestock_details" }
+          - fieldKey: "owns_business"
+            label: "Business?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.owns_business" }
+          - fieldKey: "business_details"
+            label: "Details"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.business_details" }
+
+      - sectionKey: "attachments"
+        title: "Attachments"
+        fields:
+          - fieldKey: "attachment_deed"
+            label: "Deed Copy"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.deed" }
+          - fieldKey: "attachment_photos_house"
+            label: "Photos"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.photos_house" }

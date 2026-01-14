@@ -1,19 +1,26 @@
-# Sri Lanka Country Form Pack
+# Sri Lanka Top 15 High-Impact Forms
 
-This folder contains the automation scripts to deploy the standard Government of Sri Lanka (GoSL) data collection interfaces into the SCP.
+This directory contains the automation-ready scripts for the Top 15 Government Forms.
 
-## Domain Packages
-1.  **Civil Registration** (`sri-lanka-civil.forms.yaml`): Birth, Death, Marriage.
-2.  **Identity** (`sri-lanka-identity.forms.yaml`): National Identity Card (NIC).
-3.  **Travel** (`sri-lanka-travel.forms.yaml`): Passport (Form K).
-4.  **Transport** (`sri-lanka-transport.forms.yaml`): Driving License.
-5.  **Welfare** (`sri-lanka-welfare.forms.yaml`): Aswesuma / Samurdhi.
+## Forms List
+1.  **Birth Registration**: `packages/01-birth-registration.forms.yaml`
+2.  **Death Registration**: `packages/02-death-registration.forms.yaml`
+3.  **Marriage Registration**: `packages/03-marriage-registration.forms.yaml`
+4.  **NIC Application**: `packages/04-nic-application-update.forms.yaml`
+5.  **Household Census**: `packages/05-household-registration-census.forms.yaml`
+6.  **Income & Employment**: `packages/06-income-employment-declaration.forms.yaml`
+7.  **Welfare (Samurdhi/Aswesuma)**: `packages/07-welfare-samurdhi-aswesuma.forms.yaml`
+8.  **MCH Registration**: `packages/08-maternal-child-health-registration.forms.yaml`
+9.  **Disability Registration**: `packages/09-disability-registration.forms.yaml`
+10. **Chronic Illness / Medical**: `packages/10-chronic-illness-medical-assistance.forms.yaml`
+11. **School Enrollment**: `packages/11-school-enrollment-attendance.forms.yaml`
+12. **Scholarship**: `packages/12-scholarship-student-assistance.forms.yaml`
+13. **Housing & Assets**: `packages/13-housing-asset-declaration.forms.yaml`
+14. **Disaster Assessment**: `packages/14-disaster-environmental-damage-assessment.forms.yaml`
+15. **Digital Connectivity**: `packages/15-digital-access-connectivity-registration.forms.yaml`
 
-## Usage
-Run the import script to deploy all forms to the `LK` tenant:
+## Import
+Run the import script to deploy all forms to tenant `LK`:
 ```bash
-./import/import-sri-lanka-all.sh
+./import/import-sri-lanka-top15.sh
 ```
-
-## Source of Truth
-All fields are derived from the official Forms listed in [source-manifest.md](./sources/source-manifest.md).

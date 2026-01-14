@@ -1,0 +1,110 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.digital.access.registration.v1"
+    title: "Digital Access & Connectivity Registration"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "core"
+    sections:
+      - sectionKey: "person"
+        title: "Person Details"
+        fields:
+          - fieldKey: "person_full_name"
+            label: "Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "person_nic"
+            label: "NIC"
+            type: "text"
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "identity.nic" }
+          - fieldKey: "person_phone"
+            label: "Phone"
+            type: "text"
+            validation: { regex: "^0[0-9]{9}$" }
+            binding: { entity: "Person", path: "phone" }
+          - fieldKey: "person_email"
+            label: "Email"
+            type: "text"
+            binding: { entity: "Person", path: "email" }
+          - fieldKey: "person_address"
+            label: "Address"
+            type: "text"
+            binding: { entity: "Person", path: "address_current" }
+          - fieldKey: "gn_division"
+            label: "GN Division"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.gn_division" }
+
+      - sectionKey: "device_access"
+        title: "Device Access"
+        fields:
+          - fieldKey: "has_smartphone"
+            label: "Smartphone?"
+            type: "boolean"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.has_smartphone" }
+          - fieldKey: "has_feature_phone"
+            label: "Feature Phone?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.has_feature_phone" }
+          - fieldKey: "has_computer"
+            label: "Computer?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.has_computer" }
+          - fieldKey: "shared_device_only"
+            label: "Shared Only?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.shared_device_only" }
+
+      - sectionKey: "connectivity"
+        title: "Connectivity"
+        fields:
+          - fieldKey: "internet_access"
+            label: "Access Type"
+            type: "enum"
+            options: ["None", "MobileData", "FixedBroadband", "PublicWiFi", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.internet_access" }
+          - fieldKey: "primary_network_provider"
+            label: "Provider"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.primary_network_provider" }
+          - fieldKey: "connectivity_quality"
+            label: "Quality"
+            type: "enum"
+            options: ["Good", "Average", "Poor", "Unknown"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.connectivity_quality" }
+          - fieldKey: "monthly_data_affordability"
+            label: "Affordability"
+            type: "enum"
+            options: ["Affordable", "Hard", "NotAffordable", "Unknown"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.monthly_data_affordability" }
+
+      - sectionKey: "digital_literacy"
+        title: "Digital Literacy"
+        fields:
+          - fieldKey: "digital_literacy_level"
+            label: "Literacy Level"
+            type: "enum"
+            options: ["None", "Basic", "Intermediate", "Advanced", "Unknown"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.digital_literacy_level" }
+          - fieldKey: "needs_digital_training"
+            label: "Training Needed?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.needs_digital_training" }
+          - fieldKey: "needs_device_support"
+            label: "Device Support?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.needs_device_support" }
+          - fieldKey: "needs_internet_support"
+            label: "Internet Support?"
+            type: "boolean"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.needs_internet_support" }

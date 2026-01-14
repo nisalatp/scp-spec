@@ -1,0 +1,158 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15-core"
+  version: "1.0.0"
+  description: "The 15 High-Impact Forms covering 80% of SCP use cases for Sri Lanka."
+
+forms:
+  # 01 Birth
+  - formKey: "lk-birth-reg-b4"
+    title: "Application for Registration of Birth (B4)"
+    scope: { vertical: "core" }
+    sections:
+      - title: "Child Details"
+        fields:
+          - { fieldKey: "dob", type: "date", label: "Date of Birth", required: true, storage: { entity: "Person", path: "dob" } }
+          - { fieldKey: "gender", type: "enum", options: ["Male", "Female"], required: true, storage: { entity: "Person", path: "gender" } }
+          - { fieldKey: "pob", type: "text", label: "Place of Birth" }
+          - { fieldKey: "name_full", type: "text", label: "Proposed Name", required: true, storage: { entity: "Person", path: "name" } }
+      - title: "Parents"
+        fields:
+          - { fieldKey: "father_name", type: "text", label: "Father Name", storage: { entity: "Person", path: "relations.father.name" } }
+          - { fieldKey: "mother_name", type: "text", label: "Mother Name", storage: { entity: "Person", path: "relations.mother.name" } }
+
+  # 02 Death
+  - formKey: "lk-death-reg-b11"
+    title: "Declaration of Death (B11)"
+    scope: { vertical: "core" }
+    sections:
+      - title: "Deceased"
+        fields:
+          - { fieldKey: "name", type: "text", label: "Name", required: true }
+          - { fieldKey: "dod", type: "date", label: "Date of Death", required: true, storage: { entity: "Person", path: "lifecycle.dod" } }
+          - { fieldKey: "cause", type: "text", label: "Cause of Death", required: true }
+
+  # 03 Marriage
+  - formKey: "lk-marriage-notice-b100"
+    title: "Notice of Marriage (B100)"
+    scope: { vertical: "core" }
+    sections:
+      - title: "Parties"
+        fields:
+          - { fieldKey: "groom_name", type: "text", label: "Male Party Name", required: true }
+          - { fieldKey: "bride_name", type: "text", label: "Female Party Name", required: true }
+
+  # 04 NIC
+  - formKey: "lk-nic-app-v1"
+    title: "Application for NIC (V/1)"
+    scope: { vertical: "core" }
+    sections:
+      - title: "Identity"
+        fields:
+          - { fieldKey: "name_full", type: "text", label: "Full Name", required: true }
+          - { fieldKey: "dob", type: "date", label: "DOB", required: true }
+          - { fieldKey: "photo", type: "file", label: "Photograph", required: true }
+
+  # 05 Household Census
+  - formKey: "lk-census-schedule"
+    title: "Census Schedule"
+    scope: { vertical: "core" }
+    sections:
+      - title: "Location"
+        fields:
+          - { fieldKey: "gn_div", type: "text", label: "GN Division", required: true }
+      - title: "Members"
+        fields:
+          - { fieldKey: "members", type: "repeater", label: "Household Members", storage: { entity: "Household", path: "members" } }
+
+  # 06 Income
+  - formKey: "lk-income-cert"
+    title: "Income Certificate Application"
+    scope: { vertical: "econ" }
+    sections:
+      - title: "Details"
+        fields:
+          - { fieldKey: "annual_income", type: "number", label: "Total Annual Income", required: true, storage: { entity: "Person", path: "attributes.income" } }
+
+  # 07 Welfare
+  - formKey: "lk-aswesuma-app"
+    title: "Aswesuma Welfare Application"
+    scope: { vertical: "finance" }
+    sections:
+      - title: "Vulnerability"
+        fields:
+          - { fieldKey: "electricity_units", type: "number", label: "Avg Monthly Electricity" }
+          - { fieldKey: "has_disability", type: "boolean", label: "Disabled Member?" }
+
+  # 08 MCH
+  - formKey: "lk-mch-h512"
+    title: "Pregnancy Record (H 512)"
+    scope: { vertical: "health" }
+    sections:
+      - title: "Obstetrics"
+        fields:
+          - { fieldKey: "edd", type: "date", label: "Estimated Delivery Date" }
+
+  # 09 Disability
+  - formKey: "lk-disability-reg"
+    title: "Disability Registration"
+    scope: { vertical: "health" }
+    sections:
+      - title: "Detail"
+        fields:
+          - { fieldKey: "nature", type: "enum", options: ["Visual", "Hearing", "Physical"], required: true }
+
+  # 10 Chronic Illness
+  - formKey: "lk-clinic-ncd"
+    title: "NCD Clinic Record"
+    scope: { vertical: "health" }
+    sections:
+      - title: "Diagnosis"
+        fields:
+          - { fieldKey: "condition", type: "enum", options: ["Diabetes", "Hypertension"], required: true }
+
+  # 11 School
+  - formKey: "lk-school-grade1"
+    title: "Grade 1 Admission"
+    scope: { vertical: "edu" }
+    sections:
+      - title: "Proximity"
+        fields:
+          - { fieldKey: "distance_km", type: "number", label: "Distance to School" }
+
+  # 12 Scholarship
+  - formKey: "lk-scholarship-pf"
+    title: "President's Fund Scholarship"
+    scope: { vertical: "edu" }
+    sections:
+      - title: "Economic"
+        fields:
+          - { fieldKey: "income_verified", type: "number", label: "Verified Income" }
+
+  # 13 Housing
+  - formKey: "lk-housing-nhda"
+    title: "Housing Grant Application"
+    scope: { vertical: "econ" }
+    sections:
+      - title: "Land"
+        fields:
+          - { fieldKey: "ownership", type: "enum", options: ["Freehold", "Permit"] }
+
+  # 14 Disaster
+  - formKey: "lk-disaster-assess"
+    title: "Damage Assessment"
+    scope: { vertical: "core" }
+    sections:
+      - title: "Damage"
+        fields:
+          - { fieldKey: "loss_lkr", type: "number", label: "Estimated Loss" }
+
+  # 15 Digital
+  - formKey: "lk-digital-survey"
+    title: "Digital Connectivity Survey"
+    scope: { vertical: "core" }
+    sections:
+      - title: "Access"
+        fields:
+          - { fieldKey: "has_smartphone", type: "boolean", label: "Has Smartphone?" }

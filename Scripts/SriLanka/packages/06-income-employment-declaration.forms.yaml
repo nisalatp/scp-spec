@@ -1,0 +1,154 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-top15"
+  version: "1.0.0"
+  description: "Sri Lanka Top 15 High Impact Forms"
+
+forms:
+  - formKey: "lk.income.employment.declaration.v1"
+    title: "Income & Employment Declaration"
+    targetActors: ["citizen", "agent", "admin"]
+    scope:
+      vertical: "welfare"
+    sections:
+      - sectionKey: "person_ref"
+        title: "Person Reference"
+        fields:
+          - fieldKey: "declarant_full_name"
+            label: "Full Name"
+            type: "text"
+            required: true
+            binding: { entity: "Person", path: "full_name" }
+          - fieldKey: "declarant_nic"
+            label: "NIC"
+            type: "text"
+            required: true
+            validation: { regex: "^([0-9]{9}[VvXx]|[0-9]{12})$" }
+            binding: { entity: "Person", path: "identity.nic" }
+          - fieldKey: "declarant_household_ref"
+            label: "Household Ref"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.declarant_household_ref" }
+
+      - sectionKey: "employment"
+        title: "Employment"
+        fields:
+          - fieldKey: "employment_status"
+            label: "Status"
+            type: "enum"
+            options: ["Employed", "Self-Employed", "Unemployed", "Student", "Retired", "Other"]
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.employment_status" }
+          - fieldKey: "employer_name"
+            label: "Employer Name"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.employer_name" }
+          - fieldKey: "job_title"
+            label: "Job Title"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.job_title" }
+          - fieldKey: "employment_sector"
+            label: "Sector"
+            type: "enum"
+            options: ["Government", "Private", "Informal", "NGO", "Other"]
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.employment_sector" }
+          - fieldKey: "work_location"
+            label: "Work Location"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.work_location" }
+
+      - sectionKey: "income"
+        title: "Income (Monthly)"
+        fields:
+          - fieldKey: "income_salary"
+            label: "Salary"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.income_salary" }
+          - fieldKey: "income_business"
+            label: "Business Income"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.income_business" }
+          - fieldKey: "income_agriculture"
+            label: "Agriculture Income"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.income_agriculture" }
+          - fieldKey: "income_remittances"
+            label: "Remittances"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.income_remittances" }
+          - fieldKey: "income_pension"
+            label: "Pension"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.income_pension" }
+          - fieldKey: "income_other"
+            label: "Other Income"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.income_other" }
+          - fieldKey: "income_other_notes"
+            label: "Other Income Notes"
+            type: "text"
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.income_other_notes" }
+          - fieldKey: "total_income_declared"
+            label: "Total Income Declared"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.total_income_declared" }
+
+      - sectionKey: "expenses"
+        title: "Expenses (Monthly)"
+        fields:
+          - fieldKey: "expense_food"
+            label: "Food"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.expense_food" }
+          - fieldKey: "expense_rent"
+            label: "Rent"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.expense_rent" }
+          - fieldKey: "expense_utilities"
+            label: "Utilities"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.expense_utilities" }
+          - fieldKey: "expense_education"
+            label: "Education"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.expense_education" }
+          - fieldKey: "expense_medical"
+            label: "Medical"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.expense_medical" }
+          - fieldKey: "expense_debt"
+            label: "Debt"
+            type: "number"
+            validation: { min: 0 }
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.expense_debt" }
+
+      - sectionKey: "declaration"
+        title: "Declaration"
+        fields:
+          - fieldKey: "declaration_date"
+            label: "Declaration Date"
+            type: "date"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.declaration_date" }
+          - fieldKey: "declaration_confirm_true"
+            label: "I confirm details are true"
+            type: "boolean"
+            required: true
+            binding: { entity: "GovernmentFormSubmission", path: "rawFields.declaration_confirm_true" }
+          - fieldKey: "attachment_income_proof"
+            label: "Proof of Income"
+            type: "file"
+            binding: { entity: "GovernmentFormSubmission", path: "attachments.income_proof" }
