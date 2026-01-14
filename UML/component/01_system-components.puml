@@ -26,11 +26,23 @@ package "Custom Extensions" {
     end note
 }
 
+
+package "Shared Services (Lapse Resolution)" {
+    component "GIS Service" as GIS
+    component "Routing Service" as Route
+    component "Simulation Service" as Sim
+    component "Data Warehouse (OLAP)" as DW
+}
+
 database "PostgreSQL" as DB
+database "PostGIS" as DB_GIS
+database "Warehouse Store" as DB_OLAP
 
 API --> AuthZ
 API --> Person
 API --> Household
+API --> GIS : "Spatial Query"
+API --> Route : "Travel Time"
 
 ' Vertical Dependencies
 V_Health --> Person
@@ -39,9 +51,13 @@ V_Econ --> Person
 V_Fin --> Person
 V_Data --> Person
 
-V_Custom --> Forms : "Uses Dynamic Schema"
-V_Custom --> Person
+V_Custom --> Forms : "Dynamic Schema"
+V_Custom --> GIS : "Hazard Check"
 
+' Data Flow
 Person --> DB
+GIS --> DB_GIS
+DW <-- DB : "CDC Sync"
+V_Data --> DW : "Analytics Query"
 
 @enduml

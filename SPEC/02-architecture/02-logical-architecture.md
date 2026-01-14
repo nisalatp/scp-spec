@@ -14,6 +14,15 @@ This document defines the logical architecture of SCP, describing major logical 
 - Physical infrastructure
 - Programming language specifics
 
+## Shared Services Capabilities (Lapse Resolution)
+
+The specific capabilities below are mandated to resolve critical usage gaps:
+1.  **GIS-Service** (L-01): Provides spatial operations (Buffer, Intersect) and Hazard Layer management.
+2.  **Routing-Service** (L-05): Provides travel time matrix calculation for Access Analysis.
+3.  **Simulation-Service** (L-04): Provides "Digital Twin" policy impact simulation.
+4.  **Data Warehouse** (L-03): Central OLAP store for Cross-Vertical analytics.
+
+
 ## Definitions
 
 - Logical Component: A conceptual grouping of responsibilities.

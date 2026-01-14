@@ -1,0 +1,52 @@
+[
+    {
+        "id": "FB-001",
+        "name": "Household Registration",
+        "scope": "Tenant"
+    },
+    {
+        "id": "FB-002",
+        "name": "Health Risk Assessment",
+        "scope": "Vertical:Health"
+    },
+    {
+        "id": "FB-003",
+        "name": "Student Enrollment",
+        "scope": "Vertical:Education"
+    },
+    {
+        "id": "FB-004",
+        "name": "Jobseeker Profile",
+        "scope": "Vertical:Economy"
+    },
+    {
+        "id": "FB-005",
+        "name": "Sanitation Survey",
+        "scope": "Geo:WASH"
+    },
+    {
+        "id": "FB-006",
+        "name": "Disaster Damage Report",
+        "scope": "Geo:Housing"
+    },
+    {
+        "id": "FB-007",
+        "name": "Grant Disbursement",
+        "scope": "Vertical:Finance"
+    },
+    {
+        "id": "FB-008",
+        "name": "Water Point Mapping",
+        "scope": "Geo:WASH"
+    },
+    {
+        "id": "FB-009",
+        "name": "Elderly Visit Log",
+        "scope": "Vertical:Health"
+    },
+    {
+        "id": "FB-010",
+        "name": "Policy Feedback",
+        "scope": "Geo:Governance"
+    }
+]

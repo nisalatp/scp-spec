@@ -1,0 +1,23 @@
+@startuml
+autoactivate on
+actor User
+participant "Form Renderer" as UI
+participant "Submission API" as API
+participant "Validation Engine" as Val
+participant "Data Store" as DB
+
+User -> UI: Fill Form (FB-001)
+    UI -> UI: Client Validation
+User -> UI: Submit
+    UI -> API: POST /submissions
+    API -> Val: Validate(Payload, Schema)
+    return Valid/Invalid
+    alt Invalid
+        API -> UI: Return 400 Errors
+    else Valid
+        API -> DB: Save(Submission)
+        return ID
+        API -> UI: 201 Created
+    end
+return Success UI
+@enduml

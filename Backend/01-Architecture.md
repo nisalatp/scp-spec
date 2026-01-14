@@ -3,7 +3,14 @@
 ## Overview
 The SCP Backend is designed as a **Modular Monolith** (or coarse-grained Microservices) centered around the 5 Standard Verticals, with a "Core Platform" layer providing shared services.
 
+### 4. Shared Services (New)
+*   **GIS Service**: Handles spatial overlays and hazard checks (PostGIS).
+*   **Routing Service**: Calculates travel time matrices.
+*   **Simulation Engine**: Runs "What-If" policy scenarios.
+*   **Data Warehouse**: Central OLAP store for cross-vertical reporting.
+
 ## Core Services
+
 1.  **Identity & Access Management (IAM)**: Centralized user/beneficiary registry (`PersonID`).
 2.  **Vertical Registry**: Managing lifecycle of dynamic Geo-Fenced Verticals.
 3.  **Data Fabric**: Unified data access layer for cross-vertical queries.

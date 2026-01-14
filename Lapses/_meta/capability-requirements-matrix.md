@@ -19,8 +19,8 @@ This document maps all 44 Usage Scenarios to the specific System Capabilities re
 | **UC-06** | Dropout Risk | Analytics, Prediction | ML/Rule Engine, Alerting | Risk Dashboard | Attendance, Grades | ⚠️ (ML) |
 | **UC-07** | Scholarship Targeting | Targeting, Finance | Complex Query, Fund Allocation | faceted Search | Edu + Econ Data | ✅ |
 | **UC-08** | Youth Skills | Matching, Job Board | Matching Engine, Search | Job Portal UI | Skills Profile | ✅ |
-| **UC-09** | Sanitation Planning | Planning, Geo-Vertical | Geo-Vertical Extension, GIS | Plan Builder (Map) | WASH Extension Data | ⚠️ (Geo-Ext) |
-| **UC-10** | Clean Water Access | Planning, Geo-Analysis | GIS Service, Distance Calc | Map Overlay | Water Point Data | ⚠️ (GIS) |
+| **UC-09** | Sanitation Planning | Planning, Geo-Vertical | Geo-Vertical Extension, GIS | Plan Builder (Map) | WASH Extension Data | ✅ (Via Geo-Ext) |
+| **UC-10** | Clean Water Access | Planning, Geo-Analysis | GIS Service, Distance Calc | Map Overlay | Water Point Data | ✅ (Via GIS) |
 | **UC-11** | Housing Repair | Grant, Case Mgmt | Workflow Engine, Payment | Incident Report | Housing Data | ✅ |
 | **UC-12** | Env Risk Mapping | Analytics, GIS | GIS Overlay, Risk Calc | Disaster Map | Hazard Zones | ⚠️ (GIS) |
 | **UC-13** | Elderly Support | Isolation Detection | Cross-Ref Query, Scheduling | Community View | HH Composition | ✅ |
@@ -31,11 +31,11 @@ This document maps all 44 Usage Scenarios to the specific System Capabilities re
 | **UC-18** | Duplication Prevention | Identity, Deduplication | Biometric/ ID Match | Identity Resolver | Global Person ID | ✅ |
 | **UC-19** | Impact Measurement | Analytics, Reporting | Time-Series DB, Report Gen | Chart Builder | Longitudinal Data | ✅ |
 | **UC-20** | Cross Region Comparison | Analytics, Aggregation | Cube/OLAP, Permissioning | Comparison View | Aggregated Stats | ✅ |
-| **UC-21** | Policy Design | Modeling, Simulation | "What-If" Engine, Policy Mgmt | Policy Editor | Population Sample | ❌ (Sim) |
+| **UC-21** | Policy Design | Modeling, Simulation | "What-If" Engine, Policy Mgmt | Policy Editor | Population Sample | ✅ (Via Sim) |
 | **UC-22** | Transparent Selection | Ranking, Audit | Weighted Scoring, Immutable Log | Public Leaderboard | Anonymized Data | ✅ |
 | **UC-23** | Audit & Oversight | Auditing, Security | Audit Trail, Anomaly Detect | Auditor Portal | System Logs | ✅ |
 | **UC-24** | Progress Tracking | Tracking, Notification | Milestone Engine, Push | Progress Bar/Feed | Activity Log | ✅ |
-| **UC-25** | Women Exhaustion Risk | Complex Query (3-Way) | Cross-Vertical Query | Advanced Search | Edu + Econ + Welfare | ⚠️ (X-Vert) |
+| **UC-25** | Women Exhaustion Risk | Complex Query (3-Way) | Cross-Vertical Query | Advanced Search | Edu + Econ + Welfare | ✅ (Via OLAP) |
 | **UC-26** | High-Risk Unsafe Living | Geo-Intersection | Geo-Spatial Query | Map View | Health + Housing | ⚠️ (GIS) |
 | **UC-27** | Multi-Dim Poverty | Composite Index | Weighted Index Calc | Profile Vew | Multi-Vertical Data | ✅ |
 | **UC-28** | Elderly Isolation | Risk Logic | Rule Engine | Alert Dashboard | Health + Welfare | ✅ |
@@ -50,7 +50,7 @@ This document maps all 44 Usage Scenarios to the specific System Capabilities re
 | **UC-37** | Child Malnutrition Env | Geo-Correlation | GIS Overlay | Dashboard | Health + Env | ⚠️ (GIS) |
 | **UC-38** | Women Workforce Exit | Predictive Risk | ML/Heuristic Engine | Risk List | Econ + Family | ⚠️ (ML) |
 | **UC-39** | Edu ROI Optimization | Optimization | Ranking Algorithm | Candidate List | Edu + Econ | ✅ |
-| **UC-40** | Health Access Gap | Network Analysis | Routing Engine (Travel Time) | Accessibility Map | Health + Transport | ❌ (Routing) |
+| **UC-40** | Health Access Gap | Network Analysis | Routing Engine (Travel Time) | Accessibility Map | Health + Transport | ✅ (Via Routing) |
 | **UC-41** | Digital Inclusion | Targeting | Query Engine | Search | Edu + Econ + Connectivity| ✅ |
 | **UC-42** | Multi-Gen Poverty | Graph Traversal | Graph DB / Recursive Query | Family Tree UI | Lineage Data | ⚠️ (Graph) |
 | **UC-43** | Climate Econ Risk | Geo-Economic | GIS + Econ Model | Scenario View | Env + Econ | ⚠️ (GIS) |

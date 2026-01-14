@@ -1,4 +1,4 @@
-# Lapse: Geo-Vertical Extensibility
+# Lapse: Geo-Vertical Extensibility [RESOLVED]
 
 **Missing Capability**: Dynamic runtime definition of new Vertical Logic/Schema without code deploys.
 

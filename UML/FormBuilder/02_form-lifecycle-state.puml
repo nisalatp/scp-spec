@@ -1,0 +1,11 @@
+@startuml
+[*id] --> Draft
+Draft --> Requested : "Submit for Review"
+Requested --> Draft : "Reject"
+Requested --> Reviewed : "Review OK"
+Reviewed --> Active : "Publish"
+Active --> Deprecated : "Replace/Retire"
+Deprecated --> Archived : "Lock"
+Active --> Suspended : "Emergency Halt"
+Suspended --> Active : "Resume"
+@enduml

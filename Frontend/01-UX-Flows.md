@@ -5,7 +5,13 @@
 2.  **Field Worker**: Tablet/Phone, heavy offline usage, data entry focused.
 3.  **Planner/Admin**: Desktop, dashboard-heavy, data visualization.
 
+## New Capabilities (Lapse Resolution)
+*   **Map Components**: Interactive Leaflet/Mapbox views for UC-09/UC-12. (Supported by `GIS-Service`).
+*   **Simulation Editor**: Canvas for Policy Rules configuration (UC-21).
+*   **Advanced Forms**: JSONLogic-based conditional rendering (UC-02).
+
 ## Core Navigation (Worker App)
+
 *   **Home/Dashboard**: Tasks for the day (UC-03, UC-24).
 *   **Search**: Find Beneficiary (Online/Offline cache).
 *   **Registration**: Wizards for new Person/Household (UC-18).

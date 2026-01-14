@@ -1,0 +1,66 @@
+{
+    "id": "FB-001",
+    "version": "1.0.0",
+    "title": "Household Registration",
+    "sections": [
+        {
+            "title": "Location",
+            "fields": [
+                {
+                    "id": "gps_loc",
+                    "type": "gps",
+                    "label": "Coordinates",
+                    "required": true
+                },
+                {
+                    "id": "address",
+                    "type": "text",
+                    "label": "Address"
+                }
+            ]
+        },
+        {
+            "title": "Head of Household",
+            "fields": [
+                {
+                    "id": "head_name",
+                    "type": "text",
+                    "label": "Full Name",
+                    "required": true
+                },
+                {
+                    "id": "head_dob",
+                    "type": "date",
+                    "label": "Date of Birth",
+                    "required": true
+                },
+                {
+                    "id": "head_bio",
+                    "type": "biometric",
+                    "provider": "BioService",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "title": "Members",
+            "type": "repeatable",
+            "fields": [
+                {
+                    "id": "mem_name",
+                    "type": "text",
+                    "label": "Name"
+                },
+                {
+                    "id": "mem_rel",
+                    "type": "enum",
+                    "options": [
+                        "Spouse",
+                        "Child",
+                        "Parent"
+                    ]
+                }
+            ]
+        }
+    ]
+}

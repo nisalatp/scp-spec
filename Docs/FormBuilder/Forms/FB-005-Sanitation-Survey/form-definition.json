@@ -1,0 +1,53 @@
+{
+    "id": "FB-005",
+    "version": "1.0",
+    "scope": "WASH",
+    "schema_driven": true,
+    "sections": [
+        {
+            "title": "Site Details",
+            "fields": [
+                {
+                    "id": "loc",
+                    "type": "gps",
+                    "required": true
+                },
+                {
+                    "id": "photo",
+                    "type": "image",
+                    "compression": "high"
+                },
+                {
+                    "id": "type",
+                    "type": "enum",
+                    "options": [
+                        "Pit",
+                        "Septic",
+                        "Sewer"
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Condition",
+            "fields": [
+                {
+                    "id": "is_ok",
+                    "type": "boolean",
+                    "label": "Functional"
+                },
+                {
+                    "id": "damage_desc",
+                    "type": "text",
+                    "conditions": [
+                        {
+                            "field": "is_ok",
+                            "op": "eq",
+                            "value": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

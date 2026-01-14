@@ -1,4 +1,4 @@
-# Lapse: Cross-Vertical Data Mesh
+# Lapse: Cross-Vertical Data Mesh [RESOLVED]
 
 **Missing Capability**: Performant joining of data across isolated Vertical silos.
 

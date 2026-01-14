@@ -7,13 +7,16 @@
 
 ## Compute Layer
 *   **Kubernetes (K8s)**: Container orchestration.
-    *   **Core Pods**: IAM, Workflow, API Gateway.
+    *   **Core Pods**: IAM, Workflow, API Gateway, **Forms Service**.
+    *   **Shared Services**: **GIS Service**, **Routing Service**, **Simulation Service**.
     *   **Vertical Pods**: Health, Edu, Econ (Scaled independently).
     *   **Geo-Vertical Pods**: Custom deployments for specific regions (e.g., "WASH-Service").
 
 ## Data Layer
 *   **Relational DB**: PostgreSQL (Per Vertical Schema Isolation).
 *   **NoSQL**: MongoDB (Geo-Vertical JSON Documents).
+*   **Spatial DB**: **PostGIS** (For `GIS-Service`).
+*   **Analytics Store**: **ClickHouse** or **BigQuery** (For Data Warehouse).
 *   **Cache**: Redis (Session, Geo-Tile Cache).
 *   **Object Storage**: S3-compatible (Bio-metrics, Documents).
 

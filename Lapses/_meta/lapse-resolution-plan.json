@@ -1,0 +1,45 @@
+[
+    {
+        "id": "gis-module",
+        "strategy": "Add GIS Service",
+        "files": [
+            "SPEC/02-architecture.md",
+            "SPEC/10-data/11-gis-and-spatial.md"
+        ]
+    },
+    {
+        "id": "geo-extension",
+        "strategy": "Add Vertical Meta-Schema",
+        "files": [
+            "SPEC/07-verticals/06-geo-vertical-runtime.md"
+        ]
+    },
+    {
+        "id": "data-mesh",
+        "strategy": "Add Data Warehouse",
+        "files": [
+            "SPEC/10-data/10-analytics-and-olap.md"
+        ]
+    },
+    {
+        "id": "sim-engine",
+        "strategy": "Add Simulation Service",
+        "files": [
+            "SPEC/02-architecture.md"
+        ]
+    },
+    {
+        "id": "routing-engine",
+        "strategy": "Add Routing Service",
+        "files": [
+            "SPEC/02-architecture.md"
+        ]
+    },
+    {
+        "id": "conditional-logic",
+        "strategy": "Adopt JSONLogic",
+        "files": [
+            "SPEC/06-platform-core/06-form-builder.md"
+        ]
+    }
+]

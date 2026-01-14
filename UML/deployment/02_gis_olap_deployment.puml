@@ -1,0 +1,36 @@
+@startuml
+title 02_gis_olap_deployment (Lapse Resolution)
+left to right direction
+
+node "Kubernetes Cluster" {
+    package "Core Namespace" {
+        component "API Gateway" as API
+        component "Forms Engine" as Forms
+    }
+    
+    package "Shared Services" {
+        component "GIS Service" as GIS_Svc
+        component "Traffic/Routing" as Route_Svc
+        component "Sim Engine" as Sim_Svc
+    }
+}
+
+node "Managed Database Layer" {
+    database "Primary DB (Postgres)" as DB_Prim
+    database "GIS DB (PostGIS)" as DB_GIS
+    database "Analytics Warehouse (ClickHouse)" as DW
+}
+
+node "External providers" {
+    cloud "Google Maps / OSRM" as Ext_Map
+}
+
+API --> GIS_Svc
+API --> Route_Svc
+GIS_Svc --> DB_GIS
+Route_Svc --> Ext_Map : "Fallback Provider"
+
+' CDC Flow
+DB_Prim --> DW : "Debezium Replication"
+
+@enduml

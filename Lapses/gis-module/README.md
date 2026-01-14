@@ -1,4 +1,4 @@
-# Lapse: GIS Module
+# Lapse: GIS Module [RESOLVED]
 
 **Missing Capability**: Advanced Geospatial Operations (Overlay, Distance, Spatial Join).
 

@@ -13,7 +13,18 @@
 ## UC-09: Sanitation Infrastructure (WASH)
 *   **API**: `GET /api/geo/wash/survey`
 *   **Logic**: Dynamic Query on `CustomEntity:Toilet`. Overlay with `Household` location.
-*   **Gap**: Depends on GIS Module (See `Lapses/gis-module`).
+*   **Logic**: Dynamic Query on `CustomEntity:Toilet`. Overlay with `Household` location.
+*   **Resolved**: Uses `GIS-Service` for spatial overlay.
+
+## UC-21: Policy Impact Simulation (New)
+*   **API**: `POST /api/sim/run`
+*   **Logic**: Run Policy Rule Set X on Anonymized Sample Y.
+*   **Service**: `Simulation-Service` (Digital Twin).
+
+## UC-40: Health Access Gap (New)
+*   **API**: `POST /api/routing/matrix`
+*   **Logic**: Calculate Travel Time from all Households in Region A to Clinics in Region B.
+*   **Service**: `Routing-Service` (OSRM/Google).
 
 ## UC-25: Women at Risk Exclusion
 *   **API**: `POST /api/analytics/query`

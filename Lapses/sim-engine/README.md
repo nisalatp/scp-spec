@@ -1,4 +1,4 @@
-# Lapse: Policy Simulation Engine
+# Lapse: Policy Simulation Engine [RESOLVED]
 
 **Missing Capability**: "What-If" Analysis for Policy Design.
 

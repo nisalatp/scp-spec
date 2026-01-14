@@ -27,7 +27,7 @@ This document defines the metadata-driven form builder used to collect structure
 - Forms SHOULD be reusable across programs.
 - Deprecated forms MUST remain read-only.
 - Forms MAY define validation rules.
-- Conditional fields MUST be supported.
+- Conditional fields MUST be supported using **JSONLogic** standard for portable evaluation.
 - Form migrations MUST follow internationally accepted standards and governance approval.
 - Form lifecycle MUST be:
   Draft -> Requested -> Reviewed -> Approved -> Active -> (Restricted|Suspended|Deprecated) -> Archived
