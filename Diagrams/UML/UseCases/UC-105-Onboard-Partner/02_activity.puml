@@ -1,0 +1,38 @@
+@startuml UC-105_Activity
+title UC-105: Onboard Partner (Activity)
+
+|Integration Manager|
+start
+:Login to SCP;
+:Create Integration Partner Record;
+:Define API Access Scopes (Read/Write/Notify);
+
+|Tenant Admin|
+:Review Partner Agreement & Security Scope;
+if (Aligned with Policy?) then (yes)
+  :Approve & Activate Integration;
+else (no)
+  :Reject / Request Scope Reduction;
+  stop
+endif
+
+|SCP Core: Security|
+:Generate ClientID & Secret;
+:Register Webhook URL;
+
+|Partner Tech Lead|
+:Receive Credentials (via Secure Channel);
+:Initiate Connectivity Test (Ping);
+
+|SCP Core: Integrations|
+:Validate API Key & Hash;
+if (Valid?) then (yes)
+  :Respond 200 OK / Authenticated;
+  :Mark Integration as HEALTHY;
+else (no)
+  :Respond 401 Unauthorized;
+  :Log Security Event;
+endif
+
+stop
+@enduml

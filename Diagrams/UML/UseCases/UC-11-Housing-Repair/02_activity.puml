@@ -1,0 +1,38 @@
+@startuml UC-11_Activity
+title UC-11: Housing Repair (Activity)
+
+|Program Manager (Environment)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Environment" Vertical;
+if (Scope: Geo-Region OK?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Environment|
+:Fetch Damaged Household Reports;
+:Flag "Unsafe" Structures;
+
+|Vertical: Social Protection|
+:Check for Resident Vulnerabilities (Elderly/Disabled);
+
+|SCP Core: Analytics|
+:Calculate Priority (Unsafe + Vulnerable);
+
+|Vertical: Finance|
+:Allocate Emergency Grants;
+
+|Program Manager (Environment)|
+if (Permission: program:approve?) then (yes)
+  :Approve Repair Grant Batch;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

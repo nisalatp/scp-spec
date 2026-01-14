@@ -1,0 +1,39 @@
+@startuml UC-09_Activity
+title UC-09: Sanitation Planning (Activity)
+
+|Program Manager (Environment)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Environment" Vertical;
+if (Scope: Vertical "Environment"?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Environment|
+:Survey Households (WASH Infrastructure);
+:Filter: HHs with "No Toilet";
+
+|Vertical: Health|
+:Query: Disease Rates (Local Radius);
+:Identify High Health Risk Areas;
+
+|SCP Core: Analytics|
+:Prioritize Households (No Toilet + High Health Risk);
+
+|Vertical: Finance|
+:Allocate Construction Grants;
+
+|Program Manager (Environment)|
+if (Permission: program:approve?) then (yes)
+  :Approve Grant Batch;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

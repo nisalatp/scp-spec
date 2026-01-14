@@ -1,0 +1,40 @@
+@startuml UC-104_Activity
+title UC-104: Disburse Benefits (Activity)
+
+|System (Scheduler)|
+start
+:Trigger Payroll Cycle;
+:Identify Active Programs;
+
+|SCP Core: Eligibility|
+:Calculate Individual Entitlements;
+:Verify "Proof of Life" / Conditions;
+
+|SCP Core: Finance|
+:Generate Payment Instruction Batch;
+:Perform Pre-funding Check;
+
+|Finance Manager|
+:Review Payment Batch;
+if (Funds Available & Valid?) then (yes)
+  :Authorize Batch;
+else (no)
+  :Reject / Flag Discrepancies;
+  stop
+endif
+
+|SCP Core: Integrations|
+:Transform to Partner Format (ISO 20022/CSV);
+:Transmit to Payment Provider;
+
+|Payment Provider|
+:Process Transfers;
+:Return Status Report;
+
+|System: Finance|
+:Reconcile Payments;
+:Mark Success/Failure records;
+:Trigger Failure Alerts;
+
+stop
+@enduml

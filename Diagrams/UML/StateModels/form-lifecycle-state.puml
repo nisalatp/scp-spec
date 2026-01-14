@@ -1,0 +1,20 @@
+@startuml
+[*id] --> Draft
+Draft --> Requested : "Submit for Review"
+Requested --> Draft : "Reject"
+Requested --> Reviewed : "Review OK"
+Reviewed --> Approved : "Governance Approval"
+Approved --> Active : "Activate"
+Active --> Deprecated : "Replace/Retire"
+Deprecated --> Archived : "Lock"
+Active --> Suspended : "Emergency Halt"
+Suspended --> Active : "Resume"
+Active --> Restricted : "Limit Access"
+Restricted --> Active : "Restore Access"
+
+@enduml
+
+' TRACE:
+' SPEC: 06-platform-core/06-form-builder.md
+' Scope: Form Definition Lifecycle
+' Last aligned: 2026-01-14

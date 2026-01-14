@@ -1,8 +1,0 @@
-@startuml
-title UC-15: Food Assistance Targeting (Use Case)
-actor "Relief Agency" as Agency
-package "Vertical: Economy" <<standard-vertical>> { usecase "Assess Income" as Inc }
-package "Geo-Vertical: Social Welfare" <<geo-vertical>> { usecase "Distribute Rations" as Dist }
-Agency --> Dist
-Dist ..> Inc : "Targets"
-@enduml

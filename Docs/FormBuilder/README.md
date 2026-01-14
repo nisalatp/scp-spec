@@ -10,7 +10,7 @@ This directory contains the "How-to-Build" guides for the Data Collection Interf
 *   **[FB-005: Sanitation Survey](./Forms/FB-005-Sanitation-Survey/)**: Geo-Vertical specific form with Custom Schema.
 
 ## Technical Docs
-*   **[Architecture Diagrams](../../UML/FormBuilder/)**
-*   **[Frontend Implementation](../../Frontend/FormBuilder/)**
-*   **[Backend Architecture](../../Backend/FormBuilder/)**
+*   **[Architecture Diagrams](../../Diagrams/UML/Forms/)**
+*   **[Frontend Implementation](../../Implementation/Frontend/FormBuilder/)**
+*   **[Backend Architecture](../../Implementation/Backend/FormBuilder/)**
 *   **[known Lapses](../../Lapses/form-builder/)**

@@ -1,0 +1,22 @@
+@startuml UC-103_UseCase
+title UC-103: Process Case Intervention (Use Case)
+left to right direction
+
+actor "Field Agent" as Agent
+actor "Case Worker" as Worker
+
+package "SCP Core" {
+    usecase "Identify Need / Create Case" as Create
+    usecase "Perform Task / Upload Proof" as Task
+    usecase "Review & Triage" as Triage
+    usecase "Close Case" as Close
+}
+
+Agent --> Create
+Agent --> Task
+Worker --> Triage
+Worker --> Close
+Task ..> Create : includes
+Triage ..> Create : includes
+Close ..> Task : includes
+@enduml

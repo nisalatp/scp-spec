@@ -9,7 +9,7 @@ forms:
   # 01 Birth
   - formKey: "lk-birth-reg-b4"
     title: "Application for Registration of Birth (B4)"
-    scope: { vertical: "core" }
+    scope: { vertical: "data" }
     sections:
       - title: "Child Details"
         fields:
@@ -78,7 +78,7 @@ forms:
   # 07 Welfare
   - formKey: "lk-aswesuma-app"
     title: "Aswesuma Welfare Application"
-    scope: { vertical: "finance" }
+    scope: { vertical: "social_protection" }
     sections:
       - title: "Vulnerability"
         fields:
@@ -115,7 +115,7 @@ forms:
   # 11 School
   - formKey: "lk-school-grade1"
     title: "Grade 1 Admission"
-    scope: { vertical: "edu" }
+    scope: { vertical: "education" }
     sections:
       - title: "Proximity"
         fields:
@@ -124,7 +124,7 @@ forms:
   # 12 Scholarship
   - formKey: "lk-scholarship-pf"
     title: "President's Fund Scholarship"
-    scope: { vertical: "edu" }
+    scope: { vertical: "education" }
     sections:
       - title: "Economic"
         fields:
@@ -142,7 +142,7 @@ forms:
   # 14 Disaster
   - formKey: "lk-disaster-assess"
     title: "Damage Assessment"
-    scope: { vertical: "core" }
+    scope: { vertical: "social_protection" }
     sections:
       - title: "Damage"
         fields:
@@ -151,7 +151,7 @@ forms:
   # 15 Digital
   - formKey: "lk-digital-survey"
     title: "Digital Connectivity Survey"
-    scope: { vertical: "core" }
+    scope: { vertical: "social_protection" }
     sections:
       - title: "Access"
         fields:

@@ -1,0 +1,32 @@
+@startuml UC-103_Sequence
+title UC-103: Process Case Intervention (Sequence)
+
+autoactivate on
+actor "Field Agent" as Agent
+actor "Case Worker" as Worker
+participant "Security" as Sec
+participant "Workflows Svc" as Flow
+participant "People" as People
+participant "Notifications" as Alert
+
+Agent -> Flow: CreateCase(BeneficiaryID, Type)
+return CaseCreated(ID, Status=SUBMITTED)
+
+Worker -> Sec: ValidateAccess(Perm=case:update)
+return Authorized
+
+Worker -> Flow: Triage(CaseID, Status=ACTIVE)
+    Flow -> Alert: Notify(Agent, "New Tasks Assigned")
+    return Success
+return Success
+
+Agent -> Flow: CompleteTask(TaskID, Proof)
+    Flow -> People: UpdateFlags()
+    return Success
+return Success
+
+Worker -> Flow: CloseCase(CaseID)
+    Flow -> Flow: Archive()
+return CaseClosed
+
+@enduml

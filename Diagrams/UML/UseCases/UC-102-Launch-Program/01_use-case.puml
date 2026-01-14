@@ -1,0 +1,24 @@
+@startuml UC-102_UseCase
+title UC-102: Launch New Program (Use Case)
+left to right direction
+
+actor "Program Manager" as PM
+actor "Finance Manager" as FM
+actor "Vertical Owner" as VO
+
+package "SCP Core" {
+    usecase "Draft Program" as Draft
+    usecase "Configure Eligibility Rules" as Rules
+    usecase "Approve Budget" as Budget
+    usecase "Authorize Program" as Approve
+    usecase "Activate Program" as Activate
+}
+
+PM --> Draft
+PM --> Rules
+FM --> Budget
+VO --> Approve
+Approve ..> Activate : triggers
+Budget ..> Approve : precondition
+Rules ..> Approve : includes
+@enduml

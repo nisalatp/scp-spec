@@ -1,0 +1,37 @@
+@startuml UC-08_Activity
+title UC-08: Youth Skills Matching (Activity)
+
+|Case Worker|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Education" Vertical;
+if (Scope: Geo-Region OK?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Social Protection|
+:Identify Unemployed Youth;
+
+|Vertical: Education|
+:Check Qualifications & Training;
+
+|SCP Core: Analytics|
+:Match Local Vacancies to Skills;
+:Identify High-Potential Candidates;
+
+|Case Worker|
+:Review Matches;
+if (Permission: case:update?) then (yes)
+  :Connect Youth to Employer/Training;
+  :Trigger Notification to Youth;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

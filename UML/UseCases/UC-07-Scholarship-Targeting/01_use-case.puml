@@ -1,8 +1,0 @@
-@startuml
-title UC-07: Scholarship Targeting (Use Case)
-actor "Foundation" as Fdn
-package "Vertical: Education" <<standard-vertical>> { usecase "Verify Grades" as Grades }
-package "Vertical: Finance" <<standard-vertical>> { usecase "Disburse Scholarship" as Pay }
-Fdn --> Grades
-Grades ..> Pay : "approves"
-@enduml

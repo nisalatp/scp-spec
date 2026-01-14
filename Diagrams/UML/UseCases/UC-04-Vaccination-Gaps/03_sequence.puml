@@ -1,0 +1,25 @@
+@startuml UC-04_Sequence
+title UC-04: Vaccination Coverage Gaps (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "Vertical: Health" as Health
+participant "People" as People
+participant "Analytics" as Analysis
+
+Manager -> Sec: ValidateAccess(Vertical=Health, Perm=report:view)
+return Authorized
+
+Manager -> Analysis: GenerateCoverageReport(Health, Under5)
+    Analysis -> People: GetBeneficiaries(Age < 5)
+    return Children[]
+    
+    Analysis -> Health: GetVaccinationRecords(Children[])
+    return VaxData[]
+    
+    Analysis -> Analysis: ComputeGaps(Children, VaxData)
+    return CoverageStats
+return Display(CoverageStats)
+
+@enduml

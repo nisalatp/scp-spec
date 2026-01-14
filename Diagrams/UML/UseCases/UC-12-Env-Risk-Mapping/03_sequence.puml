@@ -1,0 +1,25 @@
+@startuml UC-12_Sequence
+title UC-12: Environmental Risk Mapping (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "Vertical: Env" as Env
+participant "Geo Engine" as Geo
+participant "Vertical: Health" as Health
+
+Manager -> Sec: ValidateAccess(Vertical=Env, Perm=report:view)
+return Authorized
+
+Manager -> Env: RunFloodRiskAnalysis(FloodPoly)
+    Env -> Geo: GetHouseholdsInPoly(FloodPoly)
+    return HH_List[]
+    
+    Env -> Health: GetVulnerabilityScores(HH_List)
+    return VulnMap
+    
+    Env -> Env: PrioritizeEvacuation(HH_List, VulnMap)
+    return EvacPlan
+return Display(EvacPlan)
+
+@enduml

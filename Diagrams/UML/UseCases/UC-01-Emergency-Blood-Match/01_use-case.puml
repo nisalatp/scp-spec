@@ -1,0 +1,34 @@
+@startuml UC-01_UseCase
+title UC-01: Emergency Blood Matching (Use Case)
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+' Trace Block
+' Case: UC-01 Emergency Blood Matching
+' Source: usage01.md
+' Verticals: Health & Environment, Data (Base)
+' Actors: Hospital, Donor
+
+left to right direction
+
+actor "Case Worker (Health)" as Worker
+actor "Potential Donor" as Donor
+
+package "SCP Core" {
+    usecase "Search for O-Neg Donors" as UC_Search
+    usecase "Filter by Radius" as UC_Filter
+    usecase "Check Consent" as UC_Consent
+}
+
+package "Vertical: Health" <<standard-vertical>> {
+    usecase "Access Blood Group Data" as UC_Blood
+    usecase "Dispatch Emergency Alert" as UC_Alert
+}
+
+Worker --> UC_Search
+UC_Search ..> UC_Filter : include
+UC_Search ..> UC_Blood : include
+UC_Search ..> UC_Consent : include
+
+UC_Alert --> Donor : "SMS/Push"
+
+@enduml

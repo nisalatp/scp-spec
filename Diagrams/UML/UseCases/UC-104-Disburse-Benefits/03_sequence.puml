@@ -1,0 +1,37 @@
+@startuml UC-104_Sequence
+title UC-104: Disburse Benefits (Sequence)
+
+autoactivate on
+participant "Scheduler" as System
+participant "Finance" as Fin
+participant "Rules" as Rules
+participant "Security" as Sec
+actor "Finance Manager" as Manager
+participant "Integrations" as Integ
+actor "Payment Provider" as Partner
+
+System -> Rules: CalculateEntitlements(ActivePrograms)
+return PaymentList
+
+System -> Fin: CreateInstructionBatch(PaymentList)
+return BatchID
+
+Manager -> Sec: ValidateAccess(Perm=finance:disburse)
+return Authorized
+
+Manager -> Fin: ApproveBatch(BatchID)
+    Fin -> Sec: VerifyCryptographicSignature()
+    return Valid
+return Approved
+
+System -> Integ: TransmitToPartner(BatchID)
+    Integ -> Partner: API / SFTP Upload
+    return TransmissionAck
+return Success
+
+Partner -> Integ: NotifyStatus(SuccessList, FailList)
+    Integ -> Fin: ReconcileResults(ID_Map)
+    return ReconciliationReport
+return Ack
+
+@enduml

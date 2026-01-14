@@ -1,8 +1,0 @@
-@startuml
-title UC-10: Clean Water Access (Use Case)
-actor "Planner" as Planner
-package "Vertical: Health" <<standard-vertical>> { usecase "Waterborne Disease Stats" as Stats }
-package "Geo-Vertical: WASH" <<geo-vertical>> { usecase "Map Water Sources" as Map }
-Planner --> Map
-Map ..> Stats : "Correlates"
-@enduml

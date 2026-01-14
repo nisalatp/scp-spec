@@ -1,0 +1,25 @@
+@startuml UC-07_Sequence
+title UC-07: Scholarship Targeting (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "Vertical: Edu" as Edu
+participant "Vertical: SocProt" as SocProt
+participant "Vertical: Finance" as Fin
+
+Manager -> Sec: ValidateAccess(Vertical=Edu, Perm=program:create)
+return Authorized
+
+Manager -> Edu: GetMeritList(MinGrade=A)
+return MeritList[]
+
+Manager -> SocProt: MeansTest(MeritList, MaxIncome=X)
+return EligibleScholars[]
+
+Manager -> Fin: AwardScholarships(EligibleScholars)
+    Fin -> Fin: ValidateBudget(TotalAmount)
+    Fin -> Fin: CreatePaymentSchedule()
+return AwardConfirmed
+
+@enduml

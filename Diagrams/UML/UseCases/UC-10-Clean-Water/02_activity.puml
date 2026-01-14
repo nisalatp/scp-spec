@@ -1,0 +1,36 @@
+@startuml UC-10_Activity
+title UC-10: Clean Water Access (Activity)
+
+|Program Manager (Environment)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Environment" Vertical;
+if (Scope: Vertical "Environment"?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Environment|
+:Fetch Safe Water Sources;
+:Map households beyond 200m radius;
+
+|Vertical: Health|
+:Overlay Waterborne Disease Hotspots;
+
+|SCP Core: Analytics|
+:Identify High-Risk "Water Gaps";
+
+|Program Manager (Environment)|
+:Analyze Candidate Well Sites;
+if (Permission: program:configure?) then (yes)
+  :Proposed Infrastructure project;
+else (no)
+  :Export Gap Map;
+endif
+
+stop
+@enduml

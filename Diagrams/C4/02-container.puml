@@ -1,0 +1,45 @@
+@startuml C4_Container
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/v2.5.0/C4_Container.puml
+
+title SCP - Container Diagram (Level 2)
+
+' Users
+Person(agent, "Field Agent", "Mobile App User")
+Person(backoffice, "Backoffice User", "Mgr/Worker/Admin (Web)")
+
+System_Boundary(k8s_cluster, "SCP Platform") {
+    Container(ingress, "Ingress", "Nginx", "SSL & Routing")
+    
+    Container(web_app, "Web Portal", "React", "Management Dashboard")
+    Container(mobile_app, "Mobile App", "Flutter", "Field Operations")
+    
+    Container(idp, "Identity Provider", "Keycloak", "OIDC/Auth")
+    
+    Container(monolith, "SCP Monolith", ".NET Core", "Business Logic & Verticals")
+    
+    ContainerDb(db_write, "Primary DB", "PostgreSQL", "Transactional State")
+    ContainerDb(db_read, "Read Replica", "PostgreSQL", "Analytics & Data Mesh")
+    ContainerDb(redis, "Cache", "Redis", "Sessions & Policies")
+    ContainerDb(obj_store, "Object Storage", "S3/MinIO", "Media & Docs")
+}
+
+System_Ext(ext_api, "External APIs", "Gov/Fin/SMS")
+
+Rel(agent, ingress, "HTTPS")
+Rel(backoffice, ingress, "HTTPS")
+
+Rel(ingress, web_app, "Serves")
+Rel(ingress, monolith, "API Calls")
+
+Rel(monolith, idp, "Auth")
+Rel(monolith, db_write, "SQL")
+Rel(monolith, redis, "JSON")
+Rel(monolith, obj_store, "BLOB")
+Rel(monolith, ext_api, "REST/SOAP")
+
+@enduml
+
+' TRACE:
+' SPEC: 02-architecture/03-modular-monolith-architecture.md, 12-deployment/01-kubernetes-topology.md
+' Scope: Container Architecture (Level 2)
+' Last aligned: 2026-01-14

@@ -1,0 +1,44 @@
+@startuml UC-14_Activity
+title UC-14: Disability Support (Activity)
+
+|Case Worker|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Social Protection" Vertical;
+if (Scope: Geo-Region OK?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+:Receive Application;
+|Vertical: Social Protection|
+:Perform Needs Assessment;
+
+|Vertical: Health|
+:Query: Disability Certification;
+if (Verified?) then (yes)
+  :Confirm Status;
+else (no)
+  :Request Manual Medical Review;
+  stop
+endif
+
+|Vertical: Social Protection|
+:Approve Support Level (Tier 1-3);
+
+|Vertical: Finance|
+:Process Recurring Disbursement;
+
+|Case Worker|
+if (Permission: case:update?) then (yes)
+  :Finalize Case;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

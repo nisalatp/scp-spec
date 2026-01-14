@@ -1,0 +1,40 @@
+@startuml UC-102_Activity
+title UC-102: Launch New Program (Activity)
+
+|Program Manager|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Draft Program Definition (Title, Goals, Target);
+:Configure Eligibility Rules (JSON DSL);
+:Simulate Coverage against Population;
+
+|Finance Manager|
+:Review Cost Estimate;
+if (Funds Available?) then (yes)
+  :Allocate Budget Bucket;
+  :Create Recurring Obligation Plan;
+else (no)
+  :Reject (Insufficient Funds);
+  stop
+endif
+
+|Vertical Owner|
+:Review Design & Policy Alignment;
+if (Approved?) then (yes)
+  :Digital Signature / Sign-off;
+else (no)
+  :Reject / Request Changes;
+  stop
+endif
+
+|SCP Core: Programs|
+:Change status to ACTIVE;
+:Trigger enrollment windows;
+:Notify regional Field Agents;
+
+stop
+@enduml

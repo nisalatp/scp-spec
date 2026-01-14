@@ -1,0 +1,25 @@
+@startuml UC-15_Sequence
+title UC-15: Food Assistance (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "Vertical: SocProt" as SocProt
+participant "People" as People
+participant "Analytics" as Analysis
+
+Manager -> Sec: ValidateAccess(GeoScope)
+return Authorized
+
+Manager -> SocProt: IdentifyTargetHHs(IncomeThreshold)
+    SocProt -> People: QueryIncomeAndStatus(Threshold)
+    return HH_IDs[]
+    
+    SocProt -> People: GetHouseholdComposition(HH_IDs)
+    return HH_Details[]
+    
+    SocProt -> Analysis: CalculateRations(HH_Details)
+    return RationPlan
+return Display(RationPlan)
+
+@enduml

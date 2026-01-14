@@ -1,0 +1,64 @@
+@startuml
+title SCP - Level 4 Flow: Person Registration (Pseudo-Code)
+autoactivate on
+
+participant "Field Agent\n(Mobile App)" as App
+participant "Person Registry\n(Core Module)" as Core
+participant "Deduplication\nService" as Dedup
+participant "Database" as DB
+participant "Event Bus" as Bus
+
+note right of App
+  Agent captures data offline.
+  Submits when online.
+end note
+
+App -> Core: RegisterPerson(PersonDTO)
+
+    note right of Core
+    # 1. Validation (Pseudo Logic)
+    Validate(PersonDTO.Fields)
+    IF Invalid RETURN 400 Bad Request
+    
+    # 2. Provisional ID
+    newPerson = new Person()
+    newPerson.Status = "Provisional"
+    newPerson.GUID = Guid.NewGuid()
+    end note
+
+    Core -> Dedup: CheckDuplicates(Name, DOB, NIC)
+    return PotentialMatches[]
+
+    note right of Core
+    # 3. Handling Duplicates
+    IF PotentialMatches.Count > 0 THEN
+       newPerson.FlagForReview = True
+       newPerson.PotentialDuplicates = matches
+    END IF
+    end note
+
+    Core -> DB: Save(newPerson)
+    return Success
+
+    Core -> Bus: Publish(PersonRegisteredEvent)
+    return Ack
+
+    note right of Bus
+    Async Listeners:
+    - Search Indexer
+    - Audit Logger
+    end note
+
+Core -> App: Return Created(GUID, Status="Provisional")
+
+note right of App
+  Agent sees "Pending Verification"
+  badge on the mobile UI.
+end note
+
+@enduml
+
+' TRACE:
+' SPEC: 06-platform-core/03-person-registry.md
+' Scope: Person Registration Flow
+' Last aligned: 2026-01-14

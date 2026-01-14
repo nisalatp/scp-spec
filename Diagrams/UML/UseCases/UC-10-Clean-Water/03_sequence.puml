@@ -1,0 +1,28 @@
+@startuml UC-10_Sequence
+title UC-10: Clean Water Access (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "Vertical: Env" as Env
+participant "Vertical: Health" as Health
+participant "Geo Engine" as Geo
+
+Manager -> Sec: ValidateAccess(Vertical=Env, Perm=report:view)
+return Authorized
+
+Manager -> Env: AnalyzeWaterAccess()
+    Env -> Geo: GetHouseholdLocations()
+    return HH_Points[]
+    
+    Env -> Env: GetSafeWaterSources()
+    return WP_Points[]
+    
+    Env -> Geo: CalculateRadiusGaps(HH_Points, WP_Points, 200m)
+    return Unserved_HH[]
+    
+    Env -> Health: GetDiseaseBurden(Unserved_HH)
+    return RiskScores
+return DisplayMap(RiskScores)
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml UC-11_Sequence
+title UC-11: Housing Repair (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "Vertical: Env" as Env
+participant "Vertical: SocProt" as SocProt
+participant "Vertical: Finance" as Fin
+
+Manager -> Sec: ValidateAccess(GeoScope)
+return Authorized
+
+Manager -> Env: GetDamagedHoues()
+return HH_List[]
+
+Manager -> Env: AssessVulnerability(HH_List)
+    Env -> SocProt: GetMemberProfiles(HH_List)
+    return ProfileMap
+    Env -> Env: ScorePriority(HH_List, ProfileMap)
+    return PriorityList
+return Display(PriorityList)
+
+Manager -> Fin: RequestEmergencyGrants(PriorityList)
+    Fin -> Fin: ValidateBudget()
+return GrantsDisbursed
+
+@enduml

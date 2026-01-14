@@ -1,0 +1,39 @@
+@startuml UC-103_Activity
+title UC-103: Process Case Intervention (Activity)
+
+|Field Agent|
+start
+:Identify Beneficiary Need (Observation/Request);
+:Submit Case (Type, Details, Proof);
+
+|Case Worker|
+:Authenticate & Validate Scope;
+if (Data Complete?) then (yes)
+  :Triage: Accept Case;
+  :Move to ACTIVE;
+else (no)
+  :Return for Information / Reject;
+  stop
+endif
+
+|SCP Core: Workflows|
+:Generate Mandatory Intervention Tasks;
+:Assign Tasks to Field Agent / Partner;
+
+|Field Agent|
+:Receive Task Notification;
+:Execute Intervention (e.g., Deliver Food);
+:Capture Proof (Signature/Photo);
+:Mark Task COMPLETE;
+
+|Case Worker|
+:Review Outcome & Proof;
+if (Success Criteria Met?) then (yes)
+  :Close Case;
+  :Archive History;
+else (no)
+  :Add Follow-up Tasks;
+endif
+
+stop
+@enduml

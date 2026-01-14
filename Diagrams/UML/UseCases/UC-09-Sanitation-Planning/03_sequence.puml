@@ -1,0 +1,29 @@
+@startuml UC-09_Sequence
+title UC-09: Sanitation Planning (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "Vertical: Env" as Env
+participant "Vertical: Health" as Health
+participant "Vertical: Finance" as Fin
+
+Manager -> Sec: ValidateAccess(Vertical=Env, Perm=program:create)
+return Authorized
+
+Manager -> Env: IdentifyWASHNeeds()
+    Env -> Env: FindHHsWithNoSanitation()
+    return HH_List[]
+    
+    Env -> Health: GetRegionalDiseaseBurden(HH_List)
+    return RiskMap
+    
+    Env -> Env: RankByRisk(HH_List, RiskMap)
+    return PriorityList
+return Display(PriorityList)
+
+Manager -> Fin: CreateConstructionGrants(PriorityList)
+    Fin -> Fin: ValidateBudget()
+return GrantsCreated
+
+@enduml

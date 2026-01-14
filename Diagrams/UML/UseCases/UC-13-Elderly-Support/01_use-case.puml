@@ -1,0 +1,23 @@
+@startuml UC-13_UseCase
+title UC-13: Elderly Living Alone (Use Case)
+left to right direction
+
+actor "Case Worker" as Worker
+
+package "SCP Core" {
+    usecase "Schedule Welfare Check" as Check
+}
+
+package "Vertical: Social Protection" <<standard-vertical>> {
+    usecase "Identify Isolated Elderly" as Identify
+}
+
+package "Vertical: Health" <<standard-vertical>> {
+    usecase "Check Health Status" as Health
+}
+
+Worker --> Identify
+Worker --> Check
+Identify ..> Health : include
+Check ..> Identify : include
+@enduml

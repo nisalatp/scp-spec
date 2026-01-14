@@ -1,0 +1,37 @@
+@startuml UC-15_Activity
+title UC-15: Food Assistance (Activity)
+
+|Program Manager (Social Protection)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Social Protection" Vertical;
+if (Scope: Geo-Region OK?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Social Protection|
+:Identify Households (Income < Poverty Line);
+:Flag "Food Insecure" vulnerable groups;
+
+|SCP Core: Analytics|
+:Cross-reference Family Size;
+:Calculate Ration Requirements (Adults vs Kids);
+
+|Vertical: Social Protection|
+:Generate Distribution Batch;
+
+|Program Manager (Social Protection)|
+if (Permission: program:approve?) then (yes)
+  :Approve Distribution Plan;
+  :Trigger Notifications/Vouchers;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

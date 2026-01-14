@@ -1,0 +1,23 @@
+@startuml UC-105_UseCase
+title UC-105: Onboard Partner (Use Case)
+left to right direction
+
+actor "Partner Tech Lead" as Partner
+actor "Integration Manager" as IM
+actor "Tenant Admin" as Admin
+
+package "SCP Core" {
+    usecase "Register Integration Partner" as Register
+    usecase "Configure Webhooks & Auth" as Config
+    usecase "Approve Integration" as Approve
+    usecase "Issue Credentials" as Keys
+    usecase "Verify Connectivity" as Verify
+}
+
+IM --> Register
+IM --> Config
+Admin --> Approve
+Partner -- Verify
+Approve ..> Keys : triggers
+Keys ..> Verify : precondition
+@enduml

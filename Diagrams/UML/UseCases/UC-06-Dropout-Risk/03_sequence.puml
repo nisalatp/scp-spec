@@ -1,0 +1,23 @@
+@startuml UC-06_Sequence
+title UC-06: Dropout Risk Identification (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "SCP Core: Analytics" as Core
+participant "Vertical: Edu" as Edu
+participant "Vertical: SocProt" as SocProt
+
+Manager -> Sec: ValidateAccess(Vertical=Edu, Perm=report:view)
+return Authorized
+
+Manager -> Core: IdentifyRisk(Attendance < 80, Income < X)
+    Core -> Edu: GetLowAttendance()
+    return ListA[]
+    Core -> SocProt: GetLowIncome()
+    return ListB[]
+    Core -> Core: Intersect(ListA, ListB)
+    return RiskList
+return Report(RiskList)
+
+@enduml

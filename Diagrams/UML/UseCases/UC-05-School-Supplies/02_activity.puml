@@ -1,0 +1,40 @@
+@startuml UC-05_Activity
+title UC-05: School Supplies (Activity)
+
+|Program Manager (Education)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Education" Vertical;
+if (Scope: Vertical "Education"?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Education|
+:Query: Students (Income < Threshold);
+:Verify: Active School Enrollment;
+:List Eligible Candidates;
+
+|SCP Core: Eligibility|
+:Apply Equity & Targeting Rules;
+
+|Vertical: Finance|
+:Calculate Disbursement (per student);
+:Verify Budget Availability;
+
+|Program Manager (Education)|
+:Approve Program/Disbursement;
+if (Permission: program:approve?) then (yes)
+  |Vertical: Finance|
+  :Execute Payment/Voucher Issue;
+  :Log Transaction;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

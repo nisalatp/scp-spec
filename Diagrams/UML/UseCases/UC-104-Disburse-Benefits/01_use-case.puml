@@ -1,0 +1,23 @@
+@startuml UC-104_UseCase
+title UC-104: Disburse Benefits (Use Case)
+left to right direction
+
+actor "System (Scheduler)" as System
+actor "Finance Manager" as Manager
+actor "Payment Provider" as Provider
+
+package "SCP Core" {
+    usecase "Calculate Entitlements" as Calc
+    usecase "Approve Payment Batch" as Approve
+    usecase "Execute Transfer" as Execute
+    usecase "Reconcile Results" as Reconcile
+}
+
+System --> Calc
+Manager --> Approve
+System --> Execute
+Provider -- Execute
+Provider -- Reconcile
+Execute ..> Approve : includes
+Reconcile ..> Execute : includes
+@enduml

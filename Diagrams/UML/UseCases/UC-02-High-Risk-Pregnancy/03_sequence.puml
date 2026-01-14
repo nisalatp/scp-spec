@@ -1,0 +1,26 @@
+@startuml UC-02_Sequence
+title UC-02: High-Risk Pregnancy Monitoring (Sequence)
+autoactivate on
+actor "Case Worker" as Worker
+participant "Vertical: Health" as Health
+participant "SCP: Person" as Core
+participant "SCP: Workflows" as Workflows
+
+Worker -> Health: GetHighRiskMothers()
+    alt #LightBlue Success
+        Health -> Core: Search(Attributes: Pregnant)
+        return List[]
+        Health -> Health: Filter(MedicalRiskIndicators)
+        return HighRiskList[]
+    else #Pink Permission Denied
+        Health -> Worker: 403 Forbidden
+    else #Pink Scope Violation
+        Health -> Worker: Empty List (Restricted)
+    end
+return Display(HighRiskList)
+
+Worker -> Workflows: CreateTask(AgentID, Visit)
+    Workflows -> Workflows: ValidateScope(AgentID, GEO)
+    return Success
+return Success
+@enduml

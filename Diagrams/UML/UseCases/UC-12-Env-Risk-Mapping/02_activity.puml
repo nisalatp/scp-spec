@@ -1,0 +1,36 @@
+@startuml UC-12_Activity
+title UC-12: Environmental Risk Mapping (Activity)
+
+|Program Manager (Environment)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Environment" Vertical;
+if (Scope: Vertical "Environment"?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Environment|
+:Overlay 100-year Flood Map;
+
+|SCP Core: Analytics|
+:Identify Households in Zone;
+
+|Vertical: Health|
+:Flag "Medically Fragile" Residents;
+:Generate Evacuation List;
+
+|Program Manager (Environment)|
+:Review Evacuation Plan;
+if (Permission: report:view?) then (yes)
+  :Pre-position Resources;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

@@ -1,0 +1,36 @@
+@startuml UC-06_Activity
+title UC-06: Dropout Risk Identification (Activity)
+
+|Program Manager (Education)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Education" Vertical;
+if (Scope: Vertical "Education"?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Education|
+:Flag < 80% Attendance;
+
+|Vertical: Social Protection|
+:Flag Low Income Households;
+
+|SCP Core: Analytics|
+:Intersect Sets (Attendance & Income);
+:Identify High Risk Students;
+
+|Program Manager (Education)|
+:Review Risk List;
+if (Permission: case:create?) then (yes)
+  :Assign to Case Worker;
+else (no)
+  :Export Report;
+endif
+
+stop
+@enduml

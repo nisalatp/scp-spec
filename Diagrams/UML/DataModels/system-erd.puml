@@ -1,0 +1,129 @@
+@startuml
+title SCP - System Database Schema (ERD)
+left to right direction
+!theme plain
+hide circle
+
+entity "Tenants" {
+  *tenant_id : uuid <<PK>>
+  --
+  tenant_name : varchar
+  country_code : varchar
+  config_json : jsonb
+}
+
+entity "Persons" {
+  *person_id : uuid <<PK>>
+  --
+  tenant_id : uuid <<FK>>
+  system_guid : varchar
+  full_name : varchar
+  dob : date
+  gender : varchar
+  verification_status : varchar
+}
+
+entity "Households" {
+  *household_id : uuid <<PK>>
+  --
+  tenant_id : uuid <<FK>>
+  leader_id : uuid <<FK>>
+  geo_node_id : uuid <<FK>>
+  address : varchar
+}
+
+entity "GeoNodes" {
+  *geo_id : uuid <<PK>>
+  --
+  geo_name : varchar
+  geo_code : varchar
+  parent_geo_id : uuid <<FK>>
+  boundary : geography
+}
+
+entity "Agents" {
+  *agent_id : uuid <<PK>>
+  --
+  tenant_id : uuid <<FK>>
+  person_id : uuid <<FK>>
+  status : varchar
+  role : varchar
+}
+
+entity "Programs" {
+  *program_id : uuid <<PK>>
+  --
+  program_name : varchar
+  program_code : varchar
+  primary_vertical_id : uuid <<FK>>
+}
+
+entity "Cases" {
+  *case_id : uuid <<PK>>
+  --
+  program_id : uuid <<FK>>
+  subject_id : uuid
+  status : varchar
+  primary_vertical_id : uuid <<FK>>
+}
+
+entity "ServiceEncounters" {
+  *encounter_id : uuid <<PK>>
+  --
+  person_id : uuid <<FK>>
+  facility_id : uuid <<FK>>
+  encounter_date : date
+  vertical_id : uuid <<FK>>
+}
+
+entity "Consents" {
+  *consent_id : uuid <<PK>>
+  --
+  person_id : uuid <<FK>>
+  vertical_id : uuid <<FK>>
+  status : varchar
+  active_until : date
+}
+
+entity "FormDefinitions" {
+  *form_id : uuid <<PK>>
+  --
+  form_code : varchar
+  version_id : varchar
+  status : varchar
+}
+
+entity "FormSubmissions" {
+  *submission_id : uuid <<PK>>
+  --
+  form_id : uuid <<FK>>
+  target_id : uuid
+  data_payload : jsonb
+  verification_status : varchar
+}
+
+' Relationships
+Tenants ||..|| Persons
+Tenants ||..|| Households
+Tenants ||..|| Programs
+
+Households |o..|{ Persons
+GeoNodes ||..|{ Households
+GeoNodes |o..|{ GeoNodes
+
+Persons ||..o| Agents
+Persons ||..|{ Consents
+Persons ||..|{ ServiceEncounters
+Persons ||..|{ Cases
+
+Programs ||..|{ Cases
+
+FormDefinitions ||..|{ FormSubmissions
+Persons ||..|{ FormSubmissions
+
+@enduml
+
+' TRACE:
+' SPEC: 10-data/02-logical-data-schema.md
+' Scope: Logical Data Entities
+' Last aligned: 2026-01-14

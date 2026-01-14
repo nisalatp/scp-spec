@@ -1,0 +1,25 @@
+@startuml UC-14_Sequence
+title UC-14: Disability Support (Sequence)
+
+autoactivate on
+actor "Case Worker" as Worker
+participant "Security" as Sec
+participant "Vertical: SocProt" as SocProt
+participant "Vertical: Health" as Health
+participant "Vertical: Finance" as Fin
+
+Worker -> Sec: ValidateAccess(GeoScope)
+return Authorized
+
+Worker -> SocProt: ProcessApplication(PersonID)
+    SocProt -> Health: VerifyDisabilityStatus(PersonID)
+    return StatusVerified
+    
+    SocProt -> SocProt: CalculateBenefitTier()
+    return BenefitPlan
+    
+    SocProt -> Fin: InitiateRecurringPayment(BenefitPlan)
+    return ScheduleCreated
+return ApplicationApproved
+
+@enduml

@@ -1,0 +1,34 @@
+@startuml UC-03_Activity
+title UC-03: Chronic Disease Outreach (Activity)
+
+|Case Worker (Health)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "Health" Vertical;
+if (Scope: Vertical "Health"?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Health|
+:Filter: Condition = 'Diabetes';
+
+|SCP Core|
+:Apply Geo-Filter (Local Clinic Area);
+:List Potential Patients;
+
+|Case Worker (Health)|
+:Review List;
+if (Permission: case:create?) then (yes)
+  :Create Outreach Case;
+  :Trigger Notification to Field Agents;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

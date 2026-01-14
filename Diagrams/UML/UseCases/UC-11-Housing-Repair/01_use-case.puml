@@ -1,0 +1,29 @@
+@startuml UC-11_UseCase
+title UC-11: Housing Repair (Use Case)
+left to right direction
+
+actor "Program Manager (Environment)" as Manager
+actor "Field Agent" as Agent
+
+package "SCP Core" {
+    usecase "Prioritize Repair" as Priority
+}
+
+package "Vertical: Environment" <<standard-vertical>> {
+    usecase "Damage Assessment" as Damage
+}
+
+package "Vertical: Social Protection" <<standard-vertical>> {
+    usecase "Identify Vulnerable Residents" as Vuln
+}
+
+package "Vertical: Finance" <<standard-vertical>> {
+    usecase "Repair Grant" as Grant
+}
+
+Agent --> Damage
+Manager --> Priority
+Priority ..> Damage : include
+Priority ..> Vuln : include
+Priority ..> Grant : triggers
+@enduml

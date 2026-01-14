@@ -1,0 +1,35 @@
+@startuml
+title 01_form_script_component
+package "Deployment Environment" {
+    [CLI / CI Runner] as CLI
+    artifact "Script.forms.yaml" as File
+}
+
+package "SCP Core Platform" {
+    component "API Gateway" as API
+    component "Forms Service" as Svc
+    component "Validation Engine" as Val
+    component "Audit Log" as Audit
+}
+
+database "Metadata Store" {
+    [Form Registry] as DB_Form
+    [Field Definitions] as DB_Field
+    [Import History] as DB_Audit
+}
+
+CLI -> File : Read
+CLI -> API : POST /admin/forms/import
+API -> Svc : Delegate
+Svc -> Val : Validate Schema
+Svc -> DB_Form : Lookup(Key, Tenant)
+Svc -> DB_Form : Create/Update Version
+Svc -> DB_Field : Sync Fields
+Svc -> Audit : Log Event
+Audit -> DB_Audit
+@enduml
+
+' TRACE:
+' SPEC: 06-platform-core/13-form-scripting.md
+' Scope: Form Scripting Components
+' Last aligned: 2026-01-14

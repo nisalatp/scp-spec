@@ -1,0 +1,22 @@
+@startuml UC-06_UseCase
+title UC-06: Dropout Risk Identification (Use Case)
+left to right direction
+
+actor "Program Manager (Education)" as Manager
+
+package "SCP Core" {
+    usecase "Analyze Risk" as Risk
+}
+
+package "Vertical: Education" <<standard-vertical>> {
+    usecase "Track Attendance" as Att
+}
+
+package "Vertical: Social Protection" <<standard-vertical>> {
+    usecase "Check Household Income" as Inc
+}
+
+Manager --> Risk
+Risk ..> Att : include
+Risk ..> Inc : include
+@enduml

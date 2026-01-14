@@ -1,0 +1,34 @@
+@startuml UC-101_Sequence
+title UC-101: Register Beneficiary (Sequence)
+
+autoactivate on
+actor "Field Agent" as Agent
+participant "Mobile App" as App
+participant "Security" as Sec
+participant "Identity Svc" as Identity
+participant "Consent Svc" as Consent
+participant "Analytics (Dedup)" as Dedup
+
+Agent -> App: SubmitRegistration(PersonDTO)
+    App -> Sec: ValidateToken()
+    return Authorized
+    
+    App -> Consent: VerifyConsentRequired()
+    return ConsentSigned
+    
+    App -> Identity: CreatePerson(PersonDTO)
+        Identity -> Identity: ValidateData()
+        Identity -> Dedup: CheckConflict(PersonDTO)
+        return Matches[]
+        
+        alt Matches Found
+            Identity -> Identity: SetStatus(PROVISIONAL)
+        else No Matches
+            Identity -> Identity: SetStatus(VERIFIED)
+        end
+        
+        Identity -> Identity: Persist()
+    return Created(PersonID, Status)
+return DisplaySuccess
+
+@enduml

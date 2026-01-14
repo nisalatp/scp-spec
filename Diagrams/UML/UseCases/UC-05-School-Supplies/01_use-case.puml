@@ -1,0 +1,28 @@
+@startuml UC-05_UseCase
+title UC-05: School Supplies (Use Case)
+left to right direction
+
+actor "Program Manager (Education)" as Manager
+actor "Field Agent" as Agent
+
+package "SCP Core" {
+    usecase "Manage Program" as Manage
+    usecase "Verify Eligibility" as Verify
+}
+
+package "Vertical: Education" <<standard-vertical>> {
+    usecase "Identify Students in Need" as Identify
+}
+
+package "Vertical: Finance" <<standard-vertical>> {
+    usecase "Allocate Funds" as Fund
+    usecase "Process Disbursement" as Pay
+}
+
+Manager --> Manage
+Manager --> Fund
+Identify ..> Verify : include
+Manage ..> Identify : include
+Fund ..> Pay : triggers
+Agent --> Verify : "On-ground Check"
+@enduml

@@ -1,0 +1,25 @@
+@startuml UC-13_Sequence
+title UC-13: Elderly Living Alone (Sequence)
+
+autoactivate on
+actor "Case Worker" as Worker
+participant "Security" as Sec
+participant "Vertical: SocProt" as SocProt
+participant "People" as People
+participant "Workflows" as Flow
+
+Worker -> Sec: ValidateAccess(GeoScope)
+return Authorized
+
+Worker -> SocProt: FindIsolatedElderly()
+    SocProt -> People: GetHouseholds(Size=1)
+    return SoloHH_List
+    SocProt -> People: FilterByAge(SoloHH_List, >70)
+    return VulnerableList
+return Display(VulnerableList)
+
+Worker -> Flow: CreateWelfareTasks(VulnerableList)
+    Flow -> Flow: AssignToDistrict(GeoID)
+return TasksCreated
+
+@enduml

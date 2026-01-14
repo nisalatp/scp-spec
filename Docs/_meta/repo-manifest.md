@@ -8,29 +8,28 @@
 ## Documentation
 - `Docs/FormScripting/`
 - `Docs/FormBuilder/`
-- `Docs/Diagrams/`
-- `Docs/UML/`
 - `Docs/_meta/`
 
-## UML
-- `Docs/UML/01-System-Class-Diagram.puml`
-- `Docs/UML/02-System-Database-ERD.puml`
-- `Docs/UML/03-System-State-Machines.puml`
-- `Docs/UML/04-System-Sequence-Core-Flows.puml`
-- `UML/` (Architecture & Deep Dive Diagrams)
+## Diagrams
+- `Diagrams/UML/Core/system-class-diagram.puml`
+- `Diagrams/UML/DataModels/system-erd.puml`
+- `Diagrams/UML/StateModels/system-state-machines.puml`
+- `Diagrams/UML/Sequences/core-flows.puml`
+- `Diagrams/UML/` (Architecture & Deep Dive Diagrams)
+- `Diagrams/C4/` (Context, Container, Component)
 
 ## Frontend
-- `Frontend/01-UX-Flows.md`
-- `Frontend/01-overview.md`
-- `Frontend/02-Use-Case-Realization.md`
+- `Implementation/Frontend/01-UX-Flows.md`
+- `Implementation/Frontend/01-overview.md`
+- `Implementation/Frontend/02-Use-Case-Realization.md`
 
 ## Backend
-- `Backend/01-Architecture.md`
-- `Backend/02-API-Catalogue.md`
-- `Backend/03-Domain-Model.md`
+- `Implementation/Backend/01-Architecture.md`
+- `Implementation/Backend/02-API-Catalogue.md`
+- `Implementation/Backend/03-Domain-Model.md`
 
 ## Deployment
-- `Deployment/` (Infrastructure, K8s, DB, Keycloak)
+- `Implementation/Deployment/` (Infrastructure, K8s, DB, Keycloak)
 
 ## Scripts
 - `Scripts/SriLanka/packages/` (Top 15 Form Scripts)

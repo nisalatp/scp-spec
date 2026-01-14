@@ -1,0 +1,30 @@
+@startuml UC-105_Sequence
+title UC-105: Onboard Partner (Sequence)
+
+autoactivate on
+actor "Integration Manager" as IM
+actor "Tenant Admin" as Admin
+participant "Security" as Sec
+participant "Integration Svc" as Integ
+actor "Partner Client" as Partner
+
+IM -> Integ: RegisterPartner(PartnerDTO, Scopes)
+return PartnerRegistered(ClientID)
+
+Admin -> Sec: ValidateAccess(Perm=integration:approve)
+return Authorized
+
+Admin -> Integ: ApproveIntegration(ClientID)
+    Integ -> Sec: CreateOAuthCredentials(ClientID)
+    return ClientSecret
+return Approved
+
+Partner -> Sec: POST /auth/token (ClientID, Secret)
+return AccessToken
+
+Partner -> Integ: GET /health/ping
+    Integ -> Sec: ValidateToken(AccessToken)
+    return Valid(Scope=SystemPing)
+return 200 OK (Status=Healthy)
+
+@enduml

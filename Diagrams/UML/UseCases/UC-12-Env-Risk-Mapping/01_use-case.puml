@@ -1,0 +1,22 @@
+@startuml UC-12_UseCase
+title UC-12: Environmental Risk Mapping (Use Case)
+left to right direction
+
+actor "Program Manager (Environment)" as Manager
+
+package "SCP Core" {
+    usecase "Geo Overlay" as Overlay
+}
+
+package "Vertical: Environment" <<standard-vertical>> {
+    usecase "Map Flood Zones" as Flood
+}
+
+package "Vertical: Health" <<standard-vertical>> {
+    usecase "Plan Evacuation" as Evac
+}
+
+Manager --> Flood
+Flood --> Overlay
+Overlay ..> Evac : include
+@enduml

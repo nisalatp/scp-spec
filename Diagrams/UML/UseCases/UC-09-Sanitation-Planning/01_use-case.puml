@@ -1,0 +1,27 @@
+@startuml UC-09_UseCase
+title UC-09: Sanitation Planning (Use Case)
+left to right direction
+
+actor "Program Manager (Environment)" as Manager
+
+package "SCP Core" {
+    usecase "Assess Priority" as Priority
+}
+
+package "Vertical: Environment" <<standard-vertical>> {
+    usecase "Sanitation Survey" as Survey
+}
+
+package "Vertical: Health" <<standard-vertical>> {
+    usecase "Assess Health Risk" as Health
+}
+
+package "Vertical: Finance" <<standard-vertical>> {
+    usecase "Budget Allocation" as Budget
+}
+
+Manager --> Survey
+Survey ..> Health : include
+Survey ..> Budget : include
+Priority ..> Survey : include
+@enduml

@@ -1,0 +1,19 @@
+@startuml UC-04_UseCase
+title UC-04: Vaccination Coverage Gaps (Use Case)
+left to right direction
+
+actor "Program Manager (Health)" as Manager
+
+package "SCP Core" {
+    usecase "Analyze Data" as Analytics
+}
+
+package "Vertical: Health" <<standard-vertical>> {
+    usecase "Check Vaccination Records" as Rec
+    usecase "Identify Coverage Gaps" as Gaps
+}
+
+Manager --> Gaps
+Gaps ..> Rec : include
+Gaps ..> Analytics : include
+@enduml

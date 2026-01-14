@@ -1,0 +1,30 @@
+@startuml UC-05_Sequence
+title UC-05: School Supplies (Sequence)
+
+autoactivate on
+actor "Program Manager" as Manager
+participant "Security" as Sec
+participant "Vertical: Edu" as Edu
+participant "People" as People
+participant "Finance" as Fin
+
+Manager -> Sec: ValidateAccess(Vertical=Edu, Perm=program:create)
+return Authorized
+
+Manager -> Edu: FindEligibleStudents(Criteria)
+    Edu -> People: Search(Income < X, Age 5-16)
+    return PotentialIDs[]
+    Edu -> Edu: FilterByEnrollment(PotentialIDs)
+    return VerifiedList[]
+return Display(VerifiedList)
+
+Manager -> Fin: InitiateDisbursement(VerifiedList, Amount)
+    Fin -> Fin: ValidateBudget(Amount)
+    loop For Each Student
+        Fin -> Fin: CreateObligation(StudentID, Value)
+    end
+    Fin -> People: NotifyBeneficiaries(VoucherDetails)
+    return Ack
+return DisbursementStarted
+
+@enduml

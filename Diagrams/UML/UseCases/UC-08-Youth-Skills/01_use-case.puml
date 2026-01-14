@@ -1,0 +1,26 @@
+@startuml UC-08_UseCase
+title UC-08: Youth Skills Matching (Use Case)
+left to right direction
+
+actor "Case Worker" as Worker
+actor "Youth" as Youth
+
+package "SCP Core" {
+    usecase "Match Skills" as Match
+    usecase "Notify Beneficiary" as Notify
+}
+
+package "Vertical: Education" <<standard-vertical>> {
+    usecase "Verify Qualifications" as Qual
+}
+
+package "Vertical: Social Protection" <<standard-vertical>> {
+    usecase "Track Employment Status" as Status
+}
+
+Worker --> Match
+Match ..> Qual : include
+Match ..> Status : include
+Match ..> Notify : triggers
+Notify --> Youth : "Notifies"
+@enduml

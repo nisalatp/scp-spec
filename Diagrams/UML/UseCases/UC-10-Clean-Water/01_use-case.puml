@@ -1,0 +1,22 @@
+@startuml UC-10_UseCase
+title UC-10: Clean Water Access (Use Case)
+left to right direction
+
+actor "Program Manager (Environment)" as Manager
+
+package "SCP Core" {
+    usecase "Analyze Geo-Access" as Geo
+}
+
+package "Vertical: Environment" <<standard-vertical>> {
+    usecase "Map Water Sources" as Map
+}
+
+package "Vertical: Health" <<standard-vertical>> {
+    usecase "Waterborne Disease Stats" as Stats
+}
+
+Manager --> Map
+Map ..> Stats : include
+Map ..> Geo : include
+@enduml

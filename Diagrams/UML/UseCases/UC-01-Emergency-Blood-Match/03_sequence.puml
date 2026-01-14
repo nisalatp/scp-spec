@@ -1,0 +1,36 @@
+@startuml UC-01_Sequence
+title UC-01: Emergency Blood Matching (Sequence)
+autoactivate on
+
+' Trace Block
+' Case: UC-01
+
+actor "Hospital User" as User
+participant "SCP: Geo Engine" as Geo
+participant "Vertical: Health" as Health
+participant "SCP: Consent" as Consent
+participant "Ext: SMS Gateway" as SMS
+
+User -> Health: RequestDonors(O-Neg, 5km)
+
+    Health -> Geo: FindPersonsInRadius(Lat, Lon, 5km)
+    return PersonIDs[]
+
+    Health -> Health: FilterByBloodGroup(PersonIDs, O-Neg)
+    return Candidates[]
+
+    Health -> Consent: CheckConsent(Candidates, "EmergencyContact")
+    return ConsentedCandidates[]
+
+    alt #LightBlue Success Path
+        Health -> SMS: BroadcastAlert(ConsentedCandidates, "Urgent: O-Neg Needed")
+        return SentCount
+    else #Pink Permission Denied
+        Health -> User: 403 Forbidden
+    else #Pink No Consented Candidates
+        Health -> User: 200 OK (SentCount: 0)
+    end
+
+return DisplayResults(SentCount)
+
+@enduml

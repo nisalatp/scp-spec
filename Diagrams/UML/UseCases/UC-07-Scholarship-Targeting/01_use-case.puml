@@ -1,0 +1,27 @@
+@startuml UC-07_UseCase
+title UC-07: Scholarship Targeting (Use Case)
+left to right direction
+
+actor "Program Manager (Education)" as Manager
+
+package "SCP Core" {
+    usecase "Award Scholarship" as Award
+}
+
+package "Vertical: Education" <<standard-vertical>> {
+    usecase "Verify Grades" as Grades
+}
+
+package "Vertical: Social Protection" <<standard-vertical>> {
+    usecase "Verify Financial Need" as Need
+}
+
+package "Vertical: Finance" <<standard-vertical>> {
+    usecase "Disburse Funds" as Pay
+}
+
+Manager --> Award
+Award ..> Grades : include
+Award ..> Need : include
+Award ..> Pay : triggers
+@enduml

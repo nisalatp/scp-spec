@@ -1,0 +1,26 @@
+@startuml UC-101_UseCase
+title UC-101: Register Beneficiary (Use Case)
+left to right direction
+
+actor "Field Agent" as Agent
+actor "Beneficiary" as Beneficiary
+
+package "SCP Core" {
+    usecase "Register Person" as Register
+    usecase "Capture biometrics" as Bio
+    usecase "Obtain Consent" as Consent
+}
+
+package "Identity" {
+    usecase "Deduplicate" as Dedup
+    usecase "Verify Identity" as Verify
+}
+
+Agent --> Register
+Register ..> Bio : include
+Register ..> Consent : include
+Register ..> Dedup : include
+Register ..> Verify : include
+Beneficiary -- Bio
+Beneficiary -- Consent
+@enduml

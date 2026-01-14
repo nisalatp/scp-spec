@@ -1,0 +1,27 @@
+@startuml UC-14_UseCase
+title UC-14: Disability Support Allocation (Use Case)
+left to right direction
+
+actor "Case Worker" as Worker
+
+package "SCP Core" {
+    usecase "Determine Support Level" as Level
+}
+
+package "Vertical: Social Protection" <<standard-vertical>> {
+    usecase "Assess Needs" as Needs
+}
+
+package "Vertical: Health" <<standard-vertical>> {
+    usecase "Verify Disability" as Verify
+}
+
+package "Vertical: Finance" <<standard-vertical>> {
+    usecase "Disburse Aid" as Aid
+}
+
+Worker --> Needs
+Needs ..> Verify : include
+Needs ..> Level : include
+Level ..> Aid : triggers
+@enduml

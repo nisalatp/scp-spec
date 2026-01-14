@@ -1,0 +1,20 @@
+@startuml UC-15_UseCase
+title UC-15: Food Assistance Targeting (Use Case)
+left to right direction
+
+actor "Program Manager (Social Protection)" as Manager
+
+package "SCP Core" {
+    usecase "Calculate Rations" as Rations
+}
+
+package "Vertical: Social Protection" <<standard-vertical>> {
+    usecase "Identify Food Insecure" as Insecure
+    usecase "Distribute Rations" as Dist
+}
+
+Manager --> Insecure
+Manager --> Dist
+Dist ..> Insecure : include
+Dist ..> Rations : include
+@enduml

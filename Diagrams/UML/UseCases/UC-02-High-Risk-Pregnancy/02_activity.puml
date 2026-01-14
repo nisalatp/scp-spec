@@ -1,0 +1,36 @@
+@startuml UC-02_Activity
+title UC-02: High-Risk Pregnancy Monitoring (Activity)
+
+|Case Worker (Health)|
+start
+:Login to SCP;
+if (Authenticated?) then (no)
+  :Login Failed;
+  stop
+endif
+
+:Select "Maternal Health" Vertical;
+if (Scope: Vertical "Health"?) then (no)
+  :Access Denied (Scope Violation);
+  stop
+endif
+
+|Vertical: Health|
+:Query: Pregnant Mothers;
+:Filter: Hb < 10 OR Hypertension;
+
+|SCP Core|
+:Identify High Risk List;
+
+|Case Worker (Health)|
+:Review List;
+
+if (Permission: case:assign?) then (yes)
+  :Assign Field Midwife;
+  :Trigger Notification;
+else (no)
+  :Permission Denied;
+endif
+
+stop
+@enduml

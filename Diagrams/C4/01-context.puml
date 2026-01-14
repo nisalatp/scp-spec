@@ -1,0 +1,42 @@
+@startuml C4_Context
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/v2.5.0/C4_Context.puml
+
+title SCP - System Context Diagram (Level 1)
+
+' Actors
+Person(beneficiary, "Beneficiary", "Community member receiving services.")
+Person(agent, "Field Agent", "Collects data & delivers services on-ground.")
+Person(case_worker, "Case Worker", "Manages workflow tasks & triages cases.")
+Person(manager, "Program Manager", "Designs programs & eligibility rules.")
+Person(v_owner, "Vertical Owner", "Strategic oversight & institutional approval.")
+Person(f_manager, "Finance Manager", "Manages budgets & disbursements.")
+Person(admin, "Tenant Administrator", "Configures policies, users, and mapping.")
+Person(auditor, "Auditor", "Reviews logs & compliance reports.")
+
+' System
+System(scp, "Smart Community Platform (SCP)", "Central platform for community data & governance.\nEnforces neutrality & accountability.")
+
+' External Systems
+System_Ext(identity_sys, "National Identity System", "ID Validation (NIC/Passport)")
+System_Ext(payment_gateway, "Payment Gateway", "Financial Aid Disbursements")
+System_Ext(partner_mis, "Partner System", "External NGOs/Gov Depts")
+
+' Relationships
+Rel(agent, scp, "Uses Mobile App", "Offline-first")
+Rel(case_worker, scp, "Manages Cases", "Web Console")
+Rel(manager, scp, "Configures Programs", "Web Console")
+Rel(v_owner, scp, "Approves Policies", "Web Console")
+Rel(f_manager, scp, "Authorizes Payments", "Web Console")
+Rel(admin, scp, "Administers Tenant", "Web Console")
+Rel(auditor, scp, "Reviews Audit Logs", "Web Console")
+
+Rel(scp, identity_sys, "Verifies Person ID", "API/SOAP")
+Rel(scp, payment_gateway, "Disburses Funds", "API/ISO20022")
+Rel(scp, partner_mis, "Syncs Data", "Webhook/API")
+
+@enduml
+
+' TRACE:
+' SPEC: 02-architecture/01-system-context.md
+' Scope: System Context (Level 1)
+' Last aligned: 2026-01-14

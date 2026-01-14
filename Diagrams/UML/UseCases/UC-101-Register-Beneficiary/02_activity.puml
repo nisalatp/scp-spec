@@ -1,0 +1,44 @@
+@startuml UC-101_Activity
+title UC-101: Register Beneficiary (Activity)
+
+|Field Agent|
+start
+:Login to SCP Mobile App;
+if (Authenticated?) then (no)
+  stop
+endif
+
+:Select "New Registration";
+:Search for existing person (Local/Remote Cache);
+if (Found?) then (yes)
+  :Update existing record?;
+  stop
+endif
+
+:Capture Identification (ID card Scan/Photo);
+:Capture Biometrics (Fingerprint/Photo);
+
+|SCP Core: Consent|
+:Present Data Privacy Policy;
+:Capture Beneficiary Consent (Digital Signature/Thumbprint);
+
+|SCP Core: Identity|
+if (Online?) then (yes)
+  :Submit to Server;
+  :Real-time Deduplication Check;
+  if (Duplicate Found?) then (yes)
+    :Flag for Manual Review;
+    :Status = PROVISIONAL;
+  else (no)
+    :Status = VERIFIED;
+  endif
+else (no)
+  :Save to local encrypted store;
+  :Mark for Sync;
+endif
+
+|Field Agent|
+:Registration Complete;
+
+stop
+@enduml

@@ -1,0 +1,26 @@
+@startuml UC-03_Sequence
+title UC-03: Chronic Disease Outreach (Sequence)
+
+autoactivate on
+actor "Case Worker" as Worker
+participant "Security" as Sec
+participant "Vertical: Health" as Health
+participant "Geo Engine" as Geo
+participant "Workflows" as Flow
+
+Worker -> Sec: ValidateAccess(Vertical=Health)
+return Authorized
+
+Worker -> Health: FindPatients(Diabetes, ZoneA)
+    Health -> Geo: GetHouseholdsInZone(ZoneA)
+    return HH_IDs[]
+    Health -> Health: FilterByDisease(HH_IDs, Diabetes)
+    return PatientList[]
+return Display(PatientList)
+
+opt Outreach Case Creation
+    Worker -> Flow: CreateCase(Outreach, PatientList)
+    return CaseID
+end
+
+@enduml

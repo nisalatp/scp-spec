@@ -1,0 +1,36 @@
+@startuml UC-102_Sequence
+title UC-102: Launch New Program (Sequence)
+
+autoactivate on
+actor "Program Manager" as PM
+actor "Finance Manager" as FM
+actor "Vertical Owner" as VO
+participant "Security" as Sec
+participant "Program Svc" as Prog
+participant "Rules Engine" as Rules
+participant "Finance" as Fin
+participant "Workflows" as Flow
+
+PM -> Sec: ValidateAccess(Perm=program:create)
+return Authorized
+
+PM -> Prog: CreateDraft(ProgramDTO)
+return ProgramID
+
+PM -> Rules: ConfigureEligibility(RulesDTO)
+    Rules -> Rules: ValidateSyntax()
+return RulesID
+
+FM -> Fin: ReserveBudget(ProgramID, Amount)
+    Fin -> Fin: CheckBucketBalance()
+return BudgetAllocated
+
+VO -> Flow: ApproveProgram(ProgramID)
+    Flow -> Sec: VerifySignature(VerticalOwner)
+    return Valid
+    
+    Flow -> Prog: SetStatus(ACTIVE)
+    return StatusUpdated
+return Success
+
+@enduml

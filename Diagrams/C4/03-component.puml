@@ -1,0 +1,52 @@
+@startuml C4_Component
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/v2.5.0/C4_Component.puml
+
+title SCP - Component Diagram (Level 3)
+
+Container(api, "API Layer", "ASPNET WebAPI", "Gateway, Validation, Throttling")
+ContainerDb(db, "PostgreSQL", "Relational Store", "Core State")
+
+System_Boundary(monolith, "SCP Modular Monolith") {
+    
+    Boundary(p1, "Security & Compliance") {
+        Component(sac, "Security & Access Control", "Module", "PDP/PIP, Role-Based Access")
+        Component(audit, "Audit Logging", "Module", "Immutable event trail")
+        Component(consent, "Consent Manager", "Module", "Captures & verifies user consent")
+    }
+
+    Boundary(p2, "Platform Core") {
+        Component(tenant, "Tenant Management", "Module", "Isolation & Org Config")
+        Component(id, "Identity (Person & Household)", "Module", "Person & Household Registries")
+        Component(geo, "Geo Engine", "Module", "Spatial boundaries & mapping")
+        Component(fb, "Form Builder", "Module", "UI Designer")
+        Component(fs, "Form Scripting", "Module", "Logic & DSL")
+    }
+
+    Boundary(p3, "Business Logic") {
+        Component(workflow, "Workflows & Case Management", "Module", "State machine & tasks")
+        Component(rules, "Eligibility Rules", "Module", "DSL-based vetting")
+        Component(finance, "Finance", "Module", "Budgets & Disbursements")
+        Component(verts, "Vertical Governance", "Module", "Domain Guardrails")
+    }
+
+    Boundary(p4, "Operations") {
+        Component(ops, "Field Operations", "Module", "Mobile sync & Agent tasks")
+        Component(analytics, "Analytics & Data Mesh", "Module", "Decentralized BI & Reporting")
+        Component(integ, "Integrations Layer", "Module", "External APIs / Webhooks")
+    }
+}
+
+Rel(api, p1, "Authenticates")
+Rel(api, p3, "Triggers Actions")
+Rel(p3, p2, "Uses Core Data")
+Rel(p3, p1, "Enforces Policies")
+Rel(p4, p3, "Operates on")
+
+Rel(monolith, db, "Reads/Writes")
+
+@enduml
+
+' TRACE:
+' SPEC: 06-platform-core, 07-verticals, 08-operations, 02-architecture/02-logical-architecture.md
+' Scope: Component Architecture (Level 3)
+' Last aligned: 2026-01-14
