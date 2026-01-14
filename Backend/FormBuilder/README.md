@@ -7,6 +7,7 @@
 ## API Endpoints
 *   `GET /api/forms`: List active forms for the user's context.
 *   `GET /api/forms/{id}/latest`: Get schema.
+*   `POST /api/admin/forms/import`: **(New)** Import Form Script Package (`.forms.yaml`).
 *   `POST /api/submissions`: Accept data.
     *   **Validation**: Server-side validation against the JSON Schema (Critical for security).
     *   **Hooks**: Triggers "Entity Mappers" to write data to Core Tables (e.g., `Household`).

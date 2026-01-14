@@ -1,0 +1,17 @@
+@startuml
+title 03_form_script_lifecycle
+[*id] --> ScriptDraft : Dev writes YAML
+
+state "System State" as System {
+    ScriptDraft --> Imported : CLI Import
+    Imported --> Active : Default State
+    Active --> Deprecated : Updated by newer script
+    Deprecated --> Archived : Manual Cleanup
+}
+
+note right of Imported
+    Version created in Registry
+end note
+
+Active --> [*id]
+@enduml

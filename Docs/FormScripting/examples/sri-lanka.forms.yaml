@@ -1,0 +1,43 @@
+apiVersion: "scp.forms.v1"
+countryTenant: "LK"
+package:
+  name: "sri-lanka-social-registry"
+  version: "1.2.0"
+  description: "Standard Forms for Sri Lanka National Social Registry."
+
+forms:
+  - formKey: "lk-hh-reg-v1"
+    title: "Household Registration (Sri Lanka)"
+    scope:
+      vertical: "core"
+    access:
+      roles: ["registrar", "ds_officer"]
+    sections:
+      - title: "Location Details"
+        fields:
+          - fieldKey: "ds_division"
+            type: "enum"
+            label: "DS Division"
+            source: "ref:lk_admin_areas"
+            required: true
+          - fieldKey: "gn_division"
+            type: "enum"
+            label: "GN Division"
+            required: true
+            logic:
+              showIf: { "var": "ds_division" }
+      - title: "Head of Household"
+        fields:
+          - fieldKey: "nic_no"
+            type: "text"
+            label: "National ID (NIC)"
+            validation:
+              regex: "^[0-9]{9}[vVxX]|[0-9]{12}$"
+            required: true
+            storage:
+              entity: "Person"
+              path: "attributes.national_id"
+          - fieldKey: "full_name"
+            type: "text"
+            label: "Full Name"
+            required: true
