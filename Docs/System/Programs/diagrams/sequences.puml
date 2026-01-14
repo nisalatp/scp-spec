@@ -19,8 +19,16 @@ PR -> AS : Log PROG_REQUESTED
 
 UA -> PR : Review and Approve
 PR -> FS : Request Budget Earmark
-FS --> PR : Approved ($1M Allocated)
-PR -> PR : Set status to APPROVED -> ACTIVE
-PR -> AS : Log PROG_ACTIVATED
-PR --> VO : Program Live for Enrollment
+
+alt Budget Available
+    FS --> PR : Approved ($1M Allocated)
+    PR -> PR : Set status to APPROVED -> ACTIVE
+    PR -> AS : Log PROG_ACTIVATED
+    PR --> VO : Program Live for Enrollment
+else Budget Denied
+    FS --> PR : Rejected (Insufficient Funds)
+    PR -> PR : Return to DRAFT
+    PR -> AS : Log PROG_BUDGET_REJECTED
+    PR --> VO : Activation Failed (Budget)
+end
 @enduml

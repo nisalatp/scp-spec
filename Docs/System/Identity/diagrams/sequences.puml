@@ -10,12 +10,28 @@ IS -> DE : Search existing (NIC/Hash/Fuzzy)
 
 alt Match Found
   DE -> IS : Return Conflict
-  IS --> FA : Flag Duplicate (Workflow Pending)
+  IS --> FA : Flag Duplicate 
 else No Match
   DE -> IS : Clear
   IS -> IS : Create Record (Provisional)
   IS -> AS : Log Provisional Registration
   IS --> FA : Registration Success
+end
+
+group Duplicate Resolution Workflow
+    CW -> IS : Get Pending Duplicates
+    IS --> CW : List of {ProvisionalID, PotentialMatchID, Score}
+    
+    alt Confirmed Duplicate
+        CW -> IS : Resolve as Duplicate (Target=PotentialMatchID)
+        IS -> IS : Merge Data (Provisional -> Target)
+        IS -> IS : Archive Provisional Record
+        IS -> AS : Log Merge Action
+    else False Positive
+        CW -> IS : Resolve as Unique
+        IS -> IS : Promote Provisional to Active
+        IS -> AS : Log Force Creation
+    end
 end
 
 CW -> IS : Verify Provisional Record

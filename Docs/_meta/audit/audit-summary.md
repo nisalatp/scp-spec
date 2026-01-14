@@ -1,8 +1,8 @@
 # Audit Summary
-**Status:** IN_PROGRESS
-- **Total Lapses:** 24
+**Status:** CLOSED
+- **Total Lapses:** 25
 - **Blockers:** 0
-- **Fixes Applied:** 24
+- **Fixes Applied:** 25
 - **Deferred:** 0
 
 ## Phase Status
@@ -16,5 +16,7 @@
 - [x] Phase 7: Scripts (2 Issues - Fixed)
 - [x] Phase 8: Reconciliation
 - [x] Phase 9: Fix Pass (Completed)
+- [x] Phase 10: Audit 2.0 (Finance/Lifecycle Check - 1 Issue Fixed)
+- [x] Phase 11: Audit 3.0 (Pending Artifact Scan - 1 Stale Text Fixed)
 
 ---

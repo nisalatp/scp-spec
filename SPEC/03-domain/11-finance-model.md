@@ -29,6 +29,14 @@ This document defines the finance domain model for SCP, excluding transaction ex
 - Payment gateways MUST be configurable later through governance policy.
 - Currency handling MUST use a separate subsystem for conversion between tenant currencies.
 
+## Financial Obligation Lifecycle
+
+1. **Pending**: Obligation created, waiting for budget check.
+2. **Committed**: Budget earmarked, payment intent created.
+3. **Disbursed**: Payment execution successful (ACK).
+4. **Failed**: Payment execution failed (NACK).
+5. **Cancelled**: Obligation revoked before disbursement.
+
 ## Edge Cases
 
 - Partial repayments.

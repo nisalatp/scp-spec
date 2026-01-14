@@ -15,7 +15,16 @@ FS -> AS : Log Financial Commitment
 FS --> PM : Case Activated & Funds Locked
 
 FS -> EG : Dispatch Disbursement File (ISO 20022)
-EG --> FS : ACK/Payment Success
-FS -> FS : Mark OBLIGATION (Disbursed)
-FS -> AS : Log Final Payout
+
+alt Payment Success
+    EG --> FS : ACK/Payment Success
+    FS -> FS : Mark OBLIGATION (Disbursed)
+    FS -> AS : Log Final Payout
+else Payment Failed
+    EG --> FS : NACK/Payment Error
+    FS -> FS : Mark OBLIGATION (Failed)
+    FS -> BR : Unlock Budget Earmark
+    FS -> AS : Log Payment Failure
+    FS --> PM : Async Failure Notification
+end
 @enduml
