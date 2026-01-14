@@ -29,6 +29,7 @@ This directory contains detailed technical documentation for each system compone
 
 ## 🏢 Business Domain
 - [Vertical Governance](Vertical-Governance/README.md)
+- [Programs](Programs/README.md)
 - [Workflows & Case Management](Workflows-Case-Management/README.md)
 - [Eligibility Rules](Eligibility-Rules/README.md)
 - [Finance](Finance/README.md)

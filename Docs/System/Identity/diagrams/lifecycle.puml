@@ -15,4 +15,6 @@ state Verified {
 Verified --> Merged : Duplicate found post-verification
 Merged --> [*] : Pointer to Master Record
 
+Active --> Archived : Soft Delete (Retention Policy)
+Archived --> [*]
 @enduml

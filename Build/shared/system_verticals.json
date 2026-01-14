@@ -1,0 +1,30 @@
+{
+    "system_verticals": [
+        {
+            "id": "health_env",
+            "name": "Health and Environment",
+            "code": "HEALTH"
+        },
+        {
+            "id": "edu_skills",
+            "name": "Education, Sports, and Skill Development",
+            "code": "EDU"
+        },
+        {
+            "id": "economy",
+            "name": "Economy and Livelihood",
+            "code": "ECON"
+        },
+        {
+            "id": "finance",
+            "name": "Finance",
+            "code": "FIN"
+        },
+        {
+            "id": "data",
+            "name": "Data (Civil Registry & Census)",
+            "code": "DATA",
+            "description": "Added via Audit Fix FIX-003 to support Birth Registration."
+        }
+    ]
+}

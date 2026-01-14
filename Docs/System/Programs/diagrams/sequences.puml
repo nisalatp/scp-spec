@@ -1,0 +1,26 @@
+@startuml program-activation-sequence
+actor "Vertical Owner" as VO
+actor "Umbrella Authority" as UA
+participant "Program Registry" as PR
+participant "Eligibility Engine" as EE
+participant "Finance System" as FS
+participant "Audit System" as AS
+
+VO -> PR : Create Program (Name="Health Grant", Vertical="Health")
+PR -> PR : Set status to DRAFT
+PR -> AS : Log PROG_CREATED
+
+VO -> PR : Define Eligibility (Ruleset-ID: 101)
+PR -> EE : Validate Ruleset Link
+EE --> PR : Valid
+
+VO -> PR : Submit for Approval
+PR -> AS : Log PROG_REQUESTED
+
+UA -> PR : Review and Approve
+PR -> FS : Request Budget Earmark
+FS --> PR : Approved ($1M Allocated)
+PR -> PR : Set status to APPROVED -> ACTIVE
+PR -> AS : Log PROG_ACTIVATED
+PR --> VO : Program Live for Enrollment
+@enduml

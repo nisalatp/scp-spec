@@ -15,8 +15,7 @@ Active --> Suspended : Consent Withdrawn / Geo-Reorg / Policy Breach
 Suspended --> Active : Remedy Applied / Consent Renewed
 
 state Active {
-  [*] --> InProgress
-  InProgress --> Stabilized : Objectives Met (Final Assessment)
+  [*] --> Stabilized : Objectives Met (Final Assessment)
 }
 
 Stabilized --> Closed : Manual Closure by Vertical Owner

@@ -1,0 +1,17 @@
+@startuml program-lifecycle
+title Program Lifecycle
+
+[*] --> Draft : Created by Vertical Owner
+
+Draft --> Requested : Submitted for Review
+Requested --> Reviewed : Peer / Expert Review Complete
+Reviewed --> Approved : Umbrella Admin signs off
+
+Approved --> Active : Reaches ActiveFrom date
+Active --> Restricted : Policy Audit / Emergency Freeze
+Active --> Suspended : Violation detected
+
+Active --> Deprecated : Program Replaced by New Version
+Deprecated --> Archived : Historical Reference (Read-Only)
+
+@enduml

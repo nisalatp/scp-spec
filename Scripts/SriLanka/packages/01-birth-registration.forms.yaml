@@ -10,7 +10,7 @@ forms:
     title: "Birth Registration (Sri Lanka)"
     targetActors: ["citizen", "agent", "admin"]
     scope:
-      vertical: "core"
+      vertical: "Data"
       program: null
       geoFence: null
     sections:
@@ -211,6 +211,20 @@ forms:
             type: "text"
             helpText: "captured digitally"
             binding: { entity: "GovernmentFormSubmission", path: "rawFields.signature" }
+
+      - sectionKey: "consent_declaration"
+        title: "Data Consent"
+        fields:
+          - fieldKey: "consent_primary"
+            label: "I consent to the collection and processing of this data by the Data Vertical."
+            type: "boolean"
+            required: true
+            binding: { entity: "Consent", path: "status" }
+          - fieldKey: "consent_evidence"
+            label: "Evidence (Signature)"
+            type: "signature"
+            required: true
+            binding: { entity: "Consent", path: "evidence" }
 
       - sectionKey: "attachments"
         title: "Attachments"

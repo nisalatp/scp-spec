@@ -27,6 +27,7 @@ This document defines how consent is recorded and enforced in SCP.
 ## Rules (MUST/SHOULD/MAY)
 
 - Consent MUST be per person and per vertical.
+- Consent MAY be refined by specific Purposes (e.g., Emergency Contact, Research) if supported by the Vertical.
 - Consent capture MUST require the related person record to be verified.
 - Consent MUST include Active From and Active Until timestamps.
 - Consent MUST be enforced only within its active window.

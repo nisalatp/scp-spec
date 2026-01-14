@@ -1,0 +1,21 @@
+{
+    "valid_sections": [
+        "child_details",
+        "mother_details",
+        "father_details",
+        "marriage_legal",
+        "informant",
+        "attachments",
+        "consent_declaration"
+    ],
+    "section_definitions": {
+        "consent_declaration": {
+            "required": true,
+            "description": "Mandatory consent capture for Data access. Added via Audit Fix FIX-007.",
+            "fields": [
+                "consent_primary",
+                "consent_evidence"
+            ]
+        }
+    }
+}

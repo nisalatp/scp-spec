@@ -1,12 +1,9 @@
-# System Lapses & Gaps
+# Lapses
 
-**Status**: **CLEAN** (No Active Lapses)
+This directory contains records of identified system lapses (mismatches between SPEC and Implementation).
 
-This directory tracks currently known gaps in the System Specification or Implementation. 
-
-## Active Lapses
-*None.*
-
-## Archived Lapses
-All previously identified lapses have been resolved and moved to `Archive/Lapses/`.
-See [Lapse Status Matrix](_meta/lapse-status-matrix.md) for details.
+> **Current Status:** Clean.
+>
+> All lapses from the **2026-01-14 Full System Audit** have been remediated and archived.
+>
+> Archived Lapses are located in: `Docs/_meta/audit/archived_lapses/`
